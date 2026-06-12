@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early-Career Engineering Track — Interview Kickstart India</title>
+<meta name="description" content="Go from overlooked to offer letter. A live, MAANG-led track that gives early-career engineers the DSA depth, system-design instinct, and AI edge top tech teams actually hire for.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Core palette */
+  --black: #050A0E;
+  --ink: #0A1628;
+  --ink2: #0F1D32;
+  --slate: #1A2942;
+  --steel: #2A3F5F;
+  --muted: #64748B;
+  --silver: #94A3B8;
+  --cloud: #E2E8F0;
+  --white: #FFFFFF;
+  --offwhite: #F8FAFC;
+  
+  /* Accent — electric lime */
+  --lime: #BFFF00;
+  --lime-dim: #A3E600;
+  --lime-glow: rgba(191,255,0,0.25);
+  --lime-soft: rgba(191,255,0,0.08);
+  
+  /* Secondary — blue */
+  --blue: #3B82F6;
+  --blue-glow: rgba(59,130,246,0.3);
+  
+  /* Semantic */
+  --green: #22C55E;
+  --amber: #FBBF24;
+  
+  /* Type */
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Effects */
+  --glass: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.06);
+  --glow-sm: 0 0 20px;
+  --glow-md: 0 0 40px;
+  --glow-lg: 0 0 80px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--silver);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--lime); color: var(--black); }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ─── TYPOGRAPHY ─── */
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--white);
+}
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.gradient-text {
+  background: linear-gradient(135deg, var(--lime), #7DD3FC, var(--lime));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+/* ─── COMPONENTS ─── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 1rem;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--lime), transparent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: var(--lime);
+  color: var(--black);
+  box-shadow: 0 4px 24px var(--lime-glow), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.25), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--lime-glow), 0 0 0 1px var(--lime), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary.pulse {
+  animation: btnPulse 2s ease-in-out infinite;
+}
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 4px 24px var(--lime-glow); }
+  50% { box-shadow: 0 4px 24px var(--lime-glow), 0 0 0 8px rgba(191,255,0,0.1); }
+}
+
+.btn-ghost {
+  background: var(--glass);
+  color: var(--white);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+/* Glass card */
+.glass-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent 60%);
+  pointer-events: none;
+}
+
+/* Glow orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.6;
+}
+.orb-lime { background: var(--lime); }
+.orb-blue { background: var(--blue); }
+
+/* ─── RIBBON ─── */
+.ribbon {
+  background: linear-gradient(90deg, var(--ink), var(--ink2));
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--silver);
+}
+.ribbon-live {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  animation: livePulse 2s infinite;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--lime-glow); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px transparent; }
+}
+.ribbon b { color: var(--lime); font-weight: 600; }
+.ribbon a { color: var(--lime); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+.countdown-mini { display: inline-flex; gap: 0.15rem; font-weight: 600; color: var(--white); }
+
+/* ─── NAV ─── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5,10,14,0.85);
+  backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.brand-mark {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--lime), var(--lime-dim));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--black);
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--white); }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(191,255,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(191,255,0,0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+}
+.hero .orb-1 { width: 600px; height: 600px; top: -200px; right: -100px; }
+.hero .orb-2 { width: 400px; height: 400px; bottom: -100px; left: -100px; }
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Hero badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--lime-soft);
+  border: 1px solid rgba(191,255,0,0.2);
+  border-radius: 100px;
+  padding: 0.4rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--lime);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-badge .spark { animation: sparkle 1.5s ease infinite; }
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 { margin-bottom: 1.5rem; }
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--silver);
+  max-width: 42ch;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.hero-sub strong { color: var(--white); font-weight: 600; }
+
+.hero-actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* Hero stats */
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--glass-border);
+}
+.stat {
+  text-align: left;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.stat-num .counter { display: inline-block; }
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Hero visual — floating code card */
+.hero-visual {
+  position: relative;
+}
+.code-card {
+  background: var(--ink);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.5), var(--glow-md) var(--lime-glow);
+  transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.code-card:hover {
+  transform: perspective(1000px) rotateY(-4deg) rotateX(2deg) translateY(-8px);
+}
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--ink2);
+  border-bottom: 1px solid var(--glass-border);
+}
+.code-dot { width: 10px; height: 10px; border-radius: 50%; }
+.code-dot.r { background: #FF5F57; }
+.code-dot.y { background: #FEBC2E; }
+.code-dot.g { background: #28C840; }
+.code-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.code-body {
+  padding: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--silver);
+}
+.code-body .kw { color: #C792EA; }
+.code-body .fn { color: #82AAFF; }
+.code-body .str { color: var(--lime); }
+.code-body .cm { color: var(--muted); font-style: italic; }
+.code-body .num { color: #F78C6C; }
+
+/* Floating badges around code card */
+.float-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--ink);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  padding: 0.5rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--silver);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  animation: float 4s ease-in-out infinite;
+}
+.float-badge.b1 { top: 8%; right: -20px; animation-delay: 0s; }
+.float-badge.b2 { bottom: 20%; left: -30px; animation-delay: 1s; }
+.float-badge.b3 { bottom: 5%; right: 10%; animation-delay: 2s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-badge .dot { width: 6px; height: 6px; border-radius: 50%; }
+.float-badge .dot.lime { background: var(--lime); }
+.float-badge .dot.blue { background: var(--blue); }
+
+/* ─── LOGO STRIP ─── */
+.logo-strip {
+  background: var(--ink);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 2rem 0;
+  overflow: hidden;
+}
+.strip-label {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+.logo-scroll {
+  display: flex;
+  gap: 3rem;
+  animation: scrollLogos 25s linear infinite;
+  width: max-content;
+}
+@keyframes scrollLogos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.logo-pill {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.logo-pill:hover { opacity: 1; }
+
+/* ─── SECTION BASE ─── */
+section {
+  padding: 6rem 0;
+  position: relative;
+}
+.sec-head {
+  margin-bottom: 3.5rem;
+}
+.sec-head p {
+  color: var(--silver);
+  font-size: 1.05rem;
+  margin-top: 1rem;
+  max-width: 56ch;
+  line-height: 1.7;
+}
+.sec-center { text-align: center; }
+.sec-center .sec-head { max-width: 640px; margin-left: auto; margin-right: auto; }
+.sec-alt { background: var(--ink); }
+
+/* ─── ASPIRATION / TRANSFORMATION ─── */
+.transform-section {
+  background: linear-gradient(180deg, var(--black), var(--ink));
+  position: relative;
+  overflow: hidden;
+}
+.transform-section .orb { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.15; }
+
+.transform-grid {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.transform-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+}
+.transform-card.before { border-color: rgba(239,68,68,0.2); }
+.transform-card.after { border-color: rgba(191,255,0,0.2); }
+.transform-card h3 {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+.transform-card.before h3 { color: #EF4444; }
+.transform-card.after h3 { color: var(--lime); }
+.transform-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.transform-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--silver);
+  line-height: 1.5;
+}
+.transform-list .icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  margin-top: 2px;
+}
+.transform-card.before .icon { background: rgba(239,68,68,0.15); color: #EF4444; }
+.transform-card.after .icon { background: var(--lime-soft); color: var(--lime); }
+
+.transform-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrow-line {
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(239,68,68,0.3), var(--lime));
+  position: relative;
+}
+.arrow-line::after {
+  content: '→';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  font-size: 1.5rem;
+  color: var(--lime);
+}
+
+/* ─── BENEFITS ─── */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.benefit-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--lime), var(--blue));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.benefit-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(191,255,0,0.2);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 0 1px rgba(191,255,0,0.1);
+}
+.benefit-card:hover::before { opacity: 1; }
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--lime-soft);
+  border: 1px solid rgba(191,255,0,0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+.benefit-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.benefit-card p { color: var(--silver); font-size: 0.88rem; line-height: 1.6; }
+.benefit-tag {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--lime);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+/* ─── CURRICULUM ─── */
+.curric-section { background: var(--ink); }
+.modules-wrap { position: relative; }
+.module-line {
+  position: absolute;
+  left: 31px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--lime), var(--blue), var(--lime));
+  opacity: 0.3;
+}
+.modules { display: flex; flex-direction: column; gap: 0; }
+.module {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+}
+.module:last-child { border-bottom: none; }
+.module-num {
+  width: 64px;
+  height: 64px;
+  background: var(--ink2);
+  border: 2px solid var(--lime);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--lime);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.module:hover .module-num {
+  background: var(--lime);
+  color: var(--black);
+  box-shadow: var(--glow-sm) var(--lime-glow);
+}
+.module-content h3 { font-size: 1.25rem; margin-bottom: 0.4rem; }
+.module-code {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+.module-code.ai { color: var(--lime); }
+.module-content p { color: var(--silver); font-size: 0.88rem; max-width: 52ch; line-height: 1.6; }
+.module-outcome {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--lime);
+  font-weight: 500;
+}
+.module-outcome::before { content: '→ '; opacity: 0.5; }
+
+.badge-live, .badge-self, .badge-proj {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.badge-live {
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.25);
+  color: var(--green);
+}
+.badge-live .pulse {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: livePulse 2s infinite;
+}
+.badge-self {
+  background: var(--lime-soft);
+  border: 1px solid rgba(191,255,0,0.2);
+  color: var(--lime);
+}
+.badge-proj {
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.25);
+  color: #A78BFA;
+}
+
+/* ─── PRACTICE ─── */
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+.practice-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: all 0.3s;
+}
+.practice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.25);
+  border-color: rgba(191,255,0,0.15);
+}
+.practice-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--slate), var(--ink2));
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.practice-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+.practice-card p { color: var(--silver); font-size: 0.85rem; line-height: 1.6; }
+
+/* ─── CAREERS ─── */
+.careers-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+.care-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.care-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+  transition: all 0.2s;
+}
+.care-item:hover { border-color: rgba(191,255,0,0.2); }
+.care-check {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  background: var(--lime-soft);
+  border-radius: 6px;
+  color: var(--lime);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  margin-top: 2px;
+}
+.care-item b { font-size: 0.92rem; color: var(--white); font-weight: 600; display: block; margin-bottom: 0.15rem; }
+.care-item span { font-size: 0.8rem; color: var(--silver); line-height: 1.5; }
+
+.opp-card {
+  background: linear-gradient(135deg, var(--ink), var(--ink2));
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.opp-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, var(--lime-glow), transparent 70%);
+  pointer-events: none;
+}
+.opp-num {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.04em;
+}
+.opp-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+.opp-card > p { color: var(--silver); font-size: 0.88rem; line-height: 1.65; }
+.opp-fine { font-size: 0.7rem; color: var(--muted); margin-top: 1.25rem; line-height: 1.7; font-style: italic; }
+
+/* ─── STEPS ─── */
+.steps-section { background: var(--ink); }
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  position: relative;
+}
+.steps-row::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--glass-border), var(--lime), var(--glass-border));
+}
+.step { text-align: center; position: relative; padding: 0 0.5rem; }
+.step-ring {
+  width: 56px; height: 56px;
+  background: var(--ink2);
+  border: 2px solid var(--glass-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--silver);
+  margin: 0 auto 1rem;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.step:hover .step-ring {
+  border-color: var(--lime);
+  color: var(--lime);
+  box-shadow: var(--glow-sm) var(--lime-glow);
+}
+.step.final .step-ring {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--black);
+}
+.step h3 { font-size: 0.95rem; margin-bottom: 0.35rem; }
+.step p { color: var(--silver); font-size: 0.78rem; line-height: 1.5; }
+
+/* ─── TESTIMONIALS ─── */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.quote-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+}
+.quote-card:hover {
+  border-color: rgba(191,255,0,0.15);
+  transform: translateY(-4px);
+}
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--lime);
+  line-height: 0.6;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+.quote-text {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--silver);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+.quote-author {
+  border-top: 1px solid var(--glass-border);
+  padding-top: 1rem;
+}
+.quote-name { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--white); }
+.quote-role { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+
+/* ─── FAQ ─── */
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.faq-item {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item.open { border-color: rgba(191,255,0,0.2); }
+.faq-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1.15rem 1.25rem;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.faq-arrow {
+  font-size: 0.7rem;
+  color: var(--muted);
+  transition: transform 0.25s, color 0.25s;
+}
+.faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--lime); }
+.faq-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.faq-item.open .faq-body { max-height: 400px; }
+.faq-inner {
+  padding: 0 1.25rem 1.15rem;
+  border-top: 1px solid var(--glass-border);
+  padding-top: 1rem;
+  font-size: 0.88rem;
+  color: var(--silver);
+  line-height: 1.7;
+}
+
+/* ─── REGISTER ─── */
+.register-section {
+  background: linear-gradient(180deg, var(--black), var(--ink));
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.register-section .orb { width: 600px; height: 600px; top: -200px; right: -200px; }
+.register-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.register-copy h2 { margin-bottom: 1rem; }
+.register-copy .lead { color: var(--silver); font-size: 1.05rem; line-height: 1.7; max-width: 38ch; margin-bottom: 1.5rem; }
+.register-copy .note { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); line-height: 1.9; }
+
+.form-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2rem;
+  color: var(--ink);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+}
+.form-card h3 { font-size: 1.15rem; color: var(--ink); margin-bottom: 0.25rem; }
+.form-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
+.form-fomo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--lime-soft);
+  border: 1px solid rgba(191,255,0,0.3);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+.form-fomo .seat-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime-dim); animation: livePulse 2s infinite; }
+.form-fomo b { font-weight: 700; }
+.form-field { margin-bottom: 0.75rem; }
+.form-field label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--muted); margin-bottom: 0.35rem; }
+.form-field input, .form-field select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--offwhite);
+  border: 1.5px solid var(--cloud);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-field input::placeholder { color: var(--muted); }
+.form-field input:focus, .form-field select:focus {
+  border-color: var(--lime-dim);
+  box-shadow: 0 0 0 3px var(--lime-soft);
+}
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.form-submit { margin-top: 0.5rem; }
+.privacy { font-size: 0.7rem; color: var(--muted); text-align: center; margin-top: 0.85rem; }
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 2rem 0;
+}
+.form-success .emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.form-success h4 { font-size: 1.1rem; color: var(--ink); margin-bottom: 0.35rem; }
+.form-success p { font-size: 0.85rem; color: var(--muted); }
+
+/* ─── STICKY BAR ─── */
+.sticky-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 90;
+  background: rgba(5,10,14,0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--glass-border);
+  transform: translateY(120%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sticky-bar.show { transform: translateY(0); }
+.sticky-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.9rem 0;
+}
+.sticky-text { flex: 1; }
+.sticky-title { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--white); }
+.sticky-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.sticky-meta .seats { color: var(--lime); font-weight: 600; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--black);
+  border-top: 1px solid var(--glass-border);
+  padding: 3rem 0 7rem;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+.footer-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.footer-links a { font-size: 0.8rem; color: var(--muted); transition: color 0.15s; }
+.footer-links a:hover { color: var(--white); }
+.disclaimer { font-size: 0.72rem; color: var(--steel); line-height: 1.8; max-width: 90ch; }
+.copy { font-size: 0.7rem; color: var(--steel); margin-top: 1.25rem; }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { max-width: 440px; }
+  .transform-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .transform-arrow { display: none; }
+  .careers-layout, .register-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .steps-row { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .steps-row::before { display: none; }
+  .quotes-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .benefits-grid, .practice-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .module { grid-template-columns: 48px 1fr; gap: 1rem; }
+  .module .badge-live, .module .badge-self, .module .badge-proj { grid-column: 2; margin-top: 0.5rem; }
+  .hero-stats { flex-direction: column; gap: 1.25rem; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  section { padding: 4rem 0; }
+  .sticky-meta { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, .reveal, .traj-path, .logo-scroll { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <span class="ribbon-live"></span>
+  Next free webinar <b id="ribbonDate">Sat, 21 Jun · 6:30 PM</b>
+  — closes in <span class="countdown-mini" id="ribbonCountdown"></span>
+  <a href="#register">Reserve your seat →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="brand-mark">ik</span> Interview Kickstart</a>
+    <ul class="nav-links">
+      <li><a href="#benefits">Why IK</a></li>
+      <li><a href="#curriculum">Curriculum</a></li>
+      <li><a href="#practice">Practice</a></li>
+      <li><a href="#careers">Careers</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#register" class="btn btn-primary">Register free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="orb orb-lime orb-1"></div>
+  <div class="orb orb-blue orb-2"></div>
+  <div class="wrap hero-inner">
+
+    <div>
+      <div class="hero-badge"><span class="spark">✦</span> Early-career engineering · India</div>
+      <h1>Go from overlooked<br>to <span class="gradient-text">offer letter.</span></h1>
+      <p class="hero-sub">
+        A live, <strong>MAANG-led</strong> track that gives early-career engineers the DSA depth, system-design instinct, and AI edge top tech teams <em>actually</em> hire for — with real mock reps and a careers team in your corner.
+      </p>
+      <div class="hero-actions">
+        <a href="#register" class="btn btn-primary pulse" data-cta>Register for the free webinar →</a>
+        <a href="#curriculum" class="btn btn-ghost">Explore the curriculum</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num"><span class="counter" data-target="27000">0</span>+</div>
+          <div class="stat-label">Engineers trained</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num"><span class="counter" data-target="10">0</span>+ yrs</div>
+          <div class="stat-label">Teaching MAANG prep</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num"><span class="counter" data-target="500">0</span>+</div>
+          <div class="stat-label">MAANG+ instructors</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual -->
+    <div class="hero-visual">
+      <div class="code-card">
+        <div class="code-header">
+          <span class="code-dot r"></span>
+          <span class="code-dot y"></span>
+          <span class="code-dot g"></span>
+          <span class="code-title">your_career.py</span>
+        </div>
+        <div class="code-body">
+<span class="kw">from</span> ik <span class="kw">import</span> <span class="fn">DSA</span>, <span class="fn">SystemDesign</span>, <span class="fn">AgenticAI</span><br>
+<span class="kw">from</span> ik.career <span class="kw">import</span> <span class="fn">Mocks</span>, <span class="fn">Resume</span>, <span class="fn">Offers</span><br>
+<br>
+<span class="cm"># Where you are today</span><br>
+<span class="fn">you</span> = <span class="fn">Engineer</span>(exp=<span class="str">"early-career"</span>)<br>
+<br>
+<span class="cm"># What you'll build</span><br>
+<span class="fn">you</span>.learn(<span class="fn">DSA</span>, <span class="fn">SystemDesign</span>, <span class="fn">AgenticAI</span>)<br>
+<span class="fn">you</span>.practice(<span class="fn">Mocks</span>(n=<span class="num">2</span>, live=<span class="kw">True</span>))<br>
+<span class="fn">you</span>.polish(<span class="fn">Resume</span>, linkedin=<span class="kw">True</span>)<br>
+<br>
+<span class="cm"># Where you land</span><br>
+<span class="fn">you</span>.apply(opportunities=<span class="num">5</span>)  <span class="cm"># T&C apply</span><br>
+<span class="fn">print</span>(<span class="fn">you</span>.destination)  <span class="cm"># → MAANG+</span>
+        </div>
+      </div>
+      <div class="float-badge b1"><span class="dot lime"></span> Next cohort: <b>7 July</b></div>
+      <div class="float-badge b2"><span class="dot blue"></span> Live DSA · 9 weeks</div>
+      <div class="float-badge b3"><span class="dot lime"></span> <b id="heroSeats">23</b> seats left</div>
+    </div>
+
+  </div>
+</header>
+
+<!-- LOGO STRIP -->
+<div class="logo-strip">
+  <p class="strip-label">Built & taught by engineers from</p>
+  <div class="logo-scroll">
+    <span class="logo-pill" style="color:#4285F4">G<span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>
+    <span class="logo-pill" style="color:#FF9900">amazon</span>
+    <span class="logo-pill" style="color:#0866FF">Meta</span>
+    <span class="logo-pill" style="color:#737373">Microsoft</span>
+    <span class="logo-pill" style="color:#E50914">NETFLIX</span>
+    <span class="logo-pill" style="color:#0A66C2">LinkedIn</span>
+    <span class="logo-pill" style="color:#FFF">Uber</span>
+    <span class="logo-pill" style="color:#635BFF">stripe</span>
+    <span class="logo-pill" style="color:#76B900">NVIDIA</span>
+    <span class="logo-pill" style="color:#10A37F">OpenAI</span>
+    <!-- dupe for seamless -->
+    <span class="logo-pill" style="color:#4285F4">G<span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></span>
+    <span class="logo-pill" style="color:#FF9900">amazon</span>
+    <span class="logo-pill" style="color:#0866FF">Meta</span>
+    <span class="logo-pill" style="color:#737373">Microsoft</span>
+    <span class="logo-pill" style="color:#E50914">NETFLIX</span>
+    <span class="logo-pill" style="color:#0A66C2">LinkedIn</span>
+    <span class="logo-pill" style="color:#FFF">Uber</span>
+    <span class="logo-pill" style="color:#635BFF">stripe</span>
+    <span class="logo-pill" style="color:#76B900">NVIDIA</span>
+    <span class="logo-pill" style="color:#10A37F">OpenAI</span>
+  </div>
+</div>
+
+<!-- TRANSFORMATION -->
+<section class="transform-section">
+  <div class="orb orb-lime"></div>
+  <div class="wrap">
+    <div class="sec-head sec-center reveal">
+      <span class="eyebrow">The transformation</span>
+      <h2>This is the gap. We close it.</h2>
+      <p>Most early-career engineers know they're not ready for top-tech interviews. The question is whether you fix it now or keep getting rejected.</p>
+    </div>
+    <div class="transform-grid reveal">
+      <div class="transform-card before">
+        <h3>✗ Before</h3>
+        <ul class="transform-list">
+          <li><span class="icon">✗</span> DSA feels like memorizing patterns you forget next week</li>
+          <li><span class="icon">✗</span> System design is a blank page in your head</li>
+          <li><span class="icon">✗</span> "AI skills" = you've run a ChatGPT prompt</li>
+          <li><span class="icon">✗</span> Resume gets zero callbacks from top companies</li>
+          <li><span class="icon">✗</span> Freeze when the interviewer asks a follow-up</li>
+          <li><span class="icon">✗</span> No idea where to even apply</li>
+        </ul>
+      </div>
+      <div class="transform-arrow"><div class="arrow-line"></div></div>
+      <div class="transform-card after">
+        <h3>✓ After</h3>
+        <ul class="transform-list">
+          <li><span class="icon">✓</span> Pattern recognition that solves problems you've never seen</li>
+          <li><span class="icon">✓</span> Talk trade-offs like someone who's built real systems</li>
+          <li><span class="icon">✓</span> Ship an AI project interviewers actually ask about</li>
+          <li><span class="icon">✓</span> Profile that survives the first 6-second recruiter scan</li>
+          <li><span class="icon">✓</span> Mock reps so you walk in warm, not cold</li>
+          <li><span class="icon">✓</span> 5 application opportunities + a careers team</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What you get</span>
+      <h2>Not a course. A system that<br>gets you hired.</h2>
+      <p>Every piece is designed around one outcome: you, ready for — and landing — a role at a company you actually want to work for.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🧠</div>
+        <h3>DSA that sticks</h3>
+        <p>9 live weeks of problem-solving with engineers who interview candidates for a living. Pattern recognition, not memorization.</p>
+        <span class="benefit-tag">→ Clear coding rounds</span>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🏗️</div>
+        <h3>System design instinct</h3>
+        <p>Learn to reason about scale, trade-offs, and real architectures — the same way senior engineers do when they whiteboard.</p>
+        <span class="benefit-tag">→ Talk like you've built things</span>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">⚡</div>
+        <h3>AI skills that matter now</h3>
+        <p>5 weeks on LLMs and agentic frameworks — the skills companies are actually hiring for in 2026, not a 2022 ML rebrand.</p>
+        <span class="benefit-tag">→ Portfolio piece interviewers ask about</span>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🎯</div>
+        <h3>Live mock interviews</h3>
+        <p>Real interview rounds with real MAANG+ engineers. Detailed, specific feedback — so you fix what counts before it counts.</p>
+        <span class="benefit-tag">→ Walk in warm, not cold</span>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">📄</div>
+        <h3>Resume that gets callbacks</h3>
+        <p>AI-assisted resume audit + human review. LinkedIn optimization. Stop being invisible to recruiters.</p>
+        <span class="benefit-tag">→ Survive the 6-second scan</span>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🚀</div>
+        <h3>Application opportunities</h3>
+        <p>5 opportunities to apply for relevant roles, with a careers team pushing your profile forward. (T&C apply — see below.)</p>
+        <span class="benefit-tag">→ Preparation meets opportunity</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="curric-section" id="curriculum">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The curriculum</span>
+      <h2>A sequence, not a syllabus dump.</h2>
+      <p>Five connected modules that take you from fundamentals to a portfolio-grade project — live where live matters, self-paced where you'll want to revisit.</p>
+    </div>
+    <div class="modules-wrap">
+      <div class="module-line"></div>
+      <div class="modules">
+        <div class="module reveal">
+          <div class="module-num">01</div>
+          <div class="module-content">
+            <div class="module-code">DSA · 9 WEEKS</div>
+            <h3>Data Structures & Algorithms</h3>
+            <p>Nine live weeks of problem-solving with engineers who interview candidates for a living. Pattern recognition, complexity analysis, and the muscle to crack problems you've never seen.</p>
+            <div class="module-outcome">Clear coding rounds without freezing</div>
+          </div>
+          <span class="badge-live"><span class="pulse"></span> Live</span>
+        </div>
+        <div class="module reveal">
+          <div class="module-num">02</div>
+          <div class="module-content">
+            <div class="module-code">SYSTEM DESIGN</div>
+            <h3>System Design Foundations</h3>
+            <p>Learn to reason about scale, trade-offs, and real architectures — the way senior engineers do at the whiteboard. Revisit before every interview.</p>
+            <div class="module-outcome">Talk like someone who's built real systems</div>
+          </div>
+          <span class="badge-self">Self-paced</span>
+        </div>
+        <div class="module reveal">
+          <div class="module-num">03</div>
+          <div class="module-content">
+            <div class="module-code ai">AGENTIC AI · 5 WEEKS</div>
+            <h3>Agentic & Applied AI</h3>
+            <p>LLMs and agentic frameworks — live sessions plus recorded deep-dives. Build something you can show, not just talk about.</p>
+            <div class="module-outcome">A portfolio piece interviewers ask about</div>
+          </div>
+          <span class="badge-live"><span class="pulse"></span> Live + Recorded</span>
+        </div>
+        <div class="module reveal">
+          <div class="module-num">04</div>
+          <div class="module-content">
+            <div class="module-code">DOMAIN ELECTIVES</div>
+            <h3>Domain Electives</h3>
+            <p>Go deeper in backend, frontend, data, or mobile — recorded sessions that fit around your schedule.</p>
+            <div class="module-outcome">Depth in your target domain</div>
+          </div>
+          <span class="badge-self">Recorded</span>
+        </div>
+        <div class="module reveal">
+          <div class="module-num">05</div>
+          <div class="module-content">
+            <div class="module-code">CAPSTONE</div>
+            <h3>Capstone Project</h3>
+            <p>Ship one portfolio-grade project that shows how you think — the kind of real work that gives interviewers something substantive to ask about.</p>
+            <div class="module-outcome">Proof you can ship, not just learn</div>
+          </div>
+          <span class="badge-proj">Project</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE -->
+<section id="practice">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Practice & readiness</span>
+      <h2>Knowing the material ≠ performing under pressure.</h2>
+      <p>This is where you build interview-day composure — the thing that separates prepared candidates from hired ones.</p>
+    </div>
+    <div class="practice-grid">
+      <div class="practice-card reveal">
+        <div class="practice-icon">🎯</div>
+        <h3>Live mock interviews</h3>
+        <p>Sit real interview rounds with MAANG+ engineers. Get detailed feedback you can actually act on, not just "practice more."</p>
+      </div>
+      <div class="practice-card reveal">
+        <div class="practice-icon">🤖</div>
+        <h3>AI mock interview</h3>
+        <p>Practice between live rounds with an AI interviewer. Walk into the real thing warmed up, not cold.</p>
+      </div>
+      <div class="practice-card reveal">
+        <div class="practice-icon">📄</div>
+        <h3>AI resume analyser</h3>
+        <p>Flag gaps, tighten language, and see your profile the way a recruiter's ATS does — before you hit apply.</p>
+      </div>
+      <div class="practice-card reveal">
+        <div class="practice-icon">▶️</div>
+        <h3>Recorded mock library</h3>
+        <p>Watch how strong candidates think through hard problems. Borrow the patterns that work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section class="sec-alt" id="careers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Career support</span>
+      <h2>Skills get you ready.<br>We help you get seen.</h2>
+      <p>The careers team works with you beyond the curriculum — from your first resume draft to the moment an offer lands.</p>
+    </div>
+    <div class="careers-layout">
+      <div class="care-list reveal">
+        <div class="care-item">
+          <span class="care-check">✓</span>
+          <div><b>Resume building & review</b><span>Turn a flat resume into one that survives the first screen and makes a recruiter stop scrolling.</span></div>
+        </div>
+        <div class="care-item">
+          <span class="care-check">✓</span>
+          <div><b>LinkedIn & personal brand</b><span>Make recruiters come to you. Profile, headline, activity — working even when you're not looking.</span></div>
+        </div>
+        <div class="care-item">
+          <span class="care-check">✓</span>
+          <div><b>Salary negotiation</b><span>Know what to ask for and how — before the offer arrives, not after you've said yes.</span></div>
+        </div>
+        <div class="care-item">
+          <span class="care-check">✓</span>
+          <div><b>Behavioural readiness</b><span>Tell your story clearly when the questions shift to "tell me about a time when…"</span></div>
+        </div>
+      </div>
+      <div class="opp-card reveal">
+        <div class="opp-num">5</div>
+        <h3>Application opportunities</h3>
+        <p>When you meet the eligibility criteria, our Careers Team works to put your profile forward for relevant openings — so your preparation has somewhere real to land.</p>
+        <p class="opp-fine">*Application opportunities are subject to eligibility and successful program completion as per Interview Kickstart's terms. They are opportunities to apply, not an offer or guarantee of employment. Your Program Advisor will walk you through the full terms and conditions that apply.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-section" id="how">
+  <div class="wrap">
+    <div class="sec-head sec-center reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>From orientation to offer.</h2>
+      <p>Five stages, one clear line.</p>
+    </div>
+    <div class="steps-row reveal">
+      <div class="step"><div class="step-ring">1</div><h3>Orientation</h3><p>Get set up, meet your cohort, map the track to your goals.</p></div>
+      <div class="step"><div class="step-ring">2</div><h3>Learn</h3><p>Live DSA and Agentic AI, plus self-paced system design.</p></div>
+      <div class="step"><div class="step-ring">3</div><h3>Practise</h3><p>Mocks and AI tools build interview-day composure.</p></div>
+      <div class="step"><div class="step-ring">4</div><h3>Build</h3><p>Ship a capstone that gives interviewers something real.</p></div>
+      <div class="step final"><div class="step-ring">5</div><h3>Apply</h3><p>Careers support + application opportunities (T&C apply).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="stories">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">In their words</span>
+      <h2>What engineers take away.</h2>
+      <p>Placeholder stories — replace with verified alumni outcomes with consent before launch.</p>
+    </div>
+    <div class="quotes-grid">
+      <div class="quote-card reveal">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">The live DSA classes rewired how I approach problems. I stopped memorizing solutions and started seeing the underlying patterns. That shift changed everything in my interviews.</p>
+        <div class="quote-author"><div class="quote-name">Backend Engineer</div><div class="quote-role">Early-career · Bengaluru [placeholder]</div></div>
+      </div>
+      <div class="quote-card reveal">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">The mock interviews were the part I dreaded and the part that helped most. The feedback was specific enough that I knew exactly what to fix.</p>
+        <div class="quote-author"><div class="quote-name">Software Engineer</div><div class="quote-role">New grad · Hyderabad [placeholder]</div></div>
+      </div>
+      <div class="quote-card reveal">
+        <div class="quote-mark">"</div>
+        <p class="quote-text">Adding Agentic AI to my skill set changed the kinds of roles I felt confident applying for. The curriculum felt current — not built three years ago with AI bolted on.</p>
+        <div class="quote-author"><div class="quote-name">Software Engineer</div><div class="quote-role">First role · Pune [placeholder]</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec-alt" id="faq">
+  <div class="wrap">
+    <div class="sec-head sec-center reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions, answered.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">Who is this track for?<span class="faq-arrow">▼</span></button>
+        <div class="faq-body"><div class="faq-inner">Engineers building the foundation of their careers — final-year students, recent graduates, and those in their first engineering roles who want to aim at the strongest teams in tech. An advisor can confirm fit on the webinar.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">Do I need to be working already?<span class="faq-arrow">▼</span></button>
+        <div class="faq-body"><div class="faq-inner">No. Final-year students, new grads, and engineers in their first roles are all welcome. The track is built to meet you where you are.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">Is it live or self-paced?<span class="faq-arrow">▼</span></button>
+        <div class="faq-body"><div class="faq-inner">Both. DSA and Agentic AI run live. System design, domain electives, and the recorded mock library are self-paced. We walk through the weekly schedule on the webinar.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">What does it cost?<span class="faq-arrow">▼</span></button>
+        <div class="faq-body"><div class="faq-inner">We share current pricing and financing options live in the free webinar, where an advisor can also map the track to your goals. No hidden fees.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">What are the "application opportunities"?<span class="faq-arrow">▼</span></button>
+        <div class="faq-body"><div class="faq-inner">When you meet the eligibility criteria and complete the program per IK's terms, the Careers Team works to put your profile forward for relevant openings. These are opportunities to apply — not a job guarantee. Your advisor will explain the full conditions.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">Is there a refund policy?<span class="faq-arrow">▼</span></button>
+        <div class="faq-body"><div class="faq-inner">Yes. 14-day refund window from your first class, same-day processing. Beyond that, a milestone-based partial refund applies under certain conditions. Your advisor will walk you through the full terms.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="register-section" id="register">
+  <div class="orb orb-lime"></div>
+  <div class="wrap register-layout">
+    <div class="register-copy reveal">
+      <span class="eyebrow">Next step</span>
+      <h2>Start with the free webinar.</h2>
+      <p class="lead">Meet an advisor, see the full curriculum and schedule, find out whether this track fits where you're headed — and ask anything.</p>
+      <p class="note">No cost to attend · Pricing shared live<br>Takes under a minute to register</p>
+    </div>
+    <div class="form-card reveal">
+      <h3>Register for the webinar</h3>
+      <p class="form-sub">Sat, 21 Jun · 6:30 PM IST</p>
+      <div class="form-fomo"><span class="seat-dot"></span> Only <b id="formSeats">23</b> seats left in the <b>July 2026</b> cohort</div>
+      <form id="regForm" novalidate>
+        <div class="form-row-2">
+          <div class="form-field"><label>Full name</label><input type="text" placeholder="Your name" required></div>
+          <div class="form-field"><label>Phone</label><input type="tel" placeholder="+91" required></div>
+        </div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+        <div class="form-field">
+          <label>Where are you right now?</label>
+          <select required>
+            <option value="" disabled selected>Select your stage</option>
+            <option>Final-year student</option>
+            <option>Recent graduate</option>
+            <option>In my first engineering role</option>
+            <option>1–2 years in, looking to level up</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block form-submit" data-cta>Register for the free webinar →</button>
+        <p class="privacy">By registering you agree to our privacy policy.</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="emoji">🎉</div>
+        <h4>You're registered!</h4>
+        <p>Check your email for the Zoom link and pre-read materials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="#top" class="brand"><span class="brand-mark">ik</span> Interview Kickstart</a>
+      <div class="footer-links">
+        <a href="#curriculum">Curriculum</a>
+        <a href="#practice">Practice</a>
+        <a href="#careers">Careers</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://in.interviewkickstart.com/about">About</a>
+        <a href="https://in.interviewkickstart.com/privacy">Privacy</a>
+        <a href="https://in.interviewkickstart.com/terms">Terms</a>
+      </div>
+    </div>
+    <p class="disclaimer">Application opportunities are subject to eligibility criteria and successful completion of the program as per Interview Kickstart's terms and conditions. They are opportunities to apply for roles and do not constitute an offer or guarantee of employment, placement, or any specific outcome. The final decision on eligibility rests with Interview Kickstart. Course structure, schedule, and inclusions are subject to change.</p>
+    <p class="copy">© 2026 Interview Kickstart. HSR Layout, Bengaluru · Santa Clara, CA.</p>
+  </div>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="wrap sticky-inner">
+    <div class="sticky-text">
+      <div class="sticky-title">Early-Career Engineering Track</div>
+      <div class="sticky-meta"><span>Webinar closes in <span id="stickyCountdown"></span></span><span class="seats"><b id="stickySeats">23</b> seats left</span></div>
+    </div>
+    <a href="#register" class="btn btn-primary" id="stickyBtn" data-cta>Register free →</a>
+  </div>
+</div>
+
+<script>
+// CONFIG
+var CFG = {
+  webinarDate: '2026-06-21T18:30:00+05:30',
+  seatsLeft: 23
+};
+
+// Fill seats
+['heroSeats','formSeats','stickySeats'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) el.textContent = CFG.seatsLeft;
+});
+
+// Countdown
+var target = new Date(CFG.webinarDate).getTime();
+function renderCountdown(){
+  var diff = target - Date.now();
+  var boxes = [document.getElementById('ribbonCountdown'), document.getElementById('stickyCountdown')];
+  if(diff <= 0){ boxes.forEach(function(b){ if(b) b.textContent='starting now'; }); return; }
+  var d=Math.floor(diff/864e5), h=Math.floor(diff%864e5/36e5), m=Math.floor(diff%36e5/6e4), s=Math.floor(diff%6e4/1e3);
+  var html = (d>0?d+'d ':'') + String(h).padStart(2,'0')+'h ' + String(m).padStart(2,'0')+'m ' + String(s).padStart(2,'0')+'s';
+  boxes.forEach(function(b){ if(b) b.innerHTML = html; });
+}
+renderCountdown();
+setInterval(renderCountdown, 1000);
+
+// Animated counters
+function animateCounters(){
+  document.querySelectorAll('.counter').forEach(function(el){
+    var target = parseInt(el.dataset.target, 10);
+    var duration = 2000;
+    var start = 0;
+    var startTime = null;
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      el.textContent = Math.floor(progress * target).toLocaleString();
+      if(progress < 1) requestAnimationFrame(step);
+      else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(step);
+  });
+}
+var statsObs = new IntersectionObserver(function(es){
+  if(es[0].isIntersecting){ animateCounters(); statsObs.disconnect(); }
+}, {threshold: 0.5});
+var statsSec = document.querySelector('.hero-stats');
+if(statsSec) statsObs.observe(statsSec);
+
+// Sticky bar
+var sticky = document.getElementById('stickyBar');
+var hero = document.getElementById('top');
+var reg = document.getElementById('register');
+var pastHero = false, inReg = false;
+function updateSticky(){ if(pastHero && !inReg) sticky.classList.add('show'); else sticky.classList.remove('show'); }
+new IntersectionObserver(function(es){ pastHero = !es[0].isIntersecting; updateSticky(); }, {threshold:0}).observe(hero);
+new IntersectionObserver(function(es){ inReg = es[0].isIntersecting; updateSticky(); }, {threshold:0.25}).observe(reg);
+
+// Nudge CTA at FAQ
+var nudged = false;
+var faq = document.getElementById('faq');
+if(faq){
+  new IntersectionObserver(function(es){
+    if(es[0].isIntersecting && !nudged){
+      nudged = true;
+      var b = document.getElementById('stickyBtn');
+      if(b && sticky.classList.contains('show')){
+        b.classList.add('pulse');
+        setTimeout(function(){ b.classList.remove('pulse'); }, 2500);
+      }
+    }
+  }, {threshold:0.4}).observe(faq);
+}
+
+// Reveal
+var ioReveal = new IntersectionObserver(function(es){
+  es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); ioReveal.unobserve(en.target); } });
+}, {threshold:0.1, rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ ioReveal.observe(el); });
+
+// FAQ
+function toggleFaq(btn){
+  var item = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if(!isOpen) item.classList.add('open');
+}
+
+// Form
+document.getElementById('regForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  if(!this.checkValidity()){ this.reportValidity(); return; }
+  this.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+</script>
+</body>
+</html>
