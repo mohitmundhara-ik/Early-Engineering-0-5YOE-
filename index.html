@@ -955,48 +955,6 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 
 <script>
 // ═══════════════════════════════════════════
-// BUTTERY SMOOTH SCROLL (Lenis-style momentum)
-// ═══════════════════════════════════════════
-(function() {
-  // Respect reduced-motion and skip on touch devices (native scroll is smoother there)
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isTouch = window.matchMedia('(hover: none)').matches;
-  if (reduceMotion || isTouch) return;
-
-  var current = window.scrollY;
-  var target = window.scrollY;
-  var ease = 0.085;
-  var rafId = null;
-  var running = false;
-
-  function clamp(v) {
-    var max = document.documentElement.scrollHeight - window.innerHeight;
-    return Math.max(0, Math.min(v, max));
-  }
-  function loop() {
-    current += (target - current) * ease;
-    if (Math.abs(target - current) < 0.5) {
-      current = target;
-      window.scrollTo(0, current);
-      running = false;
-      cancelAnimationFrame(rafId);
-      return;
-    }
-    window.scrollTo(0, current);
-    rafId = requestAnimationFrame(loop);
-  }
-  window.addEventListener('wheel', function(e) {
-    e.preventDefault();
-    target = clamp(target + e.deltaY);
-    if (!running) { running = true; rafId = requestAnimationFrame(loop); }
-  }, { passive: false });
-  // Keep target synced when user uses keyboard / scrollbar / anchor jumps
-  window.addEventListener('scroll', function() {
-    if (!running) { current = window.scrollY; target = window.scrollY; }
-  }, { passive: true });
-})();
-
-// ═══════════════════════════════════════════
 // TERMINAL TYPING ANIMATION (3rd element)
 // ═══════════════════════════════════════════
 (function() {
