@@ -379,34 +379,47 @@ nav.scrolled {
 @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
 
 /* ═══════════════════════════════════════════
-   LOGO STRIP
+   LOGO STRIP (text-wordmark pills)
    ═══════════════════════════════════════════ */
 .logo-section {
   padding: 1.75rem 0;
   overflow: hidden;
   background: var(--ink);
-  border-top: 1px solid rgba(255,255,255,0.03);
-  border-bottom: 1px solid rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 .logo-section p { text-align: center; font-size: 0.72rem; color: var(--muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-.logo-track { display: flex; animation: marquee 12s linear infinite; width: max-content; }
+.logo-track-wrap {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 7%, black 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 7%, black 93%, transparent 100%);
+}
+.logo-track { display: flex; gap: 1rem; align-items: center; animation: marquee 35s linear infinite; width: max-content; }
 .logo-track:hover { animation-play-state: paused; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.logo-item {
-  margin: 0 0.55rem;
-  display: flex;
+.logo-pill {
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 9px;
+  padding: 0 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  height: 44px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #FFFFFF;
-  border-radius: 10px;
-  padding: 0.55rem 1rem;
-  height: 46px;
+  gap: 0.3rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.25);
   transition: transform 0.3s ease;
 }
-.logo-item:hover { transform: translateY(-2px); }
-.logo-item img { height: 22px; max-width: 104px; object-fit: contain; opacity: 1; filter: none; }
-@media (max-width: 480px) { .logo-item { height: 40px; padding: 0.45rem 0.8rem; margin: 0 0.4rem; } .logo-item img { height: 18px; max-width: 86px; } }
+.logo-pill:hover { transform: translateY(-2px); }
+.logo-pill .ms-sq { display: inline-grid; grid-template-columns: 1fr 1fr; gap: 1px; width: 12px; height: 12px; margin-right: 0.15rem; }
+.logo-pill .ms-sq span { display: block; }
+@media (max-width: 480px) { .logo-pill { height: 38px; font-size: 0.85rem; padding: 0 0.85rem; } .logo-track { gap: 0.7rem; } }
 
 /* ═══════════════════════════════════════════
    SECTIONS
@@ -701,28 +714,53 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 <!-- Logo Strip -->
 <section class="logo-section">
   <p>Built & taught by engineers from</p>
-  <div class="logo-track">
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Uber_logo_2018.svg" alt="Uber"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg" alt="NVIDIA"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI"></div>
-    <!-- Duplicate for seamless loop -->
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Uber_logo_2018.svg" alt="Uber"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg" alt="NVIDIA"></div>
-    <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI"></div>
+  <div class="logo-track-wrap">
+    <div class="logo-track">
+      <div class="logo-pill"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></div>
+      <div class="logo-pill" style="color:#FF9900">amazon</div>
+      <div class="logo-pill" style="color:#0866FF">Meta</div>
+      <div class="logo-pill"><span class="ms-sq"><span style="background:#F25022"></span><span style="background:#7FBA00"></span><span style="background:#00A4EF"></span><span style="background:#FFB900"></span></span><span style="color:#5E5E5E">Microsoft</span></div>
+      <div class="logo-pill" style="color:#E50914;letter-spacing:-0.03em">NETFLIX</div>
+      <div class="logo-pill" style="color:#0F172A">Open<span style="color:#10A37F">AI</span></div>
+      <div class="logo-pill" style="color:#76B900">NVIDIA</div>
+      <div class="logo-pill" style="color:#635BFF;font-style:italic">stripe</div>
+      <div class="logo-pill" style="color:#0A66C2">Linked<span style="background:#0A66C2;color:white;padding:1px 4px;border-radius:3px;font-size:0.82em">in</span></div>
+      <div class="logo-pill" style="color:#000">Uber</div>
+      <div class="logo-pill" style="color:#FF5A5F">airbnb</div>
+      <div class="logo-pill" style="color:#EB1000">Adobe</div>
+      <div class="logo-pill" style="color:#2874F0">Flip<span style="color:#FFB900">kart</span></div>
+      <div class="logo-pill" style="color:#E23744">zomato</div>
+      <div class="logo-pill" style="color:#FC8019">Swiggy</div>
+      <div class="logo-pill" style="color:#00BAF2">Paytm</div>
+      <div class="logo-pill" style="color:#0071CE">Walmart</div>
+      <div class="logo-pill" style="color:#00A1E0">Salesforce</div>
+      <div class="logo-pill" style="color:#365EBF">Intuit</div>
+      <div class="logo-pill" style="color:#F80000;letter-spacing:0.05em">ORACLE</div>
+      <div class="logo-pill" style="color:#0052CC">Atlassian</div>
+      <div class="logo-pill" style="color:#0052FF">Coinbase</div>
+      <div class="logo-pill"><span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC04">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span></div>
+      <div class="logo-pill" style="color:#FF9900">amazon</div>
+      <div class="logo-pill" style="color:#0866FF">Meta</div>
+      <div class="logo-pill"><span class="ms-sq"><span style="background:#F25022"></span><span style="background:#7FBA00"></span><span style="background:#00A4EF"></span><span style="background:#FFB900"></span></span><span style="color:#5E5E5E">Microsoft</span></div>
+      <div class="logo-pill" style="color:#E50914;letter-spacing:-0.03em">NETFLIX</div>
+      <div class="logo-pill" style="color:#0F172A">Open<span style="color:#10A37F">AI</span></div>
+      <div class="logo-pill" style="color:#76B900">NVIDIA</div>
+      <div class="logo-pill" style="color:#635BFF;font-style:italic">stripe</div>
+      <div class="logo-pill" style="color:#0A66C2">Linked<span style="background:#0A66C2;color:white;padding:1px 4px;border-radius:3px;font-size:0.82em">in</span></div>
+      <div class="logo-pill" style="color:#000">Uber</div>
+      <div class="logo-pill" style="color:#FF5A5F">airbnb</div>
+      <div class="logo-pill" style="color:#EB1000">Adobe</div>
+      <div class="logo-pill" style="color:#2874F0">Flip<span style="color:#FFB900">kart</span></div>
+      <div class="logo-pill" style="color:#E23744">zomato</div>
+      <div class="logo-pill" style="color:#FC8019">Swiggy</div>
+      <div class="logo-pill" style="color:#00BAF2">Paytm</div>
+      <div class="logo-pill" style="color:#0071CE">Walmart</div>
+      <div class="logo-pill" style="color:#00A1E0">Salesforce</div>
+      <div class="logo-pill" style="color:#365EBF">Intuit</div>
+      <div class="logo-pill" style="color:#F80000;letter-spacing:0.05em">ORACLE</div>
+      <div class="logo-pill" style="color:#0052CC">Atlassian</div>
+      <div class="logo-pill" style="color:#0052FF">Coinbase</div>
+    </div>
   </div>
 </section>
 
