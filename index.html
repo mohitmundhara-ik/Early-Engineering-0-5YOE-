@@ -316,6 +316,66 @@ nav.scrolled {
 .cohort-text span { font-size: 0.7rem; color: var(--muted); }
 @media (max-width: 480px) { .cohort-text span { font-size: 0.65rem; } }
 
+/* Hero Code Terminal (3rd element) */
+.hero-terminal {
+  max-width: 540px;
+  margin: 2.5rem auto 0;
+  background: #0B1220;
+  border: 1px solid var(--slate);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  text-align: left;
+}
+@media (max-width: 480px) { .hero-terminal { margin-top: 2rem; border-radius: 12px; } }
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: var(--ink2);
+  border-bottom: 1px solid var(--slate);
+}
+.terminal-dot { width: 11px; height: 11px; border-radius: 50%; }
+.terminal-dot.red { background: #FF5F56; }
+.terminal-dot.yellow { background: #FFBD2E; }
+.terminal-dot.green { background: #27C93F; }
+.terminal-file {
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--silver);
+}
+.terminal-body {
+  padding: 1.1rem 1.25rem;
+  min-height: 188px;
+}
+@media (max-width: 480px) { .terminal-body { padding: 0.9rem 1rem; min-height: 200px; } }
+.terminal-body pre {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.85;
+  color: var(--silver);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+@media (max-width: 480px) { .terminal-body pre { font-size: 0.72rem; line-height: 1.8; } }
+.terminal-body .t-kw { color: var(--purple); }
+.terminal-body .t-fn { color: var(--cyan); }
+.terminal-body .t-str { color: var(--lime); }
+.terminal-body .t-com { color: var(--muted); }
+.terminal-body .t-out { color: var(--lime); font-weight: 600; }
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--lime);
+  vertical-align: text-bottom;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+
 /* ═══════════════════════════════════════════
    LOGO STRIP
    ═══════════════════════════════════════════ */
@@ -330,11 +390,21 @@ nav.scrolled {
 .logo-track { display: flex; animation: marquee 30s linear infinite; width: max-content; }
 .logo-track:hover { animation-play-state: paused; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.logo-item { padding: 0 1.5rem; display: flex; align-items: center; }
-@media (max-width: 480px) { .logo-item { padding: 0 1rem; } }
-.logo-item img { height: 20px; opacity: 0.85; transition: opacity 0.3s; }
-@media (max-width: 480px) { .logo-item img { height: 16px; } }
-.logo-item:hover img { opacity: 1; }
+.logo-item {
+  margin: 0 0.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  height: 46px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+.logo-item:hover { transform: translateY(-2px); }
+.logo-item img { height: 22px; max-width: 104px; object-fit: contain; opacity: 1; filter: none; }
+@media (max-width: 480px) { .logo-item { height: 40px; padding: 0.45rem 0.8rem; margin: 0 0.4rem; } .logo-item img { height: 18px; max-width: 86px; } }
 
 /* ═══════════════════════════════════════════
    SECTIONS
@@ -587,7 +657,19 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
         <a href="#register" class="btn btn-primary">Register for the webinar →</a>
         <div class="terminal-ctas">
           <a href="#curriculum" class="btn btn-terminal">view_technical_syllabus.sh</a>
-          <a href="#projects" class="btn btn-terminal">see_what_you_will_build.pr</a>
+        </div>
+      </div>
+      
+      <!-- Code Terminal (3rd element) -->
+      <div class="hero-terminal reveal reveal-delay-4">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-file">your_career.py</span>
+        </div>
+        <div class="terminal-body">
+          <pre id="terminalCode"></pre>
         </div>
       </div>
       
@@ -872,6 +954,92 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 </div>
 
 <script>
+// ═══════════════════════════════════════════
+// BUTTERY SMOOTH SCROLL (Lenis-style momentum)
+// ═══════════════════════════════════════════
+(function() {
+  // Respect reduced-motion and skip on touch devices (native scroll is smoother there)
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isTouch = window.matchMedia('(hover: none)').matches;
+  if (reduceMotion || isTouch) return;
+
+  var current = window.scrollY;
+  var target = window.scrollY;
+  var ease = 0.085;
+  var rafId = null;
+  var running = false;
+
+  function clamp(v) {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    return Math.max(0, Math.min(v, max));
+  }
+  function loop() {
+    current += (target - current) * ease;
+    if (Math.abs(target - current) < 0.5) {
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      cancelAnimationFrame(rafId);
+      return;
+    }
+    window.scrollTo(0, current);
+    rafId = requestAnimationFrame(loop);
+  }
+  window.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    target = clamp(target + e.deltaY);
+    if (!running) { running = true; rafId = requestAnimationFrame(loop); }
+  }, { passive: false });
+  // Keep target synced when user uses keyboard / scrollbar / anchor jumps
+  window.addEventListener('scroll', function() {
+    if (!running) { current = window.scrollY; target = window.scrollY; }
+  }, { passive: true });
+})();
+
+// ═══════════════════════════════════════════
+// TERMINAL TYPING ANIMATION (3rd element)
+// ═══════════════════════════════════════════
+(function() {
+  var el = document.getElementById('terminalCode');
+  if (!el) return;
+  var lines = [
+    { html: '<span class="t-kw">from</span> ik <span class="t-kw">import</span> DSA, SystemDesign, AgenticAI' },
+    { html: '' },
+    { html: '<span class="t-com"># where you are today</span>' },
+    { html: 'you = <span class="t-fn">Engineer</span>(exp=<span class="t-str">"early-career"</span>)' },
+    { html: '' },
+    { html: '<span class="t-com"># what you\'ll build</span>' },
+    { html: 'you.<span class="t-fn">learn</span>(DSA, SystemDesign, AgenticAI)' },
+    { html: 'you.<span class="t-fn">practice</span>(<span class="t-fn">Mocks</span>(n=2))' },
+    { html: '' },
+    { html: '<span class="t-fn">print</span>(you.destination)  <span class="t-out"># → MAANG+</span>' }
+  ];
+  var i = 0;
+  var built = '';
+  function typeLine() {
+    if (i >= lines.length) {
+      el.innerHTML = built + '<span class="terminal-cursor"></span>';
+      return;
+    }
+    built += (i > 0 ? '\n' : '') + lines[i].html;
+    el.innerHTML = built + '<span class="terminal-cursor"></span>';
+    i++;
+    setTimeout(typeLine, lines[i-1] && lines[i-1].html === '' ? 120 : 320);
+  }
+  // Start typing when hero terminal scrolls into view (or immediately on load)
+  var started = false;
+  function start() { if (!started) { started = true; typeLine(); } }
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { start(); obs.disconnect(); } });
+    }, { threshold: 0.3 });
+    obs.observe(el);
+  } else {
+    start();
+  }
+  setTimeout(start, 1200); // fallback
+})();
+
 // Rotating text
 var rotatingWords = ['Systems Design', 'Agentic AI', 'DSA Patterns', 'LangChain', 'MCP Protocols', 'RAG Pipelines'];
 var currentIndex = 0;
