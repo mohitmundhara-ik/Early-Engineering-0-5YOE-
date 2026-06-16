@@ -442,12 +442,13 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
 @media (max-width: 480px) { .hero-terminal { border-radius: 12px; } }
 /* Floating badge pills */
 .float-badge { position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 0.45rem; background: rgba(15,29,50,0.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid var(--steel); border-radius: 100px; padding: 0.5rem 0.9rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--white); white-space: nowrap; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+.hero-terminal-wrap { position: relative; width: 100%; }
 .fb-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .fb-dot.lime { background: var(--lime); box-shadow: 0 0 8px var(--lime); }
 .fb-dot.blue { background: #3B82F6; box-shadow: 0 0 8px #3B82F6; }
 .fb-cohort { top: 6%; right: -4%; animation: floaty 5s ease-in-out infinite; }
 .fb-dsa { top: 58%; left: -8%; animation: floaty 6s ease-in-out infinite 0.5s; }
-.fb-seats { bottom: 10%; right: 2%; animation: floaty 5.5s ease-in-out infinite 1s; }
+.fb-seats { bottom: 12%; right: 1%; animation: floaty 5.5s ease-in-out infinite 1s; }
 @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @media (max-width: 560px) {
   .float-badge { font-size: 0.64rem; padding: 0.4rem 0.7rem; }
@@ -768,6 +769,13 @@ body[data-theme="light"] footer { background: #F4F4F0; }
 body[data-theme="light"] nav { background: rgba(250,250,247,0.92); border-bottom-color: rgba(10,10,15,0.08); }
 body[data-theme="light"] nav.scrolled { background: rgba(250,250,247,0.96); }
 body[data-theme="light"] .nav-timer { color: #0A0B0D; }
+/* Light: hero eyebrow was lime-on-pale-lime (low contrast) — use dark green */
+body[data-theme="light"] .hero-eyebrow { color: #15803D; border-color: rgba(22,163,74,0.4); background: rgba(196,245,66,0.18); }
+body[data-theme="light"] .hero-eyebrow .dot { background: #16A34A; }
+body[data-theme="light"] .hero-who-label { color: #585A63; }
+body[data-theme="light"] .tmeta-chip, body[data-theme="light"] .hero-who-pill, body[data-theme="light"] .hero-pill { background: #FFFFFF; }
+body[data-theme="light"] .hero-pill-hl { background: rgba(196,245,66,0.22); border-color: rgba(22,163,74,0.45); }
+body[data-theme="light"] .hero-pill-hl .p-ico, body[data-theme="light"] .hero-pill .p-ico { color: #16A34A; }
 body[data-theme="light"] .nav-cta, body[data-theme="light"] .btn-primary { color: #0A0B0D; }
 body[data-theme="light"] .hero-bg, body[data-theme="light"] .hero-grid, body[data-theme="light"] .yourmove-glow { opacity: 0.4; }
 body[data-theme="light"] .new-badge { background: rgba(196,245,66,0.3); color: #15803D; }
@@ -1175,23 +1183,25 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
       
       <!-- RIGHT: code terminal -->
       <div class="hero-right reveal reveal-delay-3">
-        <div class="term-glow"></div>
-        <div class="term-grid"></div>
-        <div class="hero-terminal">
-          <div class="terminal-bar">
-            <span class="terminal-dot red"></span>
-            <span class="terminal-dot yellow"></span>
-            <span class="terminal-dot green"></span>
-            <span class="terminal-file">your_career.py</span>
+        <div class="hero-terminal-wrap">
+          <div class="term-glow"></div>
+          <div class="term-grid"></div>
+          <div class="hero-terminal">
+            <div class="terminal-bar">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-file">your_career.py</span>
+            </div>
+            <div class="terminal-body">
+              <pre id="terminalCode"></pre>
+            </div>
           </div>
-          <div class="terminal-body">
-            <pre id="terminalCode"></pre>
-          </div>
+          <!-- Floating badges (anchored to the terminal only) -->
+          <span class="float-badge fb-cohort"><span class="fb-dot lime"></span>Next cohort: 7 July</span>
+          <span class="float-badge fb-dsa"><span class="fb-dot blue"></span>Live DSA · 9 weeks</span>
+          <span class="float-badge fb-seats"><span class="fb-dot lime"></span>23 seats left</span>
         </div>
-        <!-- Floating badges -->
-        <span class="float-badge fb-cohort"><span class="fb-dot lime"></span>Next cohort: 7 July</span>
-        <span class="float-badge fb-dsa"><span class="fb-dot blue"></span>Live DSA · 9 weeks</span>
-        <span class="float-badge fb-seats"><span class="fb-dot lime"></span>23 seats left</span>
 
         <!-- Item 4: under-terminal cohort details + actions -->
         <div class="terminal-meta reveal reveal-delay-4">
@@ -1199,7 +1209,6 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
             <span class="tmeta-chip"><b>July 2026</b> cohort</span>
             <span class="tmeta-chip">14 weeks live</span>
             <span class="tmeta-chip">Live Capstone Project</span>
-            <span class="tmeta-chip tmeta-hot"><span class="fb-dot lime"></span>23 seats left</span>
           </div>
           <div class="tmeta-btns">
             <a href="#register" class="btn btn-ghost-sm">Register FREE →</a>
@@ -1396,38 +1405,6 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   </div>
 </section>
 
-<!-- Who is this for -->
-<section class="who-section" id="who">
-  <div class="wrap">
-    <div class="section-header">
-      <div class="eyebrow reveal">Who it's for</div>
-      <h2 class="reveal">Built for engineers at the <span class="gradient-text">start of the climb.</span></h2>
-      <p class="reveal">Engineers and graduates who want to accelerate their career — not start over.</p>
-    </div>
-    <div class="who-grid">
-      <div class="who-card card-3d reveal">
-        <div class="who-photo"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Engineering graduate" loading="lazy"><span class="who-badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-4 9 4-9 4-9-4z"/><path d="M7 11v4c0 1 2.2 2 5 2s5-1 5-2v-4M21 9v5"/></svg></span></div>
-        <h4>Engineering Graduates</h4>
-        <p>Who want to build strong, interview-ready fundamentals.</p>
-      </div>
-      <div class="who-card card-3d reveal">
-        <div class="who-photo"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Fresher" loading="lazy"><span class="who-badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span></div>
-        <h4>Freshers</h4>
-        <p>Who want to start their tech career on the front foot.</p>
-      </div>
-      <div class="who-card card-3d reveal">
-        <div class="who-photo"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Early professional" loading="lazy"><span class="who-badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12" rx="2"/><path d="M9 7V5h6v2M3.5 12h17"/></svg></span></div>
-        <h4>Early Professionals</h4>
-        <p>0–5 years of experience, looking to upskill into AI.</p>
-      </div>
-      <div class="who-card card-3d reveal">
-        <div class="who-photo"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Career switcher" loading="lazy"><span class="who-badge"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5M4 19h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></span></div>
-        <h4>Career Switchers</h4>
-        <p>Who want to transition into AI-native engineering roles.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Curriculum -->
 <section class="curric-section grid-backdrop" id="curriculum">
@@ -1942,7 +1919,7 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 })();
 
 // Synced rotating headline + subline
-var promoWords = ['Dream Job','Career Breakthrough','Career Acceleration','Promotion','Salary Growth','Market Value','Top-Tier Role','Interview Success','MAANG Opportunity'];
+var promoWords = ['Dream Job','Breakthrough','Acceleration','Promotion','Salary Growth','Market Value','Top-Tier Role','Offer Letter','MAANG Offer'];
 var skillWords = ['GenAI','Agentic AI','System Design','DSA Patterns','RAG Pipelines','Multi-Agent Systems','LangGraph','Production AI'];
 var rotPromo = document.getElementById('rotPromo');
 var rotSkillHead = document.getElementById('rotSkillHead');
