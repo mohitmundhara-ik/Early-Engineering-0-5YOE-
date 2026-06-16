@@ -238,7 +238,11 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
   .hero-layout { grid-template-columns: 1.05fr 0.95fr; gap: 3rem; }
 }
 .hero-left { text-align: center; min-width: 0; }
-@media (min-width: 900px) { .hero-left { text-align: left; } }
+@media (min-width: 640px) {
+  .hero-left { text-align: left; }
+  .hero-left .hero-ctas, .hero-left .hero-who, .hero-left .hero-pills { justify-content: flex-start; }
+  .hero-left .hero-subline { margin-left: 0; margin-right: 0; }
+}
 .hero-right { min-width: 0; width: 100%; position: relative; }
 /* Green glow + grid behind terminal (Image 4) */
 .term-glow { position: absolute; inset: -8% -6% -8% -6%; background: radial-gradient(60% 55% at 60% 40%, rgba(120,200,0,0.45), rgba(50,120,0,0.18) 45%, transparent 72%); filter: blur(6px); pointer-events: none; z-index: 0; border-radius: 30px; }
@@ -281,6 +285,7 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
 }
 .hero-headline-main .rot-word {
   display: inline-block;
+  white-space: nowrap;
   background: linear-gradient(135deg, var(--lime), #9BE000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -413,6 +418,7 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
 .btn-ghost-sm { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; background: transparent; border: 1px solid var(--steel); border-radius: 10px; padding: 0.55rem 1rem; font-size: 0.82rem; font-weight: 700; color: var(--white); transition: border-color .25s, background .25s; min-height: 44px; }
 .btn-ghost-sm:hover { border-color: var(--lime); background: var(--ink2); }
 @media (max-width: 480px) { .tmeta-btns { width: 100%; } .tmeta-btns .btn-terminal, .tmeta-btns .btn-ghost-sm { flex: 1; min-width: 0; text-align: center; } }
+.tmeta-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
 /* Hero Code Terminal (3rd element) */
 .hero-terminal {
@@ -1134,7 +1140,7 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
         <!-- Eyebrow -->
         <div class="hero-eyebrow reveal">
           <span class="dot"></span>
-          Engineered for Early-Career NextGen Engineers (0-5 YOE)
+          Engineered for Early-Career NextGen AI Builders (0-5 YOE)
         </div>
         
         <!-- Headline (Big Gradient) -->
@@ -1192,21 +1198,19 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
           <div class="tmeta-chips">
             <span class="tmeta-chip"><b>July 2026</b> cohort</span>
             <span class="tmeta-chip">14 weeks live</span>
-            <span class="tmeta-chip">Capstone + AI</span>
+            <span class="tmeta-chip">Live Capstone Project</span>
             <span class="tmeta-chip tmeta-hot"><span class="fb-dot lime"></span>23 seats left</span>
           </div>
           <div class="tmeta-btns">
-            <a href="#curriculum" class="btn btn-terminal">view_technical_syllabus.sh</a>
             <a href="#register" class="btn btn-ghost-sm">Register FREE →</a>
+            <a href="#curriculum" class="btn btn-terminal">view_technical_syllabus.sh</a>
+          </div>
+          <div class="tmeta-pills">
+            <span class="hero-pill"><span class="p-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span> 0-5 Years Experience</span>
+            <span class="hero-pill hero-pill-hl"><span class="p-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/><path d="M12 14v4M9 21h6M10 21v-1.5h4V21"/></svg></span> 700+ MAANG+ Instructors</span>
           </div>
         </div>
       </div>
-    </div>
-    
-    <!-- Credibility pills (slimmed, 700+ highlighted) -->
-    <div class="hero-pills reveal reveal-delay-4">
-      <span class="hero-pill"><span class="p-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span> 0-5 Years Experience</span>
-      <span class="hero-pill hero-pill-hl"><span class="p-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/><path d="M12 14v4M9 21h6M10 21v-1.5h4V21"/></svg></span> 700+ MAANG+ Instructors</span>
     </div>
   </div>
 </header>
