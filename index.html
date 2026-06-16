@@ -211,6 +211,9 @@ nav.scrolled {
 .hero-left { text-align: center; min-width: 0; }
 @media (min-width: 900px) { .hero-left { text-align: left; } }
 .hero-right { min-width: 0; width: 100%; }
+/* Green glow + grid behind terminal (Image 4) */
+.term-glow { position: absolute; inset: -8% -6% -8% -6%; background: radial-gradient(60% 55% at 60% 40%, rgba(120,200,0,0.45), rgba(50,120,0,0.18) 45%, transparent 72%); filter: blur(6px); pointer-events: none; z-index: 0; border-radius: 30px; }
+.term-grid { position: absolute; inset: -8% -6% -8% -6%; background-image: linear-gradient(rgba(191,255,0,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(191,255,0,0.10) 1px, transparent 1px); background-size: 34px 34px; -webkit-mask-image: radial-gradient(60% 60% at 60% 45%, #000 30%, transparent 75%); mask-image: radial-gradient(60% 60% at 60% 45%, #000 30%, transparent 75%); pointer-events: none; z-index: 0; }
 
 /* Eyebrow */
 .hero-eyebrow {
@@ -358,6 +361,8 @@ nav.scrolled {
 
 /* Hero Code Terminal (3rd element) */
 .hero-terminal {
+  position: relative;
+  z-index: 2;
   width: 100%;
   max-width: 520px;
   margin: 0 auto;
@@ -365,11 +370,30 @@ nav.scrolled {
   border: 1px solid var(--slate);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(191,255,0,0.06);
   text-align: left;
+  transition: transform 0.5s ease;
 }
-@media (min-width: 900px) { .hero-terminal { margin: 0; max-width: 100%; } }
+@media (min-width: 900px) {
+  .hero-terminal { margin: 0; max-width: 100%; transform: perspective(1600px) rotateY(-7deg) rotateX(3deg); }
+  .hero-right:hover .hero-terminal { transform: perspective(1600px) rotateY(-3deg) rotateX(1deg) translateY(-4px); }
+}
 @media (max-width: 480px) { .hero-terminal { border-radius: 12px; } }
+/* Floating badge pills */
+.float-badge { position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 0.45rem; background: rgba(15,29,50,0.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid var(--steel); border-radius: 100px; padding: 0.5rem 0.9rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--white); white-space: nowrap; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+.fb-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.fb-dot.lime { background: var(--lime); box-shadow: 0 0 8px var(--lime); }
+.fb-dot.blue { background: #3B82F6; box-shadow: 0 0 8px #3B82F6; }
+.fb-cohort { top: 6%; right: -4%; animation: floaty 5s ease-in-out infinite; }
+.fb-dsa { top: 58%; left: -8%; animation: floaty 6s ease-in-out infinite 0.5s; }
+.fb-seats { bottom: 10%; right: 2%; animation: floaty 5.5s ease-in-out infinite 1s; }
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@media (max-width: 560px) {
+  .float-badge { font-size: 0.64rem; padding: 0.4rem 0.7rem; }
+  .fb-cohort { top: -2%; right: 0; }
+  .fb-dsa { top: auto; bottom: 32%; left: -2%; }
+  .fb-seats { bottom: 2%; right: 0; }
+}
 .terminal-bar {
   display: flex;
   align-items: center;
@@ -390,9 +414,9 @@ nav.scrolled {
 }
 .terminal-body {
   padding: 1.1rem 1.25rem;
-  min-height: 188px;
+  min-height: 320px;
 }
-@media (max-width: 480px) { .terminal-body { padding: 0.9rem 1rem; min-height: 200px; } }
+@media (max-width: 480px) { .terminal-body { padding: 0.9rem 1rem; min-height: 300px; } }
 .terminal-body pre {
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -538,16 +562,23 @@ section { padding: 4rem 0; }
    ROADMAP
    ═══════════════════════════════════════════ */
 .roadmap-section { background: var(--black); }
-.roadmap { display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 900px; margin: 0 auto; }
-@media (min-width: 760px) { .roadmap { grid-template-columns: repeat(4, 1fr); gap: 0.75rem; } }
-.rm-node { position: relative; }
-.rm-step { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--lime); margin-bottom: 0.5rem; }
-.rm-card { background: var(--ink); border: 1px solid var(--slate); border-radius: 14px; padding: 1.25rem; height: calc(100% - 2.5rem); }
+.roadmap { display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 980px; margin: 0 auto; position: relative; }
+@media (min-width: 760px) { .roadmap { grid-template-columns: repeat(4, 1fr); gap: 1rem; } }
+.rm-line { display: none; }
+@media (min-width: 760px) { .rm-line { display: block; position: absolute; top: 26px; left: 12%; right: 12%; height: 2px; background: repeating-linear-gradient(90deg, var(--steel) 0 8px, transparent 8px 16px); z-index: 0; } }
+.rm-node { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 0.85rem; }
+@media (min-width: 760px) { .rm-node { align-items: center; } }
+.rm-icon { width: 54px; height: 54px; border-radius: 14px; background: linear-gradient(160deg, var(--ink2), var(--ink)); border: 1px solid var(--slate); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+.rm-node:last-child .rm-icon { border-color: rgba(191,255,0,0.45); box-shadow: 0 8px 24px rgba(191,255,0,0.12); }
+.rm-card { background: var(--ink); border: 1px solid var(--slate); border-radius: 14px; padding: 1.25rem; width: 100%; }
+@media (min-width: 760px) { .rm-card { text-align: center; } }
 .rm-card.accent { border-color: rgba(191,255,0,0.4); background: linear-gradient(160deg, var(--ink), rgba(191,255,0,0.06)); }
-.rm-card h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
-.rm-weeks { font-family: var(--font-mono); font-size: 0.68rem; color: var(--lime); margin-bottom: 0.6rem; }
+.rm-top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.5rem; }
+@media (min-width: 760px) { .rm-top { justify-content: center; gap: 0.6rem; } }
+.rm-step { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--lime); line-height: 1; }
+.rm-weeks { font-family: var(--font-mono); font-size: 0.66rem; color: var(--silver); background: var(--ink2); border: 1px solid var(--slate); border-radius: 100px; padding: 0.2rem 0.55rem; }
+.rm-card h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.35rem; }
 .rm-card p { font-size: 0.82rem; color: var(--silver); line-height: 1.5; }
-@media (min-width: 760px) { .rm-node:not(:last-child)::after { content: '→'; position: absolute; top: 0; right: -0.6rem; color: var(--steel); font-size: 1rem; z-index: 1; } }
 
 /* ═══════════════════════════════════════════
    READINESS (merged practice + career)
@@ -790,6 +821,13 @@ body[data-theme="light"] .theme-toggle { background: #FFFFFF; }
 .yourmove-inner p { font-size: 1rem; color: var(--silver); line-height: 1.7; margin-bottom: 2rem; }
 @media (max-width: 480px) { .yourmove-inner p { font-size: 0.9rem; } }
 .yourmove-ctas { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+.yourmove-social { display: flex; align-items: center; justify-content: center; gap: 0.7rem; margin-top: 1.75rem; flex-wrap: wrap; }
+.yourmove-social span { font-size: 0.82rem; color: var(--silver); }
+.yourmove-social b { color: var(--white); }
+.avatar-cluster { display: flex; }
+.avatar-cluster img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--black); object-fit: cover; margin-left: -8px; }
+.avatar-cluster img:first-child { margin-left: 0; }
+body[data-theme="light"] .avatar-cluster img { border-color: var(--black); }
 @media (max-width: 480px) { .yourmove-ctas { flex-direction: column; } .yourmove-ctas .btn { width: 100%; } }
 .cta-section .section-header h2 { font-size: clamp(1.25rem, 3vw, 1.7rem); max-width: 540px; margin-left: auto; margin-right: auto; }
 .cta-section .section-header p { font-size: 0.86rem; }
@@ -916,6 +954,8 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
       
       <!-- RIGHT: code terminal -->
       <div class="hero-right reveal reveal-delay-3">
+        <div class="term-glow"></div>
+        <div class="term-grid"></div>
         <div class="hero-terminal">
           <div class="terminal-bar">
             <span class="terminal-dot red"></span>
@@ -927,6 +967,10 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
             <pre id="terminalCode"></pre>
           </div>
         </div>
+        <!-- Floating badges -->
+        <span class="float-badge fb-cohort"><span class="fb-dot lime"></span>Next cohort: 7 July</span>
+        <span class="float-badge fb-dsa"><span class="fb-dot blue"></span>Live DSA · 9 weeks</span>
+        <span class="float-badge fb-seats"><span class="fb-dot lime"></span>23 seats left</span>
       </div>
     </div>
     
@@ -1168,21 +1212,22 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
       <h2 class="reveal">Go from <span class="gradient-text">AI-ready foundations</span> to agent deployment in 14 weeks.</h2>
     </div>
     <div class="roadmap reveal">
+      <div class="rm-line"></div>
       <div class="rm-node">
-        <div class="rm-step">01</div>
-        <div class="rm-card card-3d"><h4>Foundations</h4><div class="rm-weeks">Week 0–1</div><p>Self-paced Python primer + AI-powered interview prep with Claude Code.</p></div>
+        <div class="rm-icon">🐍</div>
+        <div class="rm-card card-3d"><div class="rm-top"><span class="rm-step">01</span><span class="rm-weeks">Week 0–1</span></div><h4>Foundations</h4><p>Self-paced Python primer + AI-powered interview prep with Claude Code.</p></div>
       </div>
       <div class="rm-node">
-        <div class="rm-step">02</div>
-        <div class="rm-card card-3d"><h4>DSA Mastery</h4><div class="rm-weeks">Weeks 2–6</div><p>Sorting, recursion, trees, graphs, and dynamic programming — pseudocode, language-agnostic.</p></div>
+        <div class="rm-icon">🧮</div>
+        <div class="rm-card card-3d"><div class="rm-top"><span class="rm-step">02</span><span class="rm-weeks">Weeks 2–6</span></div><h4>DSA Mastery</h4><p>Sorting, recursion, trees, graphs, and dynamic programming — pseudocode, language-agnostic.</p></div>
       </div>
       <div class="rm-node">
-        <div class="rm-step">03</div>
-        <div class="rm-card card-3d"><h4>Build Agents</h4><div class="rm-weeks">Weeks 7–11</div><p>RAG, multi-agent systems, observability, MCP &amp; deployment — ending in a real capstone.</p></div>
+        <div class="rm-icon">🤖</div>
+        <div class="rm-card card-3d"><div class="rm-top"><span class="rm-step">03</span><span class="rm-weeks">Weeks 7–11</span></div><h4>Build Agents</h4><p>RAG, multi-agent systems, observability, MCP &amp; deployment — ending in a real capstone.</p></div>
       </div>
       <div class="rm-node">
-        <div class="rm-step">04</div>
-        <div class="rm-card card-3d accent"><h4>Career Launch</h4><div class="rm-weeks">Weeks 12–14</div><p>Resume, mocks, behavioural prep, negotiation — and application opportunities when you qualify.</p></div>
+        <div class="rm-icon">🚀</div>
+        <div class="rm-card card-3d accent"><div class="rm-top"><span class="rm-step">04</span><span class="rm-weeks">Weeks 12–14</span></div><h4>Career Launch</h4><p>Resume, mocks, behavioural prep, negotiation — and application opportunities when you qualify.</p></div>
       </div>
     </div>
   </div>
@@ -1439,6 +1484,15 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
         <a href="#register" class="btn btn-primary">Register FREE for the webinar →</a>
         <a href="#curriculum" class="btn btn-ghost">See the curriculum</a>
       </div>
+      <div class="yourmove-social">
+        <div class="avatar-cluster">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+          <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+        </div>
+        <span>Join <b>700+ early-career engineers</b> already in the cohort</span>
+      </div>
     </div>
   </div>
 </section>
@@ -1539,14 +1593,18 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   if (!el) return;
   var lines = [
     { html: '<span class="t-kw">from</span> ik <span class="t-kw">import</span> DSA, SystemDesign, AgenticAI' },
+    { html: '<span class="t-kw">from</span> ik.career <span class="t-kw">import</span> Mocks, Resume, Offers' },
     { html: '' },
-    { html: '<span class="t-com"># where you are today</span>' },
+    { html: '<span class="t-com"># Where you are today</span>' },
     { html: 'you = <span class="t-fn">Engineer</span>(exp=<span class="t-str">"early-career"</span>)' },
     { html: '' },
-    { html: '<span class="t-com"># what you\'ll build</span>' },
+    { html: '<span class="t-com"># What you\'ll build</span>' },
     { html: 'you.<span class="t-fn">learn</span>(DSA, SystemDesign, AgenticAI)' },
-    { html: 'you.<span class="t-fn">practice</span>(<span class="t-fn">Mocks</span>(n=2))' },
+    { html: 'you.<span class="t-fn">practice</span>(<span class="t-fn">Mocks</span>(n=2, live=<span class="t-kw">True</span>))' },
+    { html: 'you.<span class="t-fn">polish</span>(Resume, linkedin=<span class="t-kw">True</span>)' },
     { html: '' },
+    { html: '<span class="t-com"># Where you land</span>' },
+    { html: 'you.<span class="t-fn">apply</span>(opportunities=5)  <span class="t-com"># T&C apply</span>' },
     { html: '<span class="t-fn">print</span>(you.destination)  <span class="t-out"># → MAANG+</span>' }
   ];
   var i = 0;
