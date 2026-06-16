@@ -280,12 +280,14 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
   color: var(--white);
   margin-bottom: 1.25rem;
 }
-.hero-headline-main .gradient-text {
-  display: block;
-  background: linear-gradient(102deg, #FFFFFF 0%, #FFFFFF 42%, #E6FFA8 68%, var(--lime) 100%);
+.hero-headline-main .rot-word {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--lime), #9BE000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: opacity, transform;
 }
 
 /* Subline with rotating text */
@@ -714,10 +716,11 @@ body[data-theme="light"] .gradient-text {
   -webkit-text-fill-color: #0A0B0D; color: #0A0B0D;
   padding: 0 0.06em; border-radius: 3px;
 }
-/* Hero headline stays solid dark (clean black, like reference) */
-body[data-theme="light"] .hero-headline-main .gradient-text {
-  background: none; -webkit-background-clip: border-box; background-clip: border-box;
-  -webkit-text-fill-color: #0A0B0D; color: #0A0B0D; padding: 0; border-radius: 0;
+/* Hero rotating words get the lime highlighter in light mode */
+body[data-theme="light"] .hero-headline-main .rot-word {
+  background: linear-gradient(transparent 62%, rgba(196,245,66,0.85) 62%);
+  -webkit-background-clip: border-box; background-clip: border-box;
+  -webkit-text-fill-color: #0A0B0D; color: #0A0B0D; padding: 0 0.06em; border-radius: 3px;
 }
 body[data-theme="light"] .rotating-text {
   background: none; -webkit-background-clip: border-box; background-clip: border-box;
@@ -1012,17 +1015,17 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
         
         <!-- Headline (Big Gradient) -->
         <h1 class="hero-headline-main reveal reveal-delay-1">
-          <span class="gradient-text">Become an AI-native engineer at the start of your career.</span><br>
-          <span class="gradient-text">Go From Overlooked to Massive Tech Offers.</span>
+          Your next <span class="gradient-text rot-word" id="rotPromo">Promotion</span><br>
+          won't come without mastering <span class="gradient-text rot-word">Gen/Agentic AI</span>.
         </h1>
         
         <!-- Subline with Rotating Text -->
         <p class="hero-subline reveal reveal-delay-2">
-          You already know how to code. Become the engineer companies want to hire in the AI era — Master execution paths across 
+          You already know how to code. Become the engineer companies want to hire in the AI era — master execution paths across 
           <span class="rotating-wrapper">
-            <span class="rotating-text" id="rotatingText">Systems Design</span>
+            <span class="rotating-text" id="rotatingText">Agentic AI</span>
           </span>
-          by <b>700+ MAANG+</b> engineers
+          by <b>700+ MAANG+</b> engineers.
         </p>
         
         <!-- CTAs -->
@@ -1794,22 +1797,28 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   setTimeout(start, 1200); // fallback
 })();
 
-// Rotating text
-var rotatingWords = ['Systems Design', 'Agentic AI', 'DSA Patterns', 'LangChain', 'MCP Protocols', 'RAG Pipelines'];
-var currentIndex = 0;
-var rotatingEl = document.getElementById('rotatingText');
-function rotateText() {
-  currentIndex = (currentIndex + 1) % rotatingWords.length;
-  rotatingEl.style.opacity = '0';
-  rotatingEl.style.transform = 'translateY(-15px)';
+// Synced rotating headline + subline
+var promoWords = ['Dream Job','Career Breakthrough','Career Acceleration','Promotion','Salary Growth','Market Value','Top-Tier Role','Interview Success','MAANG Opportunity'];
+var skillWords = ['GenAI','Agentic AI','System Design','DSA Patterns','RAG Pipelines','Multi-Agent Systems','LangGraph','Production AI'];
+var rotPromo = document.getElementById('rotPromo');
+var rotSkillHead = document.getElementById('rotSkillHead');
+var rotSkillSub = document.getElementById('rotatingText');
+var rotEls = [rotPromo, rotSkillHead, rotSkillSub].filter(Boolean);
+rotEls.forEach(function(el){ el.style.transition = 'opacity 0.3s ease, transform 0.3s ease'; el.style.display = 'inline-block'; });
+var rIdx = 0;
+function rotateAll() {
+  rIdx++;
+  rotEls.forEach(function(el){ el.style.opacity = '0'; el.style.transform = 'translateY(-12px)'; });
   setTimeout(function() {
-    rotatingEl.textContent = rotatingWords[currentIndex];
-    rotatingEl.style.opacity = '1';
-    rotatingEl.style.transform = 'translateY(0)';
-  }, 200);
+    var p = promoWords[rIdx % promoWords.length];
+    var s = skillWords[rIdx % skillWords.length];
+    if (rotPromo) rotPromo.textContent = p;
+    if (rotSkillHead) rotSkillHead.textContent = s;
+    if (rotSkillSub) rotSkillSub.textContent = s;
+    rotEls.forEach(function(el){ el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
+  }, 280);
 }
-setInterval(rotateText, 2500);
-rotatingEl.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+if (rotEls.length) setInterval(rotateAll, 2600);
 
 // Scroll progress
 window.addEventListener('scroll', function() {
