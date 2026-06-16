@@ -94,7 +94,10 @@ button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
   -webkit-tap-highlight-color: transparent;
 }
 @media (max-width: 480px) { .btn { min-height: 48px; font-size: 0.85rem; padding: 0 1.25rem; width: 100%; } }
-.btn-primary { background: var(--lime); color: var(--black); box-shadow: 0 4px 20px var(--lime-glow); }
+.btn-primary { position: relative; overflow: hidden; background: var(--lime); color: var(--black); box-shadow: 0 4px 20px var(--lime-glow); }
+.btn-primary::after { content: ''; position: absolute; top: 0; left: -120%; width: 55%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent); transform: skewX(-22deg); pointer-events: none; }
+.btn-primary:hover::after { animation: btnShine 0.85s ease; }
+@keyframes btnShine { to { left: 140%; } }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--lime-glow); }
 .btn-primary:active { transform: translateY(0); }
 .btn-terminal {
@@ -154,9 +157,17 @@ nav.scrolled {
   .nav-timer { display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--white); background: var(--ink); border: 1px solid var(--slate); border-radius: 100px; padding: 0.38rem 0.8rem; white-space: nowrap; }
 }
 .timer-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
-.theme-toggle { width: 38px; height: 38px; border-radius: 10px; background: var(--ink); border: 1px solid var(--slate); color: var(--white); font-size: 1rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: border-color 0.2s, transform 0.2s; line-height: 1; }
-.theme-toggle:hover { border-color: var(--lime); transform: translateY(-1px); }
-.theme-toggle:active { transform: scale(0.94); }
+.theme-switch { background: none; border: none; cursor: pointer; padding: 0; display: inline-flex; align-items: center; }
+.ts-track { position: relative; width: 54px; height: 28px; border-radius: 100px; background: var(--ink2); border: 1px solid var(--slate); display: block; transition: background 0.3s, border-color 0.3s; }
+.ts-ico { position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.72rem; line-height: 1; transition: opacity 0.3s; }
+.ts-moon { left: 7px; opacity: 1; }
+.ts-sun { right: 7px; opacity: 0.45; }
+.ts-thumb { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--lime); box-shadow: 0 2px 8px rgba(0,0,0,0.35); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), background 0.3s; }
+.theme-switch:hover .ts-track { border-color: var(--lime); }
+body[data-theme="light"] .ts-thumb { transform: translateX(26px); }
+body[data-theme="light"] .ts-moon { opacity: 0.45; }
+body[data-theme="light"] .ts-sun { opacity: 1; }
+@media (max-width: 520px) { .ts-track { width: 48px; height: 26px; } .ts-thumb { width: 20px; height: 20px; } body[data-theme="light"] .ts-thumb { transform: translateX(22px); } }
 .nav-cta { display: none; }
 @media (min-width: 560px) { .nav-cta { display: inline-flex; } }
 .nav-cta.btn { min-height: 38px; padding: 0 1.1rem; font-size: 0.78rem; border-radius: 10px; }
@@ -622,8 +633,26 @@ section { padding: 4rem 0; }
 .emi-note { text-align: center; font-size: 0.72rem; color: var(--muted); max-width: 580px; margin: 1.25rem auto 0; line-height: 1.6; }
 
 /* ═══════════════════════════════════════════
-   LIGHT MODE (palette from reference)
+   TOOL MATRIX
    ═══════════════════════════════════════════ */
+.toolmatrix-section { background: var(--ink); }
+.tm-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 2rem; }
+.tm-filter { font-family: var(--font-mono); font-size: 0.74rem; padding: 0.6rem 1.1rem; border-radius: 100px; border: 1px solid var(--slate); background: var(--black); color: var(--silver); cursor: pointer; transition: all 0.2s; }
+.tm-filter:hover { border-color: var(--steel); color: var(--white); }
+.tm-filter.active { border-color: var(--lime); color: var(--lime); background: var(--lime-soft); box-shadow: 0 0 24px rgba(191,255,0,0.10); }
+@media (max-width: 480px) { .tm-filter { font-size: 0.66rem; padding: 0.5rem 0.8rem; } }
+.tm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+@media (min-width: 680px) { .tm-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1080px) { .tm-grid { grid-template-columns: repeat(8, 1fr); } }
+.tm-card { background: var(--black); border: 1px solid var(--slate); border-radius: 14px; padding: 1.1rem; transition: opacity 0.3s, filter 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
+.tm-card:hover { transform: translateY(-3px); border-color: var(--steel); }
+.tm-card.dim { opacity: 0.28; filter: grayscale(0.7); }
+.tm-card.hi { border-color: rgba(191,255,0,0.5); box-shadow: 0 0 24px rgba(191,255,0,0.12); }
+.tm-ico { font-size: 1.4rem; margin-bottom: 0.6rem; }
+.tm-name { font-family: var(--font-mono); font-weight: 600; color: var(--white); font-size: 0.82rem; margin-bottom: 0.3rem; }
+.tm-desc { font-size: 0.72rem; color: var(--silver); line-height: 1.4; }
+
+
 body[data-theme="light"] {
   --black: #FAFAF7;
   --ink: #FFFFFF;
@@ -644,9 +673,22 @@ body[data-theme="light"] .crisis-src,
 body[data-theme="light"] .rm-weeks,
 body[data-theme="light"] .emi-sub b,
 body[data-theme="light"] .cta-fomo b { color: #16A34A; }
-body[data-theme="light"] .hero-headline-main .gradient-text { background: linear-gradient(102deg, #0A0B0D 0%, #0A0B0D 44%, #4FAE00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-body[data-theme="light"] .gradient-text,
-body[data-theme="light"] .rotating-text,
+/* Light: short section-accent phrases get a lime highlighter (reference look) */
+body[data-theme="light"] .gradient-text {
+  background: linear-gradient(transparent 62%, rgba(196,245,66,0.85) 62%);
+  -webkit-background-clip: border-box; background-clip: border-box;
+  -webkit-text-fill-color: #0A0B0D; color: #0A0B0D;
+  padding: 0 0.06em; border-radius: 3px;
+}
+/* Hero headline stays solid dark (clean black, like reference) */
+body[data-theme="light"] .hero-headline-main .gradient-text {
+  background: none; -webkit-background-clip: border-box; background-clip: border-box;
+  -webkit-text-fill-color: #0A0B0D; color: #0A0B0D; padding: 0; border-radius: 0;
+}
+body[data-theme="light"] .rotating-text {
+  background: none; -webkit-background-clip: border-box; background-clip: border-box;
+  -webkit-text-fill-color: #16A34A; color: #16A34A;
+}
 body[data-theme="light"] .gap-stat.accent .gap-num,
 body[data-theme="light"] .emi-pm span { background: linear-gradient(135deg, #16A34A, #15803D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 body[data-theme="light"] .crisis-num,
@@ -666,7 +708,7 @@ body[data-theme="light"] .nav-cta, body[data-theme="light"] .btn-primary { color
 body[data-theme="light"] .hero-bg, body[data-theme="light"] .hero-grid, body[data-theme="light"] .yourmove-glow { opacity: 0.4; }
 body[data-theme="light"] .new-badge { background: rgba(196,245,66,0.3); color: #15803D; }
 /* terminal stays dark in both modes (intentional code-editor look) */
-body[data-theme="light"] .theme-toggle { background: #FFFFFF; }
+body[data-theme="light"] .ts-track { background: #EAEAE5; }
 
 
 /* Transform */
@@ -906,7 +948,13 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
     </div>
     <div class="nav-right">
       <div class="nav-timer"><span class="timer-dot"></span> Webinar in <span id="countdown">5d 6h</span></div>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light or dark mode"><span id="themeIcon">🌙</span></button>
+      <button class="theme-switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle light or dark mode">
+        <span class="ts-track">
+          <span class="ts-ico ts-moon">🌙</span>
+          <span class="ts-ico ts-sun">☀️</span>
+          <span class="ts-thumb"></span>
+        </span>
+      </button>
       <a href="#register" class="btn btn-primary nav-cta">Register FREE</a>
     </div>
   </div>
@@ -1089,6 +1137,33 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
         <div class="crisis-body">Agentic AI is new enough that 0–5 YOE engineers can lead it, not catch up to it. Move while the field is still being defined.</div>
         <div class="crisis-src">Why early-career is the advantage</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tool Matrix -->
+<section class="toolmatrix-section" id="toolmatrix">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow reveal">Production toolchain resolution</div>
+      <h2 class="reveal">The 2026 <span class="gradient-text">Production-Grade</span> Tool Matrix.</h2>
+      <p class="reveal">Hiring pipelines check for execution, not theory. Tap any operational layer to filter the real-world components embedded into your program.</p>
+    </div>
+    <div class="tm-filters reveal">
+      <button class="tm-filter active" type="button" data-cat="all">show_all_infrastructure()</button>
+      <button class="tm-filter" type="button" data-cat="foundations">foundations_and_dsa</button>
+      <button class="tm-filter" type="button" data-cat="agents">agents_and_orchestration</button>
+      <button class="tm-filter" type="button" data-cat="deploy">observability_and_deploy</button>
+    </div>
+    <div class="tm-grid reveal">
+      <div class="tm-card" data-cat="foundations"><div class="tm-ico">🤖</div><div class="tm-name">Claude Code</div><div class="tm-desc">AI-assisted interview prep, generation &amp; debugging</div></div>
+      <div class="tm-card" data-cat="foundations"><div class="tm-ico">🧮</div><div class="tm-name">DSA · Pseudocode</div><div class="tm-desc">Language-agnostic algorithmic problem solving</div></div>
+      <div class="tm-card" data-cat="agents"><div class="tm-ico">🔗</div><div class="tm-name">LangChain</div><div class="tm-desc">RAG pipelines &amp; agent construction</div></div>
+      <div class="tm-card" data-cat="agents"><div class="tm-ico">🕸️</div><div class="tm-name">LangGraph</div><div class="tm-desc">Multi-agent orchestration &amp; state management</div></div>
+      <div class="tm-card" data-cat="agents"><div class="tm-ico">🧬</div><div class="tm-name">Chroma / Pinecone</div><div class="tm-desc">High-dimensional vector embedding storage</div></div>
+      <div class="tm-card" data-cat="deploy"><div class="tm-ico">📊</div><div class="tm-name">LangSmith</div><div class="tm-desc">Tracing, evaluation &amp; cost tracking</div></div>
+      <div class="tm-card" data-cat="deploy"><div class="tm-ico">🔌</div><div class="tm-name">MCP</div><div class="tm-desc">Model Context Protocol tool integration</div></div>
+      <div class="tm-card" data-cat="deploy"><div class="tm-ico">🚀</div><div class="tm-name">Streamlit / HF</div><div class="tm-desc">Ship agents to production endpoints</div></div>
     </div>
   </div>
 </section>
@@ -1531,10 +1606,9 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 (function() {
   var body = document.body;
   var btn = document.getElementById('themeToggle');
-  var icon = document.getElementById('themeIcon');
   function apply(theme) {
-    if (theme === 'light') { body.setAttribute('data-theme','light'); if(icon) icon.textContent = '☀️'; }
-    else { body.removeAttribute('data-theme'); if(icon) icon.textContent = '🌙'; }
+    if (theme === 'light') { body.setAttribute('data-theme','light'); if(btn) btn.setAttribute('aria-checked','true'); }
+    else { body.removeAttribute('data-theme'); if(btn) btn.setAttribute('aria-checked','false'); }
   }
   var saved = 'dark';
   try { saved = localStorage.getItem('ik-theme') || 'dark'; } catch(e) {}
@@ -1585,6 +1659,26 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
     });
   });
   setMonths(12);
+})();
+
+// ═══════════════════════════════════════════
+// TOOL MATRIX FILTER
+// ═══════════════════════════════════════════
+(function() {
+  var filters = document.querySelectorAll('.tm-filter');
+  var cards = document.querySelectorAll('.tm-card');
+  filters.forEach(function(f) {
+    f.addEventListener('click', function() {
+      filters.forEach(function(x){ x.classList.remove('active'); });
+      f.classList.add('active');
+      var cat = f.getAttribute('data-cat');
+      cards.forEach(function(c) {
+        if (cat === 'all') { c.classList.remove('dim','hi'); }
+        else if (c.getAttribute('data-cat') === cat) { c.classList.remove('dim'); c.classList.add('hi'); }
+        else { c.classList.add('dim'); c.classList.remove('hi'); }
+      });
+    });
+  });
 })();
 
 
