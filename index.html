@@ -842,6 +842,13 @@ body[data-theme="light"] .ts-track { background: #EAEAE5; }
 .strip-hint { text-align: center; font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); margin-top: 0.25rem; }
 .instructor-card { background: var(--ink); border: 1px solid var(--slate); border-radius: 14px; padding: 1.25rem; text-align: center; width: 165px; flex-shrink: 0; transition: all 0.3s ease; }
 @media (max-width: 480px) { .instructor-card { width: 140px; padding: 1rem; } }
+/* "+690 More Instructors" end card */
+.instructor-more { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.45); }
+.instructor-more:hover { border-color: var(--lime); transform: translateY(-2px); }
+.instructor-more-num { font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
+.instructor-more-cta { font-family: var(--font-display); font-size: 0.92rem; font-weight: 700; color: var(--white); }
+.instructor-more-sub { font-size: 0.72rem; color: var(--muted); }
+body[data-theme="light"] .instructor-more { background: rgba(196,245,66,0.18); border-color: rgba(22,163,74,0.4); }
 .instructor-card:hover { border-color: var(--lime); transform: translateY(-4px); }
 .instructor-avatar { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 0.75rem; border: 2px solid var(--lime); overflow: hidden; }
 @media (max-width: 480px) { .instructor-avatar { width: 56px; height: 56px; } }
@@ -1505,8 +1512,8 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">Meet Your Instructors</div>
-      <h2 class="reveal">Learn from people who've been there.</h2>
-      <p class="reveal">Not career coaches. Engineers who interview candidates at MAANG+ every week.</p>
+      <h2 class="reveal">700+ MAANG+ <span class="gradient-text">Engineers.</span></h2>
+      <p class="reveal">Engineers who interview candidates at MAANG+ every week — not university faculty.</p>
     </div>
     <div class="instructors-strip-wrap reveal">
       <div class="instructors-strip">
@@ -1518,6 +1525,7 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
       <div class="instructor-card card-3d"><div class="instructor-avatar"><img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Instructor" loading="lazy"></div><div class="instructor-name">Sneha Iyer</div><div class="instructor-role">Senior SDE</div><div class="instructor-company"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Apple-logo.png" alt="Apple" loading="lazy"> Apple</div></div>
       <div class="instructor-card card-3d"><div class="instructor-avatar"><img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Instructor" loading="lazy"></div><div class="instructor-name">Karan Malhotra</div><div class="instructor-role">AI Engineer</div><div class="instructor-company"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Netflix_2015_N_logo.svg" alt="Netflix" loading="lazy"> Netflix</div></div>
       <div class="instructor-card card-3d"><div class="instructor-avatar"><img src="https://randomuser.me/api/portraits/women/90.jpg" alt="Instructor" loading="lazy"></div><div class="instructor-name">Divya Nair</div><div class="instructor-role">Engineering Manager</div><div class="instructor-company"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" loading="lazy"> Google</div></div>
+      <a href="#register" class="instructor-card instructor-more"><div class="instructor-more-num">+690</div><div class="instructor-more-cta">More Instructors →</div><div class="instructor-more-sub">Meet the full faculty</div></a>
       </div>
     </div>
     <p class="strip-hint">← scroll to meet more of the 700+ instructor panel →</p>
