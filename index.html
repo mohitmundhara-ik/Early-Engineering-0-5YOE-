@@ -185,13 +185,22 @@ nav.scrolled {
   -webkit-mask: radial-gradient(ellipse 60% 50% at 50% 30%, black, transparent);
   pointer-events: none;
 }
-.hero-content {
-  text-align: center;
-  max-width: 850px;
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  max-width: 1140px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
+@media (min-width: 900px) {
+  .hero-layout { grid-template-columns: 1.05fr 0.95fr; gap: 3rem; }
+}
+.hero-left { text-align: center; min-width: 0; }
+@media (min-width: 900px) { .hero-left { text-align: left; } }
+.hero-right { min-width: 0; width: 100%; }
 
 /* Eyebrow */
 .hero-eyebrow {
@@ -230,6 +239,10 @@ nav.scrolled {
 }
 .hero-headline-main .gradient-text {
   display: block;
+  background: linear-gradient(102deg, #FFFFFF 0%, #FFFFFF 42%, #E6FFA8 68%, var(--lime) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Subline with rotating text */
@@ -240,6 +253,7 @@ nav.scrolled {
   max-width: 700px;
   margin: 0 auto 2rem;
 }
+@media (min-width: 900px) { .hero-left .hero-subline { margin-left: 0; margin-right: 0; max-width: 560px; } }
 .hero-subline b { color: var(--white); }
 @media (max-width: 480px) { .hero-subline { font-size: 0.92rem; margin-bottom: 1.5rem; } }
 
@@ -250,7 +264,7 @@ nav.scrolled {
 }
 .rotating-text {
   display: inline-block;
-  background: linear-gradient(135deg, var(--lime), var(--cyan));
+  background: linear-gradient(135deg, var(--lime), #9BE000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -263,12 +277,15 @@ nav.scrolled {
   flex-direction: column;
   gap: 0.75rem;
   align-items: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0;
 }
 @media (min-width: 640px) {
   .hero-ctas { flex-direction: row; justify-content: center; }
 }
-@media (max-width: 480px) { .hero-ctas { margin-bottom: 2rem; } }
+@media (min-width: 900px) {
+  .hero-left .hero-ctas { justify-content: flex-start; }
+  .hero-left .terminal-ctas { justify-content: flex-start; }
+}
 .hero-ctas .btn-primary { min-width: 260px; }
 @media (max-width: 480px) { .hero-ctas .btn-primary { min-width: 100%; } }
 .terminal-ctas {
@@ -285,17 +302,21 @@ nav.scrolled {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 940px;
+  margin: 3rem auto 0;
+  position: relative;
+  z-index: 1;
 }
 .cohort-item {
+  flex: 1 1 180px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: var(--ink);
   border: 1px solid var(--slate);
   border-radius: 10px;
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1rem;
   font-size: 0.8rem;
   color: var(--silver);
   transition: all 0.25s ease;
@@ -320,8 +341,9 @@ nav.scrolled {
 
 /* Hero Code Terminal (3rd element) */
 .hero-terminal {
-  max-width: 540px;
-  margin: 2.5rem auto 0;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
   background: #0B1220;
   border: 1px solid var(--slate);
   border-radius: 14px;
@@ -329,7 +351,8 @@ nav.scrolled {
   box-shadow: 0 24px 60px rgba(0,0,0,0.5);
   text-align: left;
 }
-@media (max-width: 480px) { .hero-terminal { margin-top: 2rem; border-radius: 12px; } }
+@media (min-width: 900px) { .hero-terminal { margin: 0; max-width: 100%; } }
+@media (max-width: 480px) { .hero-terminal { border-radius: 12px; } }
 .terminal-bar {
   display: flex;
   align-items: center;
@@ -645,67 +668,72 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="wrap">
-    <div class="hero-content">
-      <!-- Eyebrow -->
-      <div class="hero-eyebrow reveal">
-        <span class="dot"></span>
-        Engineered for Early-Career NextGen Engineers (0-5 YOE)
-      </div>
-      
-      <!-- Headline (Big Gradient) -->
-      <h1 class="hero-headline-main reveal reveal-delay-1">
-        <span class="gradient-text">Become an AI-native engineer at the start of your career.</span><br>
-        <span class="gradient-text">Go From Overlooked to Massive Tech Offers.</span>
-      </h1>
-      
-      <!-- Subline with Rotating Text -->
-      <p class="hero-subline reveal reveal-delay-2">
-        You already know how to code. Become the engineer companies want to hire in the AI era — Master execution paths across 
-        <span class="rotating-wrapper">
-          <span class="rotating-text" id="rotatingText">Systems Design</span>
-        </span>
-        by <b>700+ MAANG+</b> engineers
-      </p>
-      
-      <!-- CTAs -->
-      <div class="hero-ctas reveal reveal-delay-4">
-        <a href="#register" class="btn btn-primary">Register for the webinar →</a>
-        <div class="terminal-ctas">
-          <a href="#curriculum" class="btn btn-terminal">view_technical_syllabus.sh</a>
+    <div class="hero-layout">
+      <!-- LEFT: text -->
+      <div class="hero-left">
+        <!-- Eyebrow -->
+        <div class="hero-eyebrow reveal">
+          <span class="dot"></span>
+          Engineered for Early-Career NextGen Engineers (0-5 YOE)
+        </div>
+        
+        <!-- Headline (Big Gradient) -->
+        <h1 class="hero-headline-main reveal reveal-delay-1">
+          <span class="gradient-text">Become an AI-native engineer at the start of your career.</span><br>
+          <span class="gradient-text">Go From Overlooked to Massive Tech Offers.</span>
+        </h1>
+        
+        <!-- Subline with Rotating Text -->
+        <p class="hero-subline reveal reveal-delay-2">
+          You already know how to code. Become the engineer companies want to hire in the AI era — Master execution paths across 
+          <span class="rotating-wrapper">
+            <span class="rotating-text" id="rotatingText">Systems Design</span>
+          </span>
+          by <b>700+ MAANG+</b> engineers
+        </p>
+        
+        <!-- CTAs -->
+        <div class="hero-ctas reveal reveal-delay-4">
+          <a href="#register" class="btn btn-primary">Register for the webinar →</a>
+          <div class="terminal-ctas">
+            <a href="#curriculum" class="btn btn-terminal">view_technical_syllabus.sh</a>
+          </div>
         </div>
       </div>
       
-      <!-- Code Terminal (3rd element) -->
-      <div class="hero-terminal reveal reveal-delay-4">
-        <div class="terminal-bar">
-          <span class="terminal-dot red"></span>
-          <span class="terminal-dot yellow"></span>
-          <span class="terminal-dot green"></span>
-          <span class="terminal-file">your_career.py</span>
-        </div>
-        <div class="terminal-body">
-          <pre id="terminalCode"></pre>
+      <!-- RIGHT: code terminal -->
+      <div class="hero-right reveal reveal-delay-3">
+        <div class="hero-terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-file">your_career.py</span>
+          </div>
+          <div class="terminal-body">
+            <pre id="terminalCode"></pre>
+          </div>
         </div>
       </div>
-      
-      <!-- Cohort Details -->
-      <div class="cohort-details reveal reveal-delay-4">
-        <div class="cohort-item">
-          <div class="cohort-icon">📅</div>
-          <div class="cohort-text"><b>July 2026</b><span>Cohort starts</span></div>
-        </div>
-        <div class="cohort-item">
-          <div class="cohort-icon">🎥</div>
-          <div class="cohort-text"><b>Live Classes</b><span>14 weeks</span></div>
-        </div>
-        <div class="cohort-item">
-          <div class="cohort-icon">🚀</div>
-          <div class="cohort-text"><b>Live Projects</b><span>Capstone + AI</span></div>
-        </div>
-        <div class="cohort-item">
-          <div class="cohort-icon">👥</div>
-          <div class="cohort-text"><b>23 Seats Left</b><span>Limited batch</span></div>
-        </div>
+    </div>
+    
+    <!-- Cohort Details (full-width row) -->
+    <div class="cohort-details reveal reveal-delay-4">
+      <div class="cohort-item">
+        <div class="cohort-icon">📅</div>
+        <div class="cohort-text"><b>July 2026</b><span>Cohort starts</span></div>
+      </div>
+      <div class="cohort-item">
+        <div class="cohort-icon">🎥</div>
+        <div class="cohort-text"><b>Live Classes</b><span>14 weeks</span></div>
+      </div>
+      <div class="cohort-item">
+        <div class="cohort-icon">🚀</div>
+        <div class="cohort-text"><b>Live Projects</b><span>Capstone + AI</span></div>
+      </div>
+      <div class="cohort-item">
+        <div class="cohort-icon">👥</div>
+        <div class="cohort-text"><b>23 Seats Left</b><span>Limited batch</span></div>
       </div>
     </div>
   </div>
