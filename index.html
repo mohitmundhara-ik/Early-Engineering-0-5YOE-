@@ -351,7 +351,7 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
 @media (min-width: 900px) { .terminal-meta .tmeta-btns { display: none; } }
 @media (max-width: 899px) { .hero-ctas { display: none; } }
 .tmeta-chip-hl { border-color: rgba(191,255,0,0.45) !important; color: var(--lime) !important; background: var(--lime-soft) !important; }
-body[data-theme="light"] .tmeta-chip-hl { color: #166534 !important; font-weight: 700; background: rgba(196,245,66,0.32) !important; border-color: rgba(22,163,74,0.5) !important; }
+body[data-theme="light"] .tmeta-chip-hl { color: #166534 !important; font-weight: 600; background: rgba(196,245,66,0.32) !important; border-color: rgba(22,163,74,0.5) !important; }
 .terminal-ctas {
   display: flex;
   gap: 0.5rem;
@@ -418,8 +418,8 @@ body[data-theme="light"] .tmeta-chip-hl { color: #166534 !important; font-weight
 /* Item 4: under-terminal meta (cohort details + actions) */
 .terminal-meta { position: relative; z-index: 2; max-width: 520px; margin: 1.25rem auto 0; display: flex; flex-direction: column; gap: 0.75rem; }
 @media (min-width: 900px) { .terminal-meta { max-width: 100%; margin-left: 0; margin-right: 0; } }
-.tmeta-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-.tmeta-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--ink); border: 1px solid var(--slate); border-radius: 8px; padding: 0.34rem 0.7rem; font-size: 0.72rem; font-family: var(--font-mono); color: var(--silver); }
+.tmeta-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.tmeta-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--ink); border: 1px solid var(--slate); border-radius: 8px; padding: 0.38rem 0.72rem; font-size: 0.72rem; line-height: 1.15; font-family: var(--font-mono); font-weight: 600; color: var(--silver); }
 .tmeta-chip b { color: var(--white); font-weight: 700; }
 .tmeta-hot { border-color: rgba(191,255,0,0.5); color: var(--white); }
 .tmeta-btns { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -804,6 +804,7 @@ body[data-theme="light"] .terminal-body .t-out { color: #15803D; }
 body[data-theme="light"] .terminal-cursor { background: #15803D; }
 body[data-theme="light"] .btn-terminal { color: #15803D; }
 body[data-theme="light"] .ts-track { background: #EAEAE5; }
+body[data-theme="light"] .float-badge { background: rgba(255,255,255,0.94); border-color: rgba(10,10,15,0.12); color: #0A0B0D; box-shadow: 0 10px 30px rgba(10,10,15,0.12); }
 
 /* Transform */
 .transform-section { background: var(--black); }
