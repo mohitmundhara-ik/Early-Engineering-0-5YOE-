@@ -351,7 +351,7 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
 @media (min-width: 900px) { .terminal-meta .tmeta-btns { display: none; } }
 @media (max-width: 899px) { .hero-ctas { display: none; } }
 .tmeta-chip-hl { border-color: rgba(191,255,0,0.45) !important; color: var(--lime) !important; background: var(--lime-soft) !important; }
-body[data-theme="light"] .tmeta-chip-hl { color: #15803D !important; border-color: rgba(22,163,74,0.4) !important; }
+body[data-theme="light"] .tmeta-chip-hl { color: #166534 !important; font-weight: 700; background: rgba(196,245,66,0.32) !important; border-color: rgba(22,163,74,0.5) !important; }
 .terminal-ctas {
   display: flex;
   gap: 0.5rem;
@@ -735,7 +735,7 @@ body[data-theme="light"] {
   --ink2: #F4F4F0;
   --slate: rgba(10,10,15,0.09);
   --steel: rgba(10,10,15,0.18);
-  --muted: #585A63;
+  --muted: #45474E;
   --silver: #2A2C32;
   --white: #0A0B0D;
   --lime: #C4F542;
@@ -791,7 +791,18 @@ body[data-theme="light"] .hero-pill-hl .p-ico, body[data-theme="light"] .hero-pi
 body[data-theme="light"] .nav-cta, body[data-theme="light"] .btn-primary { color: #0A0B0D; }
 body[data-theme="light"] .hero-bg, body[data-theme="light"] .hero-grid, body[data-theme="light"] .yourmove-glow { opacity: 0.4; }
 body[data-theme="light"] .new-badge { background: rgba(196,245,66,0.3); color: #15803D; }
-/* terminal stays dark in both modes (intentional code-editor look) */
+/* terminal flips with theme — light: white window, black header bar, dark code */
+body[data-theme="light"] .hero-terminal { background: #FFFFFF; border-color: rgba(10,10,15,0.12); box-shadow: 0 30px 70px rgba(10,10,15,0.12), 0 0 0 1px rgba(22,163,74,0.06); }
+body[data-theme="light"] .terminal-bar { background: #0B1220; border-bottom-color: rgba(255,255,255,0.06); }
+body[data-theme="light"] .terminal-file { color: #CBD5E1; }
+body[data-theme="light"] .terminal-body pre { color: #1E293B; }
+body[data-theme="light"] .terminal-body .t-kw { color: #7C3AED; }
+body[data-theme="light"] .terminal-body .t-fn { color: #0E7490; }
+body[data-theme="light"] .terminal-body .t-str { color: #15803D; }
+body[data-theme="light"] .terminal-body .t-com { color: #9AA3AF; }
+body[data-theme="light"] .terminal-body .t-out { color: #15803D; }
+body[data-theme="light"] .terminal-cursor { background: #15803D; }
+body[data-theme="light"] .btn-terminal { color: #15803D; }
 body[data-theme="light"] .ts-track { background: #EAEAE5; }
 
 /* Transform */
@@ -1062,17 +1073,22 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 /* Sticky Bar */
 .sticky-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
-  background: var(--ink2);
-  border-top: 1px solid rgba(255,255,255,0.05);
+  background: var(--lime);
+  border-top: 1px solid rgba(10,10,15,0.10);
   padding-bottom: var(--safe-bottom);
   transform: translateY(100%);
   transition: transform 0.3s ease;
 }
+.sticky-left { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+.sticky-ik { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 9px; background: #050A0E; color: var(--lime); font-family: var(--font-display); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+@media (max-width: 480px) { .sticky-ik { display: none; } }
+.sticky-bar .btn-primary { background: #050A0E; color: #FFFFFF; box-shadow: none; }
+.sticky-bar .btn-primary:hover { background: #1A2942; }
 .sticky-bar.show { transform: translateY(0); }
 .sticky-inner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.6rem 0; }
-.sticky-text .title { font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; color: var(--white); }
-.sticky-text .meta { font-size: 0.65rem; color: var(--muted); }
-.sticky-text .meta b { color: var(--lime); }
+.sticky-text .title { font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; color: #050A0E; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky-text .meta { font-size: 0.65rem; color: rgba(5,10,14,0.72); }
+.sticky-text .meta b { color: #050A0E; }
 .sticky-bar .btn { min-height: 40px; font-size: 0.75rem; padding: 0 1rem; }
 @media (max-width: 480px) { .sticky-bar .btn { min-height: 38px; font-size: 0.72rem; } }
 
@@ -1294,7 +1310,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
         <!-- CTAs -->
         <div class="hero-ctas reveal reveal-delay-4">
           <a href="#register" class="btn btn-primary">Register FREE →</a>
-          <a href="#curriculum" class="btn btn-terminal">$ view_technical_syllabus.sh</a>
+          <a href="#curriculum" class="btn btn-terminal">view_technical_syllabus.sh</a>
         </div>
 
         <!-- Item 2: Who is this for — compact pills (no images) -->
@@ -1848,13 +1864,26 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
             <div class="form-field"><label>Current role</label>
               <select required>
                 <option value="" disabled selected>Select role</option>
-                <option>Final-year student</option>
-                <option>SWE / SDE</option>
-                <option>Staff / Principal Engineer</option>
-                <option>Engineering Manager</option>
-                <option>Data Scientist / MLE</option>
-                <option>TPM / Product Manager</option>
-                <option>Other tech professional</option>
+                <option>Back-end</option>
+                <option>Cloud Engineer</option>
+                <option>Cyber Security</option>
+                <option>Data Engineer</option>
+                <option>Data Science</option>
+                <option>Front-end</option>
+                <option>Full Stack</option>
+                <option>Machine Learning / AI</option>
+                <option>Engineering Manager - any domain</option>
+                <option>Tech Product Manager</option>
+                <option>Technical Program Manager</option>
+                <option>Test Engineer / SDET / QE</option>
+                <option>Android Developer</option>
+                <option>iOS Developer</option>
+                <option>Site Reliability Engineer</option>
+                <option>Embedded Software Engineer</option>
+                <option>Other Software Engineers</option>
+                <option>Data Analyst / Business Analyst</option>
+                <option>DevOps Engineer</option>
+                <option>None of the above</option>
               </select>
             </div>
             <div class="form-field"><label>Where do you want to be?</label>
@@ -1932,8 +1961,11 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 <!-- Sticky Bar -->
 <div class="sticky-bar" id="stickyBar">
   <div class="wrap sticky-inner">
-    <div class="sticky-text"><div class="title">Applied AI Accelerator for NextGen Engineers</div><div class="meta"><b>23</b> seats left · July 2026</div></div>
-    <a href="#register" class="btn btn-primary">Register FREE →</a>
+    <div class="sticky-left">
+      <span class="sticky-ik">ik</span>
+      <div class="sticky-text"><div class="title">Applied AI Accelerator for NextGen Engineers</div><div class="meta"><b>23</b> seats left · Applications close soon</div></div>
+    </div>
+    <a href="#register" class="btn btn-primary">Reserve your seat →</a>
   </div>
 </div>
 
