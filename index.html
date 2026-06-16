@@ -593,19 +593,22 @@ section { padding: 4rem 0; }
 .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 500px; height: 500px; background: radial-gradient(circle, rgba(191,255,0,0.05), transparent 50%); pointer-events: none; }
 .cta-content { position: relative; z-index: 1; }
 .cta-content > p { font-size: 0.92rem; color: var(--silver); max-width: 400px; margin: 0 auto 1.5rem; }
-.cta-form { max-width: 400px; margin: 0 auto; background: var(--ink); border: 1px solid var(--slate); border-radius: 14px; padding: 1.5rem; text-align: left; }
+.cta-form { max-width: 480px; margin: 0 auto; background: var(--ink); border: 1px solid var(--slate); border-radius: 14px; padding: 1.5rem; text-align: left; }
 @media (max-width: 480px) { .cta-form { padding: 1.25rem; } }
 .cta-form-header { text-align: center; margin-bottom: 0.875rem; }
 .cta-form-header h3 { font-size: 1rem; color: var(--white); margin-bottom: 0.1rem; }
 .cta-form-header p { font-size: 0.72rem; color: var(--muted); }
-.cta-fomo { text-align: center; font-size: 0.72rem; background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.12); padding: 0.45rem 0.6rem; border-radius: 8px; margin-bottom: 0.875rem; color: var(--white); }
-.cta-fomo b { color: var(--lime); }
+.cta-fomo { display: flex; align-items: center; justify-content: center; gap: 0.45rem; text-align: center; font-size: 0.78rem; background: rgba(191,255,0,0.07); border: 1px solid rgba(191,255,0,0.3); padding: 0.55rem 0.7rem; border-radius: 9px; margin-bottom: 1rem; color: var(--silver); font-weight: 500; }
+.cta-fomo .fomo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); animation: pulse 2s infinite; flex-shrink: 0; }
+.cta-fomo b { color: var(--lime); font-weight: 700; }
 .form-field { margin-bottom: 0.5rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+@media (max-width: 420px) { .form-row { grid-template-columns: 1fr; gap: 0; } }
 .form-field label { display: block; font-size: 0.65rem; font-weight: 600; color: var(--muted); margin-bottom: 0.15rem; }
 .form-field input, .form-field select { width: 100%; min-height: 44px; padding: 0 0.75rem; background: var(--black); border: 1.5px solid var(--slate); border-radius: 9px; font-size: 16px; color: var(--white); outline: none; transition: border-color 0.2s; }
 .form-field input:focus, .form-field select:focus { border-color: var(--lime); }
 .form-field select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394A3B8' d='M6 8L2 4h8z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2rem; }
-.cta-form .btn { width: 100%; margin-top: 0.35rem; }
+.cta-form .btn { width: 100%; margin-top: 0.5rem; }
 .cta-form .privacy { font-size: 0.6rem; color: var(--muted); text-align: center; margin-top: 0.4rem; }
 
 /* Footer */
@@ -980,12 +983,66 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
       <p class="reveal">Meet an advisor, see the full curriculum, find out if this track fits — and ask anything.</p>
       <div class="cta-form reveal">
         <div class="cta-form-header"><h3>Register for the webinar</h3><p>Sat, 21 Jun · 6:30 PM IST</p></div>
-        <div class="cta-fomo">Only <b>23</b> seats left in <b>July cohort</b></div>
+        <div class="cta-fomo"><span class="fomo-dot"></span>Only <b>23</b> seats left in <b>July cohort</b></div>
         <form id="regForm">
-          <div class="form-field"><label>Full name</label><input type="text" placeholder="Your name" required></div>
-          <div class="form-field"><label>Phone</label><input type="tel" placeholder="+91" required></div>
+          <div class="form-row">
+            <div class="form-field"><label>Full name</label><input type="text" placeholder="Your name" required></div>
+            <div class="form-field"><label>Phone</label><input type="tel" placeholder="+91" required></div>
+          </div>
           <div class="form-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
-          <div class="form-field"><label>Where are you now?</label><select required><option value="" disabled selected>Select your stage</option><option>Final-year student</option><option>Recent graduate</option><option>In my first engineering role</option><option>1–2 years in, looking to level up</option></select></div>
+          <div class="form-row">
+            <div class="form-field"><label>Graduation year (Bachelor's / Master's)</label>
+              <select required>
+                <option value="" disabled selected>Select year</option>
+                <option>Before 2020</option>
+                <option>2020</option>
+                <option>2021</option>
+                <option>2022</option>
+                <option>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027 or later</option>
+              </select>
+            </div>
+            <div class="form-field"><label>Years of experience</label>
+              <select required>
+                <option value="" disabled selected>Select experience</option>
+                <option>0–1 years</option>
+                <option>1–2 years</option>
+                <option>2–3 years</option>
+                <option>3–4 years</option>
+                <option>4–5 years</option>
+                <option>5+ years</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Current role</label>
+              <select required>
+                <option value="" disabled selected>Select role</option>
+                <option>Final-year student</option>
+                <option>SWE / SDE</option>
+                <option>Staff / Principal Engineer</option>
+                <option>Engineering Manager</option>
+                <option>Data Scientist / MLE</option>
+                <option>TPM / Product Manager</option>
+                <option>Other tech professional</option>
+              </select>
+            </div>
+            <div class="form-field"><label>Where do you want to be?</label>
+              <select required>
+                <option value="" disabled selected>Your target</option>
+                <option>AI / ML Engineer</option>
+                <option>Agentic AI Engineer</option>
+                <option>SWE at a MAANG+ company</option>
+                <option>Machine Learning Engineer</option>
+                <option>Senior / Staff Engineer</option>
+                <option>Switch to a higher-paying role</option>
+                <option>Still exploring my path</option>
+              </select>
+            </div>
+          </div>
           <button type="submit" class="btn btn-primary">Register for the free webinar →</button>
           <p class="privacy">By registering you agree to our privacy policy.</p>
         </form>
