@@ -310,7 +310,7 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
 .rotating-wrapper {
   display: inline-block;
   position: relative;
-  min-width: 11.2em;
+  min-width: 0;
   text-align: left;
 }
 @media (max-width: 480px) { .rotating-wrapper { min-width: 0; } }
@@ -1153,43 +1153,67 @@ body[data-theme="light"] ::selection { background: rgba(196,245,66,0.85); color:
 body[data-theme="light"] ::-moz-selection { background: rgba(196,245,66,0.85); color: #0A0B0D; }
 body[data-theme="light"] .tm-filter.active { color: #15803D; border-color: #16A34A; }
 body[data-theme="light"] .emi-chip.active { color: #0A0B0D; }
-/* product-UI ghost components (per-section, faint) */
-.gh-scorewrap { display: flex; align-items: center; gap: 16px; padding: 16px; }
-.gh-ring { width: 52px; height: 52px; border-radius: 50%; background: conic-gradient(rgba(148,163,184,0.30) 270deg, rgba(148,163,184,0.07) 0); -webkit-mask: radial-gradient(circle 16px at center, transparent 98%, #000 100%); mask: radial-gradient(circle 16px at center, transparent 98%, #000 100%); flex-shrink: 0; }
-.gh-scol { display: flex; flex-direction: column; gap: 9px; flex: 1; }
-.gh-num { width: 58px; height: 20px; border-radius: 5px; background: rgba(148,163,184,0.20); }
-.gh-track { display: block; height: 8px; border-radius: 5px; background: rgba(148,163,184,0.10); position: relative; overflow: hidden; }
-.gh-track i { position: absolute; left: 0; top: 0; bottom: 0; width: 65%; border-radius: 5px; background: rgba(148,163,184,0.22); }
-.gh-track i.t45 { width: 45%; }
-.gh-chat { display: flex; flex-direction: column; gap: 10px; padding: 16px; }
-.gh-bub { height: 18px; border-radius: 9px; background: rgba(148,163,184,0.13); }
-.gh-bub.l { width: 72%; align-self: flex-start; }
-.gh-bub.r { width: 56%; align-self: flex-end; background: rgba(148,163,184,0.08); }
-.gh-rows { display: flex; flex-direction: column; gap: 11px; padding: 16px; }
-.gh-row { height: 13px; border-radius: 7px; background: rgba(148,163,184,0.12); }
-.gh-row.r2 { width: 85%; } .gh-row.r3 { width: 68%; }
-.gh-sal { display: flex; align-items: center; gap: 14px; padding: 18px; }
-.gh-bignum { width: 64px; height: 28px; border-radius: 6px; background: rgba(148,163,184,0.18); }
-.gh-arrow { width: 20px; height: 8px; border-radius: 4px; background: rgba(148,163,184,0.12); }
-.sb-lime .gh-ring { background: conic-gradient(rgba(191,255,0,0.34) 270deg, rgba(148,163,184,0.07) 0); }
-.sb-lime .gh-track i, .sb-lime .gh-bignum.accent { background: rgba(191,255,0,0.26); }
-.sb-cyan .gh-ring { background: conic-gradient(rgba(34,211,238,0.32) 250deg, rgba(148,163,184,0.07) 0); }
-.sb-cyan .gh-track i, .sb-cyan .gh-bignum.accent { background: rgba(34,211,238,0.24); }
-.sb-purple .gh-ring { background: conic-gradient(rgba(168,85,247,0.32) 240deg, rgba(148,163,184,0.07) 0); }
-.sb-purple .gh-track i, .sb-purple .gh-bignum.accent { background: rgba(168,85,247,0.24); }
-.sb-green .gh-ring { background: conic-gradient(rgba(22,163,74,0.36) 260deg, rgba(148,163,184,0.07) 0); }
-.sb-green .gh-track i, .sb-green .gh-bignum.accent { background: rgba(22,163,74,0.30); }
-.sb-green .gh-line.accent { background: rgba(22,163,74,0.24); }
-.sb-green .gh-dots i { border-color: rgba(22,163,74,0.30); }
-.sb-gold .gh-ring { background: conic-gradient(rgba(234,179,8,0.34) 250deg, rgba(148,163,184,0.07) 0); }
-.sb-gold .gh-track i, .sb-gold .gh-bignum.accent { background: rgba(234,179,8,0.32); }
-.sb-gold .gh-line.accent { background: rgba(234,179,8,0.26); }
-body[data-theme="light"] .gh-num, body[data-theme="light"] .gh-row, body[data-theme="light"] .gh-bub, body[data-theme="light"] .gh-bignum, body[data-theme="light"] .gh-track { background: rgba(10,10,15,0.06); }
-body[data-theme="light"] .gh-bub.r { background: rgba(10,10,15,0.04); }
+/* product-UI ghost cards — legible watermark style (per-section) */
+.sect-backdrop { opacity: 0.85; }
+body[data-theme="light"] .sect-backdrop { opacity: 0.9; }
+.gh-card { width: 320px; border-radius: 16px; border: 1px solid rgba(148,163,184,0.16); background: linear-gradient(160deg, rgba(148,163,184,0.085), rgba(148,163,184,0.02)); -webkit-backdrop-filter: blur(1.5px); backdrop-filter: blur(1.5px); box-shadow: 0 30px 70px rgba(0,0,0,0.20); }
+.gh-bar { display: flex; gap: 6px; padding: 11px 14px; border-bottom: 1px solid rgba(148,163,184,0.12); }
+.gh-bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(148,163,184,0.30); }
+.gh-pad { padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; }
+.gh-t { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(148,163,184,0.58); }
+.gh-mrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.gh-ml { font-size: 11px; color: rgba(148,163,184,0.5); }
+.gh-mv { font-family: var(--font-mono); font-size: 11px; color: rgba(148,163,184,0.6); }
+.gh-line { height: 8px; border-radius: 5px; background: rgba(148,163,184,0.16); }
+.gh-line.w90{width:90%}.gh-line.w70{width:70%}.gh-line.w50{width:50%}.gh-line.w40{width:40%}
+.gh-scorewrap { display: flex; align-items: center; gap: 14px; }
+.gh-ringwrap { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
+.gh-ring { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(rgba(148,163,184,0.42) 270deg, rgba(148,163,184,0.12) 0); -webkit-mask: radial-gradient(circle 16px at center, transparent 97%, #000 100%); mask: radial-gradient(circle 16px at center, transparent 97%, #000 100%); }
+.gh-ringnum { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 15px; color: rgba(148,163,184,0.58); }
+.gh-scol { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+.gh-bigrow { display: flex; align-items: baseline; gap: 6px; }
+.gh-big { font-family: var(--font-display); font-weight: 800; font-size: 24px; color: rgba(148,163,184,0.56); line-height: 1; }
+.gh-bigsub { font-size: 11px; color: rgba(148,163,184,0.45); }
+.gh-track { display: block; height: 8px; border-radius: 5px; background: rgba(148,163,184,0.14); position: relative; overflow: hidden; }
+.gh-track i { position: absolute; left: 0; top: 0; bottom: 0; width: 65%; border-radius: 5px; background: rgba(148,163,184,0.32); }
+.gh-chat { display: flex; flex-direction: column; gap: 8px; }
+.gh-bub { font-size: 10px; line-height: 1.3; color: rgba(148,163,184,0.46); padding: 7px 10px; border-radius: 10px; background: rgba(148,163,184,0.10); max-width: 82%; }
+.gh-bub.l { align-self: flex-start; border-bottom-left-radius: 3px; }
+.gh-bub.r { align-self: flex-end; min-width: 46%; min-height: 24px; background: rgba(148,163,184,0.06); border-bottom-right-radius: 3px; }
+.gh-salrow { display: flex; align-items: center; gap: 10px; }
+.gh-arrowtxt { font-family: var(--font-mono); font-size: 16px; color: rgba(148,163,184,0.4); }
+.gh-dots { display: flex; align-items: center; gap: 58px; }
+.gh-dots i { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(148,163,184,0.34); position: relative; flex-shrink: 0; }
+.gh-dots i::after { content: ""; position: absolute; left: 100%; top: 50%; width: 58px; height: 2px; background: rgba(148,163,184,0.20); }
+.gh-dots i:last-child::after { display: none; }
+.sb-lime .gh-ring { background: conic-gradient(rgba(191,255,0,0.5) 270deg, rgba(148,163,184,0.12) 0); }
+.sb-lime .gh-track i { background: rgba(191,255,0,0.42); }
+.sb-lime .gh-big.accent { color: rgba(150,200,0,0.6); }
+.sb-lime .gh-dots i { border-color: rgba(191,255,0,0.42); }
+.sb-cyan .gh-ring { background: conic-gradient(rgba(34,211,238,0.48) 250deg, rgba(148,163,184,0.12) 0); }
+.sb-cyan .gh-track i { background: rgba(34,211,238,0.40); }
+.sb-cyan .gh-big.accent { color: rgba(34,211,238,0.58); }
+.sb-cyan .gh-dots i { border-color: rgba(34,211,238,0.42); }
+.sb-purple .gh-ring { background: conic-gradient(rgba(168,85,247,0.48) 240deg, rgba(148,163,184,0.12) 0); }
+.sb-purple .gh-track i { background: rgba(168,85,247,0.42); }
+.sb-purple .gh-big.accent { color: rgba(168,85,247,0.58); }
+.sb-green .gh-ring { background: conic-gradient(rgba(22,163,74,0.52) 260deg, rgba(148,163,184,0.12) 0); }
+.sb-green .gh-track i { background: rgba(22,163,74,0.46); }
+.sb-green .gh-big.accent { color: rgba(22,163,74,0.62); }
+.sb-green .gh-dots i { border-color: rgba(22,163,74,0.44); }
+.sb-gold .gh-ring { background: conic-gradient(rgba(234,179,8,0.5) 250deg, rgba(148,163,184,0.12) 0); }
+.sb-gold .gh-track i { background: rgba(234,179,8,0.46); }
+.sb-gold .gh-big.accent { color: rgba(202,150,0,0.66); }
+body[data-theme="light"] .gh-t { color: rgba(10,10,15,0.42); }
+body[data-theme="light"] .gh-ml { color: rgba(10,10,15,0.34); }
+body[data-theme="light"] .gh-mv, body[data-theme="light"] .gh-ringnum, body[data-theme="light"] .gh-big { color: rgba(10,10,15,0.44); }
+body[data-theme="light"] .gh-bub { color: rgba(10,10,15,0.36); background: rgba(10,10,15,0.05); }
+body[data-theme="light"] .gh-track, body[data-theme="light"] .gh-line { background: rgba(10,10,15,0.07); }
+body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.16); }
 body[data-theme="light"] .gh-card { border-color: rgba(10,10,15,0.06); background: linear-gradient(160deg, rgba(10,10,15,0.035), rgba(10,10,15,0.006)); box-shadow: 0 40px 90px rgba(10,10,15,0.08); }
 body[data-theme="light"] .gh-line { background: rgba(10,10,15,0.07); }
 body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
-@media (max-width: 768px) { .sect-backdrop { opacity: 0.32; } .gh-card { width: 230px; } .gh-body { padding: 12px; gap: 8px; } }
+@media (max-width: 768px) { .sect-backdrop { opacity: 0.5; } .gh-card { width: 250px; } .gh-pad { padding: 12px 13px; gap: 7px; } }
 @media (prefers-reduced-motion: reduce) { .gh-inner, .gh-inner.s2, .gh-inner.s3 { animation: none; } }
 /* #13/#16: mobile spacing compaction */
 @media (max-width: 600px) {
@@ -1261,11 +1285,10 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
         
         <!-- Subline with Rotating Text -->
         <p class="hero-subline reveal reveal-delay-2">
-          Become the engineer companies want to hire in the AI era — master execution paths across 
+          Become the engineer companies want to hire in the AI era — master execution paths with the help of <b>700+ MAANG+</b> engineers across 
           <span class="rotating-wrapper">
             <span class="rotating-text" id="rotatingText">Agentic AI</span>
-          </span>
-          by <b>700+ MAANG+</b> engineers.
+          </span>.
         </p>
         
         <!-- CTAs -->
@@ -1385,7 +1408,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- Transform -->
 <section class="transform-section" id="transform">
-  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:6%; left:-5%; transform:rotate(-9deg) scale(1.25)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-scorewrap"><div class="gh-ring"></div><div class="gh-scol"><span class="gh-num"></span><span class="gh-line w70"></span></div></div></div></div></div><div class="gh" style="bottom:8%; right:-4%; transform:rotate(8deg) scale(1.12)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-chat"><span class="gh-bub l"></span><span class="gh-bub r"></span><span class="gh-bub l"></span></div></div></div></div></div>
+  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:6%; left:-4%; transform:rotate(-8deg) scale(1.12)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">AI Interview Feedback</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">87</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Communication</span><span class="gh-mv">9/10</span></div><div class="gh-mrow"><span class="gh-ml">Problem Solving</span><span class="gh-mv">8/10</span></div><div class="gh-mrow"><span class="gh-ml">System Design</span><span class="gh-mv">8.5</span></div></div></div></div></div></div></div><div class="gh" style="bottom:7%; right:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">AI Mentor</div><div class="gh-chat"><span class="gh-bub l">Explain the CAP theorem simply&hellip;</span><span class="gh-bub r"></span><span class="gh-bub l"></span></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">The transformation</div>
@@ -1432,7 +1455,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- AI Talent Crisis -->
 <section class="crisis-section" id="why-now">
-  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:10%; right:-4%; transform:rotate(-8deg) scale(1.2)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-rows"><span class="gh-row"></span><span class="gh-row r2"></span><span class="gh-row r3"></span></div></div></div></div><div class="gh" style="bottom:6%; left:-5%; transform:rotate(7deg) scale(1.12)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-body"><span class="gh-line w40"></span><span class="gh-track"><i></i></span><span class="gh-line w70"></span><span class="gh-track"><i class="t45"></i></span></div></div></div></div></div>
+  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:9%; right:-4%; transform:rotate(-7deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Recruiter Activity</div><div class="gh-mrow"><span class="gh-ml">Google</span><span class="gh-mv">3 new roles</span></div><div class="gh-mrow"><span class="gh-ml">Microsoft</span><span class="gh-mv">5 new roles</span></div><div class="gh-mrow"><span class="gh-ml">Amazon</span><span class="gh-mv">2 new roles</span></div></div></div></div></div><div class="gh" style="bottom:7%; left:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Hiring Demand</div><div class="gh-bigrow"><span class="gh-big">+38%</span><span class="gh-bigsub">YoY</span></div><div class="gh-track"><i style="width:62%"></i></div><div class="gh-mrow"><span class="gh-ml">AI / ML roles</span></div><div class="gh-mrow"><span class="gh-ml">Agentic systems</span></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">The AI talent crisis is real</div>
@@ -1470,7 +1493,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- Tool Matrix -->
 <section class="toolmatrix-section" id="toolmatrix">
-  <div class="sect-backdrop sb-purple" aria-hidden="true"><div class="gh" style="top:8%; left:-4%; transform:rotate(-10deg) scale(1.2)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-rows"><span class="gh-row"></span><span class="gh-row r2"></span><span class="gh-row r3"></span></div></div></div></div><div class="gh" style="bottom:10%; right:-3%; transform:rotate(9deg) scale(1.12)"><div class="gh-inner s3"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-body"><span class="gh-line w40"></span><span class="gh-track"><i></i></span><span class="gh-line w70"></span><span class="gh-track"><i class="t45"></i></span></div></div></div></div></div>
+  <div class="sect-backdrop sb-purple" aria-hidden="true"><div class="gh" style="top:8%; left:-4%; transform:rotate(-9deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Tooling Coverage</div><div class="gh-mrow"><span class="gh-ml">LangChain</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">LangGraph</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">MCP</span><span class="gh-mv">&check;</span></div></div></div></div></div><div class="gh" style="bottom:9%; right:-3%; transform:rotate(8deg) scale(1.05)"><div class="gh-inner s3"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Skill Progress</div><div class="gh-bigrow"><span class="gh-big">8 / 12</span><span class="gh-bigsub">tools</span></div><div class="gh-track"><i style="width:66%"></i></div><div class="gh-mrow"><span class="gh-ml">Agents</span></div><div class="gh-mrow"><span class="gh-ml">Deployment</span></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">Production toolchain resolution</div>
@@ -1498,7 +1521,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- Steps -->
 <section class="steps-section">
-  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:24%; left:4%; transform:rotate(-3deg) scale(1.2)"><div class="gh-inner s2"><div class="gh-dots"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="gh" style="bottom:4%; right:-4%; transform:rotate(8deg) scale(1.12)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-body"><span class="gh-line w40"></span><span class="gh-track"><i></i></span><span class="gh-line w70"></span><span class="gh-track"><i class="t45"></i></span></div></div></div></div></div>
+  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:22%; left:3%; transform:rotate(-3deg) scale(1.1)"><div class="gh-inner s2"><div class="gh-dots"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="gh" style="bottom:5%; right:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Weekly Plan</div><div class="gh-bigrow"><span class="gh-big">Week 6</span><span class="gh-bigsub">/ 14</span></div><div class="gh-track"><i style="width:43%"></i></div><div class="gh-mrow"><span class="gh-ml">Live DSA</span></div><div class="gh-mrow"><span class="gh-ml">System Design</span></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">How it works</div>
@@ -1586,7 +1609,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- Roadmap -->
 <section class="roadmap-section">
-  <div class="sect-backdrop sb-cyan" aria-hidden="true"><div class="gh" style="top:22%; left:-2%; transform:rotate(-4deg) scale(1.2)"><div class="gh-inner s2"><div class="gh-dots"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="gh" style="top:8%; right:-4%; transform:rotate(8deg) scale(1.12)"><div class="gh-inner s3"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-scorewrap"><div class="gh-ring"></div><div class="gh-scol"><span class="gh-num"></span><span class="gh-line w70"></span></div></div></div></div></div></div>
+  <div class="sect-backdrop sb-cyan" aria-hidden="true"><div class="gh" style="top:20%; left:-2%; transform:rotate(-3deg) scale(1.1)"><div class="gh-inner s2"><div class="gh-dots"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="gh" style="top:8%; right:-4%; transform:rotate(8deg) scale(1.05)"><div class="gh-inner s3"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Mock Interview Report</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">88</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Coding</span><span class="gh-mv">9/10</span></div><div class="gh-mrow"><span class="gh-ml">Design</span><span class="gh-mv">8.5</span></div><div class="gh-mrow"><span class="gh-ml">Comm.</span><span class="gh-mv">8/10</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">The roadmap</div>
@@ -1616,7 +1639,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- Instructors -->
 <section class="instructors-section">
-  <div class="sect-backdrop sb-purple" aria-hidden="true"><div class="gh" style="top:8%; left:-4%; transform:rotate(-9deg) scale(1.22)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-chat"><span class="gh-bub l"></span><span class="gh-bub r"></span><span class="gh-bub l"></span></div></div></div></div><div class="gh" style="bottom:8%; right:-3%; transform:rotate(8deg) scale(1.12)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-scorewrap"><div class="gh-ring"></div><div class="gh-scol"><span class="gh-num"></span><span class="gh-line w70"></span></div></div></div></div></div></div>
+  <div class="sect-backdrop sb-purple" aria-hidden="true"><div class="gh" style="top:8%; left:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Code Review</div><div class="gh-chat"><span class="gh-bub l">Consider adding a retry path here&hellip;</span><span class="gh-bub r"></span><span class="gh-bub l"></span></div></div></div></div></div><div class="gh" style="bottom:8%; right:-3%; transform:rotate(8deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Mentor Feedback</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">91</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Clarity</span><span class="gh-mv">9/10</span></div><div class="gh-mrow"><span class="gh-ml">Depth</span><span class="gh-mv">9/10</span></div><div class="gh-mrow"><span class="gh-ml">Approach</span><span class="gh-mv">8.5</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">Meet Your Instructors</div>
@@ -1642,7 +1665,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- Edge -->
 <section class="edge-section" id="benefits">
-  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:8%; right:-4%; transform:rotate(-9deg) scale(1.2)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-rows"><span class="gh-row"></span><span class="gh-row r2"></span><span class="gh-row r3"></span></div></div></div></div><div class="gh" style="bottom:10%; left:-5%; transform:rotate(7deg) scale(1.12)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-scorewrap"><div class="gh-ring"></div><div class="gh-scol"><span class="gh-num"></span><span class="gh-line w70"></span></div></div></div></div></div></div>
+  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:8%; right:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Outcomes</div><div class="gh-mrow"><span class="gh-ml">Mentors</span><span class="gh-mv">700+</span></div><div class="gh-mrow"><span class="gh-ml">Live mocks</span><span class="gh-mv">2</span></div><div class="gh-mrow"><span class="gh-ml">Projects</span><span class="gh-mv">Capstone</span></div></div></div></div></div><div class="gh" style="bottom:9%; left:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Readiness</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">92</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Resume</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">ATS</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">Mocks</span><span class="gh-mv">&check;</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">The Interview Kickstart Edge</div>
@@ -1701,7 +1724,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- EMI / Affordability -->
 <section class="emi-section" id="pricing">
-  <div class="sect-backdrop sb-gold" aria-hidden="true"><div class="gh" style="top:10%; left:-4%; transform:rotate(-9deg) scale(1.22)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-sal"><span class="gh-bignum"></span><span class="gh-arrow"></span><span class="gh-bignum accent"></span></div></div></div></div><div class="gh" style="bottom:6%; right:-4%; transform:rotate(7deg) scale(1.12)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-body"><span class="gh-line w40"></span><span class="gh-track"><i></i></span><span class="gh-line w70"></span><span class="gh-track"><i class="t45"></i></span></div></div></div></div></div>
+  <div class="sect-backdrop sb-gold" aria-hidden="true"><div class="gh" style="top:9%; left:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Your ROI</div><div class="gh-salrow"><span class="gh-big">&#8377;4 LPA</span><span class="gh-arrowtxt">&rarr;</span><span class="gh-big accent">&#8377;28 LPA</span></div><div class="gh-mrow"><span class="gh-ml">Projected after program</span></div></div></div></div></div><div class="gh" style="bottom:6%; right:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">EMI Plan</div><div class="gh-bigrow"><span class="gh-big">&#8377;4,999</span><span class="gh-bigsub">/ mo</span></div><div class="gh-track"><i style="width:40%"></i></div><div class="gh-mrow"><span class="gh-ml">0% no-cost EMI</span></div><div class="gh-mrow"><span class="gh-ml">12 months</span></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">Affordable by design</div>
@@ -1739,7 +1762,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- Testimonials -->
 <section class="testimonials-section">
-  <div class="sect-backdrop sb-green" aria-hidden="true"><div class="gh" style="top:8%; left:-5%; transform:rotate(-9deg) scale(1.2)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-sal"><span class="gh-bignum"></span><span class="gh-arrow"></span><span class="gh-bignum accent"></span></div></div></div></div><div class="gh" style="bottom:8%; right:-4%; transform:rotate(8deg) scale(1.12)"><div class="gh-inner s3"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-scorewrap"><div class="gh-ring"></div><div class="gh-scol"><span class="gh-num"></span><span class="gh-line w70"></span></div></div></div></div></div></div>
+  <div class="sect-backdrop sb-green" aria-hidden="true"><div class="gh" style="top:8%; left:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Package Hike</div><div class="gh-salrow"><span class="gh-big">&#8377;3.2 LPA</span><span class="gh-arrowtxt">&rarr;</span><span class="gh-big accent">&#8377;32 LPA</span></div><div class="gh-mrow"><span class="gh-ml">+900% &middot; 2024 cohort</span></div></div></div></div></div><div class="gh" style="bottom:8%; right:-4%; transform:rotate(8deg) scale(1.05)"><div class="gh-inner s3"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Overall Score</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">91</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Coding</span><span class="gh-mv">9/10</span></div><div class="gh-mrow"><span class="gh-ml">Design</span><span class="gh-mv">9/10</span></div><div class="gh-mrow"><span class="gh-ml">Comm.</span><span class="gh-mv">8.5</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">In their words</div>
@@ -1779,7 +1802,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- CTA -->
 <section class="cta-section" id="register">
-  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:6%; left:-5%; transform:rotate(-9deg) scale(1.2)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-scorewrap"><div class="gh-ring"></div><div class="gh-scol"><span class="gh-num"></span><span class="gh-line w70"></span></div></div></div></div></div><div class="gh" style="bottom:8%; right:-4%; transform:rotate(7deg) scale(1.12)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-chat"><span class="gh-bub l"></span><span class="gh-bub r"></span><span class="gh-bub l"></span></div></div></div></div></div>
+  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:6%; left:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Career Readiness</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">90</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Skills</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">Portfolio</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">Mocks</span><span class="gh-mv">&check;</span></div></div></div></div></div></div></div><div class="gh" style="bottom:7%; right:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">AI Mentor</div><div class="gh-chat"><span class="gh-bub l">You are interview-ready &mdash; let us apply.</span><span class="gh-bub r"></span><span class="gh-bub l"></span></div></div></div></div></div></div>
   <div class="wrap">
     <div class="cta-content">
       <div class="eyebrow reveal">Next step</div>
@@ -1857,7 +1880,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 
 <!-- Your Move (closing) -->
 <section class="yourmove-section">
-  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:10%; right:-5%; transform:rotate(9deg) scale(1.2)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-scorewrap"><div class="gh-ring"></div><div class="gh-scol"><span class="gh-num"></span><span class="gh-line w70"></span></div></div></div></div></div></div>
+  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:10%; right:-5%; transform:rotate(9deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Offer Snapshot</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">A+</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Role</span><span class="gh-mv">SDE</span></div><div class="gh-mrow"><span class="gh-ml">Company</span><span class="gh-mv">MAANG+</span></div><div class="gh-mrow"><span class="gh-ml">Status</span><span class="gh-mv">Offer</span></div></div></div></div></div></div></div></div>
   <div class="yourmove-glow"></div>
   <div class="wrap">
     <div class="yourmove-split reveal">
