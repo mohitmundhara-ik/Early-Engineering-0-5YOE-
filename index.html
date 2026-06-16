@@ -468,7 +468,162 @@ section { padding: 4rem 0; }
 }
 .section-header p { font-size: 0.92rem; color: var(--silver); max-width: 500px; margin: 0 auto; }
 @media (max-width: 480px) { .section-header p { font-size: 0.88rem; } }
-.eyebrow { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; color: var(--lime); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+/* ═══════════════════════════════════════════
+   NAV restructure + theme toggle
+   ═══════════════════════════════════════════ */
+.nav-left { display: flex; align-items: center; gap: 1.5rem; }
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
+.theme-toggle { width: 38px; height: 38px; border-radius: 10px; background: var(--ink); border: 1px solid var(--slate); color: var(--white); font-size: 1rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; line-height: 1; }
+.theme-toggle:hover { border-color: var(--lime); }
+@media (max-width: 520px) { .brand-name { display: none; } .theme-toggle { width: 34px; height: 34px; } }
+
+/* Cohort boxes polish */
+.cohort-item { background: linear-gradient(160deg, var(--ink), var(--ink2)); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+.cohort-item:hover { transform: translateY(-3px); border-color: rgba(191,255,0,0.35); }
+
+/* ═══════════════════════════════════════════
+   AI TALENT CRISIS
+   ═══════════════════════════════════════════ */
+.crisis-section { background: var(--black); }
+.crisis-section em { color: var(--white); font-style: normal; border-bottom: 2px solid var(--lime); }
+.crisis-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) { .crisis-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .crisis-grid { grid-template-columns: repeat(4, 1fr); } }
+.crisis-card { background: var(--ink); border: 1px solid var(--slate); border-radius: 16px; padding: 1.5rem; }
+.crisis-card.accent { border-color: rgba(191,255,0,0.4); background: linear-gradient(160deg, var(--ink), rgba(191,255,0,0.06)); }
+.crisis-num { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; line-height: 1; color: var(--lime); margin-bottom: 0.6rem; }
+.crisis-num span { font-size: 1.6rem; }
+.crisis-card.accent .crisis-num { font-size: 2rem; }
+.crisis-head { font-family: var(--font-display); font-size: 0.98rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; line-height: 1.25; }
+.crisis-body { font-size: 0.82rem; color: var(--silver); line-height: 1.55; }
+.crisis-src { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); margin-top: 0.85rem; border-top: 1px solid var(--slate); padding-top: 0.55rem; }
+
+/* ═══════════════════════════════════════════
+   CURRICULUM ACCORDION
+   ═══════════════════════════════════════════ */
+.accordion { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+.acc-item { background: var(--ink); border: 1px solid var(--slate); border-radius: 14px; overflow: hidden; transition: border-color 0.25s; }
+.acc-item.open { border-color: rgba(191,255,0,0.35); }
+.acc-head { width: 100%; background: none; border: none; cursor: pointer; padding: 1.1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; text-align: left; }
+.acc-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--white); display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.acc-title small { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 400; color: var(--muted); }
+.acc-tag { font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.5rem; border-radius: 5px; font-weight: 600; }
+.acc-tag.live { background: rgba(191,255,0,0.15); color: var(--lime); }
+.acc-tag.self { background: rgba(34,211,238,0.15); color: var(--cyan); }
+.acc-arrow { color: var(--muted); font-size: 0.7rem; transition: transform 0.3s; flex-shrink: 0; }
+.acc-item.open .acc-arrow { transform: rotate(180deg); color: var(--lime); }
+.acc-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.acc-item.open .acc-body { max-height: 600px; }
+.acc-inner { padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--slate); padding-top: 1rem; }
+.acc-desc { font-size: 0.86rem; color: var(--silver); line-height: 1.6; margin-bottom: 1rem; }
+.acc-cols { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) { .acc-cols { grid-template-columns: 1.4fr 1fr; gap: 1.5rem; } }
+.acc-cols h5 { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.6rem; }
+.acc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.acc-list li { font-size: 0.84rem; color: var(--silver); padding-left: 1.2rem; position: relative; line-height: 1.4; }
+.acc-list li::before { content: '✓'; position: absolute; left: 0; color: var(--lime); font-weight: 700; }
+.acc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.acc-tags span { font-family: var(--font-mono); font-size: 0.66rem; background: var(--ink2); border: 1px solid var(--slate); border-radius: 5px; padding: 0.25rem 0.55rem; color: var(--silver); }
+
+/* ═══════════════════════════════════════════
+   ROADMAP
+   ═══════════════════════════════════════════ */
+.roadmap-section { background: var(--black); }
+.roadmap { display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 900px; margin: 0 auto; }
+@media (min-width: 760px) { .roadmap { grid-template-columns: repeat(4, 1fr); gap: 0.75rem; } }
+.rm-node { position: relative; }
+.rm-step { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--lime); margin-bottom: 0.5rem; }
+.rm-card { background: var(--ink); border: 1px solid var(--slate); border-radius: 14px; padding: 1.25rem; height: calc(100% - 2.5rem); }
+.rm-card.accent { border-color: rgba(191,255,0,0.4); background: linear-gradient(160deg, var(--ink), rgba(191,255,0,0.06)); }
+.rm-card h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+.rm-weeks { font-family: var(--font-mono); font-size: 0.68rem; color: var(--lime); margin-bottom: 0.6rem; }
+.rm-card p { font-size: 0.82rem; color: var(--silver); line-height: 1.5; }
+@media (min-width: 760px) { .rm-node:not(:last-child)::after { content: '→'; position: absolute; top: 0; right: -0.6rem; color: var(--steel); font-size: 1rem; z-index: 1; } }
+
+/* ═══════════════════════════════════════════
+   READINESS (merged practice + career)
+   ═══════════════════════════════════════════ */
+.readiness-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+@media (min-width: 880px) { .readiness-grid { grid-template-columns: 1.15fr 0.85fr; align-items: start; } }
+.readiness-col { background: var(--ink); border: 1px solid var(--slate); border-radius: 16px; padding: 1.5rem; }
+.readiness-col-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 1.1rem; }
+.readiness-items { display: flex; flex-direction: column; gap: 0.85rem; }
+.readiness-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+.readiness-item .ri-ico { font-size: 1.1rem; flex-shrink: 0; width: 24px; text-align: center; }
+.readiness-item h4 { font-size: 0.9rem; color: var(--white); font-weight: 600; margin-bottom: 0.15rem; }
+.readiness-item p { font-size: 0.8rem; color: var(--silver); line-height: 1.5; }
+.readiness-item.highlight-feature { background: linear-gradient(160deg, rgba(191,255,0,0.07), transparent); border: 1px solid rgba(191,255,0,0.25); border-radius: 12px; padding: 0.85rem; margin: 0.15rem 0; }
+.new-badge { font-family: var(--font-mono); font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.05em; background: var(--lime); color: var(--black); padding: 0.1rem 0.4rem; border-radius: 4px; vertical-align: middle; font-weight: 700; }
+
+/* ═══════════════════════════════════════════
+   EMI / AFFORDABILITY
+   ═══════════════════════════════════════════ */
+.emi-section { background: var(--black); }
+.emi-card { display: grid; grid-template-columns: 1fr; gap: 1.5rem; background: var(--ink); border: 1px solid var(--slate); border-radius: 18px; padding: 1.75rem; max-width: 860px; margin: 0 auto; }
+@media (min-width: 760px) { .emi-card { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+.emi-fee-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.35rem; }
+.emi-fee { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 0.85rem; }
+.emi-sub { font-size: 0.85rem; color: var(--silver); margin-bottom: 0.85rem; }
+.emi-sub b { color: var(--lime); }
+.emi-chips { display: flex; gap: 0.5rem; margin-bottom: 1.1rem; }
+.emi-chip { flex: 1; padding: 0.6rem; border-radius: 10px; border: 1.5px solid var(--slate); background: var(--ink2); color: var(--silver); font-family: var(--font-mono); font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
+.emi-chip.active { border-color: var(--lime); background: var(--lime-soft); color: var(--white); }
+.emi-partners { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.emi-partners span { font-family: var(--font-mono); font-size: 0.66rem; background: var(--ink2); border: 1px solid var(--slate); border-radius: 5px; padding: 0.25rem 0.55rem; color: var(--silver); }
+.emi-right { background: var(--ink2); border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+.emi-pm-label { font-size: 0.8rem; color: var(--muted); }
+.emi-pm { font-family: var(--font-display); font-weight: 800; color: var(--white); line-height: 1; margin: 0.2rem 0 0.5rem; }
+.emi-pm span { font-size: 2.4rem; background: linear-gradient(135deg, var(--lime), #9BE000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.emi-pm small { font-size: 0.9rem; color: var(--muted); -webkit-text-fill-color: var(--muted); }
+.emi-perday { font-size: 0.82rem; color: var(--silver); margin-bottom: 1rem; }
+.emi-perday b { color: var(--white); }
+.emi-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.emi-points li { font-size: 0.82rem; color: var(--silver); display: flex; gap: 0.5rem; align-items: center; }
+.emi-note { text-align: center; font-size: 0.72rem; color: var(--muted); max-width: 580px; margin: 1.25rem auto 0; line-height: 1.6; }
+
+/* ═══════════════════════════════════════════
+   LIGHT MODE
+   ═══════════════════════════════════════════ */
+body[data-theme="light"] {
+  --black: #FAFAF7;
+  --ink: #FFFFFF;
+  --ink2: #F4F4F0;
+  --slate: rgba(10,11,13,0.10);
+  --steel: rgba(10,11,13,0.22);
+  --muted: #6B7280;
+  --silver: #374151;
+  --white: #0A0B0D;
+  --lime-soft: rgba(140,200,0,0.14);
+  --lime-glow: rgba(140,200,0,0.28);
+}
+body[data-theme="light"] { background: var(--black); color: var(--silver); }
+body[data-theme="light"] .eyebrow,
+body[data-theme="light"] .crisis-src,
+body[data-theme="light"] .rm-weeks,
+body[data-theme="light"] .emi-sub b,
+body[data-theme="light"] .ribbon b,
+body[data-theme="light"] .ribbon a,
+body[data-theme="light"] .cta-fomo b { color: #15803D; }
+body[data-theme="light"] .hero-headline-main .gradient-text { background: linear-gradient(102deg, #0A0B0D 0%, #0A0B0D 44%, #4FAE00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+body[data-theme="light"] .gradient-text,
+body[data-theme="light"] .rotating-text,
+body[data-theme="light"] .gap-stat.accent .gap-num,
+body[data-theme="light"] .emi-pm span { background: linear-gradient(135deg, #3DA800, #2E7D00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+body[data-theme="light"] .crisis-num,
+body[data-theme="light"] .rm-step,
+body[data-theme="light"] .acc-tag.live,
+body[data-theme="light"] .acc-item.open .acc-arrow { color: #2E7D00; }
+body[data-theme="light"] .logo-pill { border-color: rgba(10,11,13,0.14); box-shadow: 0 2px 10px rgba(10,11,13,0.08); }
+body[data-theme="light"] .ribbon { background: #F0F0EA; }
+body[data-theme="light"] footer { background: #F0F0EA; }
+body[data-theme="light"] nav { background: rgba(250,250,247,0.85); }
+body[data-theme="light"] .nav-cta, body[data-theme="light"] .btn-primary { color: #0A0B0D; }
+body[data-theme="light"] .hero-bg, body[data-theme="light"] .hero-grid, body[data-theme="light"] .yourmove-glow { opacity: 0.4; }
+body[data-theme="light"] .new-badge, body[data-theme="light"] .acc-tag.live { background: rgba(140,200,0,0.2); }
+body[data-theme="light"] .new-badge { color: #2E7D00; }
+/* terminal stays dark in both modes (intentional code-editor look) */
+body[data-theme="light"] .theme-toggle { background: #FFFFFF; }
+
 
 /* Transform */
 .transform-section { background: var(--black); }
@@ -690,14 +845,19 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 <!-- Nav -->
 <nav id="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand"><span class="brand-mark">ik</span><span>Interview Kickstart</span></a>
-    <div class="nav-links">
-      <a href="#transform">Why IK</a>
-      <a href="#curriculum">Curriculum</a>
-      <a href="#careers">Careers</a>
-      <a href="#faq">FAQ</a>
+    <div class="nav-left">
+      <a href="#top" class="brand"><span class="brand-mark">ik</span><span class="brand-name">Interview Kickstart</span></a>
+      <div class="nav-links">
+        <a href="#transform">Why IK</a>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#readiness">Careers</a>
+        <a href="#faq">FAQ</a>
+      </div>
     </div>
-    <a href="#register" class="btn btn-primary nav-cta">Register FREE</a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light or dark mode"><span id="themeIcon">🌙</span></button>
+      <a href="#register" class="btn btn-primary nav-cta">Register FREE</a>
+    </div>
   </div>
 </nav>
 
@@ -731,13 +891,6 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
           </span>
           by <b>700+ MAANG+</b> engineers
         </p>
-        
-        <!-- Credibility pills -->
-        <div class="hero-pills reveal reveal-delay-3">
-          <span class="hero-pill"><span class="p-ico">🎯</span> 0-5 Years Experience</span>
-          <span class="hero-pill"><span class="p-ico">🏆</span> 700+ MAANG+ Instructors</span>
-          <span class="hero-pill"><span class="p-ico">📅</span> 14 Weeks · Live Classes &amp; Projects</span>
-        </div>
         
         <!-- CTAs -->
         <div class="hero-ctas reveal reveal-delay-4">
@@ -782,6 +935,13 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
         <div class="cohort-icon">👥</div>
         <div class="cohort-text"><b>23 Seats Left</b><span>Limited batch</span></div>
       </div>
+    </div>
+    
+    <!-- Credibility pills (below cohort row) -->
+    <div class="hero-pills reveal reveal-delay-4">
+      <span class="hero-pill"><span class="p-ico">🎯</span> 0-5 Years Experience</span>
+      <span class="hero-pill"><span class="p-ico">🏆</span> 700+ MAANG+ Instructors</span>
+      <span class="hero-pill"><span class="p-ico">📅</span> 14 Weeks · Live Classes &amp; Projects</span>
     </div>
   </div>
 </header>
@@ -839,6 +999,43 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   </div>
 </section>
 
+<!-- AI Talent Crisis -->
+<section class="crisis-section" id="why-now">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow reveal">The AI talent crisis is real</div>
+      <h2 class="reveal">India needs Agentic-AI engineers<br>faster than it can train them.</h2>
+      <p class="reveal">The companies hiring right now don't want people who <em>used</em> AI tools — they want people who can <em>build</em> agentic systems. That skill is rare. That's your opening.</p>
+    </div>
+    <div class="crisis-grid">
+      <div class="crisis-card card-3d reveal">
+        <div class="crisis-num">10<span>×</span></div>
+        <div class="crisis-head">Open agentic-AI roles per qualified engineer</div>
+        <div class="crisis-body">Demand for engineers who can ship RAG and multi-agent systems is far outpacing the supply of people who actually can.</div>
+        <div class="crisis-src">Directional · verify before launch</div>
+      </div>
+      <div class="crisis-card card-3d reveal">
+        <div class="crisis-num">71<span>%</span></div>
+        <div class="crisis-head">Leaders prefer AI skills over seniority</div>
+        <div class="crisis-body">71% of leaders say they'd hire a less-experienced candidate with AI skills over a more senior one without them.</div>
+        <div class="crisis-src">Microsoft–LinkedIn Work Trend Index</div>
+      </div>
+      <div class="crisis-card card-3d reveal">
+        <div class="crisis-num">44<span>%</span></div>
+        <div class="crisis-head">Of new tech roles are AI-tagged</div>
+        <div class="crisis-body">A growing share of India's tech job postings now explicitly ask for GenAI and agentic-AI capability.</div>
+        <div class="crisis-src">Directional · verify before launch</div>
+      </div>
+      <div class="crisis-card card-3d accent reveal">
+        <div class="crisis-num">Now</div>
+        <div class="crisis-head">The window is open — early</div>
+        <div class="crisis-body">Agentic AI is new enough that 0–5 YOE engineers can lead it, not catch up to it. Move while the field is still being defined.</div>
+        <div class="crisis-src">Why early-career is the advantage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Transform -->
 <section class="transform-section" id="transform">
   <div class="wrap">
@@ -885,20 +1082,95 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   </div>
 </section>
 
-<!-- Edge -->
-<section class="edge-section" id="benefits">
+<!-- Curriculum -->
+<section class="curric-section" id="curriculum">
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">The IK Edge</div>
-      <h2 class="reveal">What you get that others don't.</h2>
+      <div class="eyebrow reveal">The curriculum</div>
+      <h2 class="reveal">From AI-ready foundations to <span class="gradient-text">agent deployment</span>, in 14 weeks.</h2>
+      <p class="reveal">Three live tracks, one self-paced primer. Built around how MAANG+ teams actually work — taught live where it counts.</p>
     </div>
-    <div class="edge-grid">
-      <div class="edge-card card-3d reveal"><div class="edge-icon">👨‍💻</div><h3>Taught by people who hire</h3><p>Live classes from engineers, hiring managers, and tech leads at MAANG+ — not career coaches reading slides.</p><span class="edge-meta">→ 700+ instructors</span></div>
-      <div class="edge-card card-3d reveal"><div class="edge-icon">🎯</div><h3>Live + mentor-guided</h3><p>Interactive workshops with real-time support — not pre-recorded videos you watch alone and never finish.</p><span class="edge-meta">→ Live sessions</span></div>
-      <div class="edge-card card-3d reveal"><div class="edge-icon">🛠️</div><h3>Industry-trusted tools</h3><p>Work with tools MAANG+ teams use daily: LangChain, MCP, LangGraph, Firebase — not toy examples.</p><span class="edge-meta">→ Real stack</span></div>
-      <div class="edge-card card-3d reveal"><div class="edge-icon">🚀</div><h3>Career-boosting outcomes</h3><p>Graduate with portfolio-ready projects and skills that actually get you through the door.</p><span class="edge-meta">→ Ship real work</span></div>
-      <div class="edge-card card-3d reveal"><div class="edge-icon">🎤</div><h3>Real mock practice</h3><p>Two live mocks with detailed feedback from engineers who've sat on the other side of the table.</p><span class="edge-meta">→ 2 live mocks</span></div>
-      <div class="edge-card card-3d reveal"><div class="edge-icon">📈</div><h3>Careers team in your corner</h3><p>Resume, LinkedIn, negotiation, and application opportunities when you qualify.</p><span class="edge-meta">→ 5 opp. (T&C)</span></div>
+    <div class="accordion reveal">
+      <div class="acc-item">
+        <button class="acc-head" type="button">
+          <span class="acc-title"><span class="acc-tag self">Self-paced</span> Python Fundamentals <small>Week 0 · optional primer</small></span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">
+          <p class="acc-desc">A self-paced primer for anyone who needs Python before the Agentic AI track. Skip it if you already code in Python.</p>
+          <div class="acc-cols">
+            <div><h5>Key topics</h5><ul class="acc-list"><li>Environment setup &amp; syntax</li><li>Data types, operators, control flow</li><li>Functions &amp; scope</li><li>Lists, dictionaries &amp; sets</li><li>Intro to OOP in Python</li></ul></div>
+            <div><h5>Tools</h5><div class="acc-tags"><span>Python</span><span>Jupyter</span><span>Google Colab</span></div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" type="button">
+          <span class="acc-title"><span class="acc-tag live">Live</span> Data Structures &amp; Algorithms <small>Weeks 1–6 · 6 weeks</small></span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">
+          <p class="acc-desc">One week of AI-powered interview prep with Claude Code, then five weeks of language-agnostic DSA taught in pseudocode.</p>
+          <div class="acc-cols">
+            <div><h5>Key topics</h5><ul class="acc-list"><li>AI-powered interview prep with Claude Code</li><li>Sorting algorithms &amp; complexity analysis</li><li>Recursion &amp; backtracking</li><li>Trees, heaps &amp; tries</li><li>Graphs: BFS, DFS, shortest paths</li><li>Dynamic programming patterns</li></ul></div>
+            <div><h5>Tools</h5><div class="acc-tags"><span>Claude Code</span><span>Pseudocode</span><span>CLI</span></div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" type="button">
+          <span class="acc-title"><span class="acc-tag live">Live</span> Agentic AI <small>Weeks 7–11 · 5 weeks</small></span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">
+          <p class="acc-desc">Build real agentic systems — RAG, multi-agent orchestration, observability, MCP — and ship a portfolio-ready capstone.</p>
+          <div class="acc-cols">
+            <div><h5>Key topics</h5><ul class="acc-list"><li>RAG pipelines &amp; vector databases</li><li>Multi-agent systems with LangGraph</li><li>Observability &amp; evaluation</li><li>Model Context Protocol (MCP) &amp; deployment</li><li>End-to-end capstone &amp; demo day</li></ul></div>
+            <div><h5>Tools</h5><div class="acc-tags"><span>LangChain</span><span>LangGraph</span><span>ChromaDB</span><span>Pinecone</span><span>LangSmith</span><span>MCP</span><span>Streamlit</span></div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" type="button">
+          <span class="acc-title"><span class="acc-tag live">Live</span> Career Coaching <small>Weeks 12–14 · 3 weeks</small></span>
+          <span class="acc-arrow">▼</span>
+        </button>
+        <div class="acc-body"><div class="acc-inner">
+          <p class="acc-desc">Turn skills into offers — resume and profile, technical interview prep, behavioural rounds, and negotiation.</p>
+          <div class="acc-cols">
+            <div><h5>Key topics</h5><ul class="acc-list"><li>ATS-friendly resume &amp; portfolio</li><li>LinkedIn &amp; GitHub optimisation</li><li>Technical interview strategy &amp; mocks</li><li>STAR method for behavioural rounds</li><li>Salary research &amp; offer negotiation</li></ul></div>
+            <div><h5>Tools</h5><div class="acc-tags"><span>Mock platforms</span><span>STAR framework</span><span>Salary benchmarks</span></div></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section class="roadmap-section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow reveal">The roadmap</div>
+      <h2 class="reveal">Go from <span class="gradient-text">AI-ready foundations</span> to agent deployment in 14 weeks.</h2>
+    </div>
+    <div class="roadmap reveal">
+      <div class="rm-node">
+        <div class="rm-step">01</div>
+        <div class="rm-card card-3d"><h4>Foundations</h4><div class="rm-weeks">Week 0–1</div><p>Self-paced Python primer + AI-powered interview prep with Claude Code.</p></div>
+      </div>
+      <div class="rm-node">
+        <div class="rm-step">02</div>
+        <div class="rm-card card-3d"><h4>DSA Mastery</h4><div class="rm-weeks">Weeks 2–6</div><p>Sorting, recursion, trees, graphs, and dynamic programming — pseudocode, language-agnostic.</p></div>
+      </div>
+      <div class="rm-node">
+        <div class="rm-step">03</div>
+        <div class="rm-card card-3d"><h4>Build Agents</h4><div class="rm-weeks">Weeks 7–11</div><p>RAG, multi-agent systems, observability, MCP &amp; deployment — ending in a real capstone.</p></div>
+      </div>
+      <div class="rm-node">
+        <div class="rm-step">04</div>
+        <div class="rm-card card-3d accent"><h4>Career Launch</h4><div class="rm-weeks">Weeks 12–14</div><p>Resume, mocks, behavioural prep, negotiation — and application opportunities when you qualify.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -921,61 +1193,58 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   </div>
 </section>
 
-<!-- Curriculum -->
-<section class="curric-section" id="curriculum">
+<!-- Edge -->
+<section class="edge-section" id="benefits">
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">The curriculum</div>
-      <h2 class="reveal">A sequence, not a syllabus dump.</h2>
-      <p class="reveal">Five connected modules — live where it counts, self-paced where you need to revisit.</p>
+      <div class="eyebrow reveal">The IK Edge</div>
+      <h2 class="reveal">What you get that others don't.</h2>
     </div>
-  </div>
-  <div class="curric-scroll">
-    <div class="curric-track">
-      <div class="curric-card card-3d"><div class="curric-num">01</div><span class="curric-badge">Live</span><h3>Data Structures & Algorithms</h3><div class="curric-meta">DSA · 9 WEEKS</div><p>Nine live weeks of problem-solving with engineers who interview candidates for a living.</p></div>
-      <div class="curric-card card-3d"><div class="curric-num">02</div><span class="curric-badge" style="background: rgba(34,211,238,0.15); color: var(--cyan);">Self-paced</span><h3>System Design Foundations</h3><div class="curric-meta">SYSTEM DESIGN</div><p>Learn to reason about scale, trade-offs, and real architectures.</p></div>
-      <div class="curric-card card-3d"><div class="curric-num">03</div><span class="curric-badge">Live</span><h3>Agentic & Applied AI</h3><div class="curric-meta">AGENTIC AI · 5 WEEKS</div><p>Build with LLMs and agentic frameworks. Ship an AI project interviewers ask about.</p></div>
-      <div class="curric-card card-3d"><div class="curric-num">04</div><span class="curric-badge" style="background: rgba(168,85,247,0.15); color: var(--purple);">Recorded</span><h3>Domain Electives</h3><div class="curric-meta">ELECTIVES</div><p>Go deeper in the areas that match your target roles, on your schedule.</p></div>
-      <div class="curric-card card-3d" style="background: var(--lime-soft); border-color: rgba(191,255,0,0.3);"><div class="curric-num" style="background: var(--black); color: var(--lime);">05</div><span class="curric-badge" style="background: rgba(191,255,0,0.2); color: var(--lime);">Project</span><h3>Capstone Project</h3><div class="curric-meta">CAPSTONE</div><p>Ship one portfolio-grade project that shows how you think.</p></div>
+    <div class="edge-grid">
+      <div class="edge-card card-3d reveal"><div class="edge-icon">👨‍💻</div><h3>Taught by people who hire</h3><p>Live classes from engineers, hiring managers, and tech leads at MAANG+ — not career coaches reading slides.</p><span class="edge-meta">→ 700+ instructors</span></div>
+      <div class="edge-card card-3d reveal"><div class="edge-icon">🎯</div><h3>Live + mentor-guided</h3><p>Interactive workshops with real-time support — not pre-recorded videos you watch alone and never finish.</p><span class="edge-meta">→ Live sessions</span></div>
+      <div class="edge-card card-3d reveal"><div class="edge-icon">🛠️</div><h3>Industry-trusted tools</h3><p>Work with tools MAANG+ teams use daily: LangChain, MCP, LangGraph, Firebase — not toy examples.</p><span class="edge-meta">→ Real stack</span></div>
+      <div class="edge-card card-3d reveal"><div class="edge-icon">🚀</div><h3>Career-boosting outcomes</h3><p>Graduate with portfolio-ready projects and skills that actually get you through the door.</p><span class="edge-meta">→ Ship real work</span></div>
+      <div class="edge-card card-3d reveal"><div class="edge-icon">🎤</div><h3>Real mock practice</h3><p>Two live mocks with detailed feedback from engineers who've sat on the other side of the table.</p><span class="edge-meta">→ 2 live mocks</span></div>
+      <div class="edge-card card-3d reveal"><div class="edge-icon">📈</div><h3>Careers team in your corner</h3><p>Resume, LinkedIn, negotiation, and application opportunities when you qualify.</p><span class="edge-meta">→ 5 opp. (T&C)</span></div>
     </div>
   </div>
 </section>
 
-<!-- Practice -->
-<section class="practice-section" id="projects">
+<!-- Readiness (Practice + Career merged) -->
+<section class="readiness-section" id="readiness">
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">Practice & interview readiness</div>
-      <h2 class="reveal">Knowing isn't the same as performing.</h2>
-      <p class="reveal">This is where you build interview-day composure.</p>
+      <div class="eyebrow reveal">Practice, readiness &amp; career support</div>
+      <h2 class="reveal">Knowing isn't the same as <span class="gradient-text">getting hired.</span></h2>
+      <p class="reveal">Everything between "I learned it" and "I got the offer" — practice, diagnostics, and a careers team in your corner.</p>
     </div>
-    <div class="practice-grid">
-      <div class="practice-card reveal"><div class="practice-icon">🎯</div><div><h4>Live mock interviews</h4><p>Real rounds with MAANG+ engineers. Detailed, specific feedback.</p></div></div>
-      <div class="practice-card reveal"><div class="practice-icon">🤖</div><div><h4>AI mock interview</h4><p>Practise between live rounds. Walk in warm, not cold.</p></div></div>
-      <div class="practice-card reveal"><div class="practice-icon">📄</div><div><h4>AI resume analyser</h4><p>Tools that flag gaps and sharpen how you present your work.</p></div></div>
-      <div class="practice-card reveal"><div class="practice-icon">▶️</div><div><h4>Recorded mock library</h4><p>See how strong candidates think. Borrow what works.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Career -->
-<section class="career-section" id="careers">
-  <div class="wrap">
-    <div class="section-header">
-      <div class="eyebrow reveal">Career support</div>
-      <h2 class="reveal">Skills get you ready. We help you get seen.</h2>
-    </div>
-    <div class="career-grid">
-      <div class="career-item reveal"><span class="check">✓</span><span><b>Resume building & review</b></span></div>
-      <div class="career-item reveal"><span class="check">✓</span><span><b>LinkedIn optimisation</b></span></div>
-      <div class="career-item reveal"><span class="check">✓</span><span><b>Salary negotiation</b></span></div>
-      <div class="career-item reveal"><span class="check">✓</span><span><b>Behavioural readiness</b></span></div>
-    </div>
-    <div class="career-highlight reveal">
-      <div class="career-highlight-num">5</div>
-      <h3>Application opportunities</h3>
-      <p>When you meet the criteria, our Careers Team puts your profile forward for relevant openings.</p>
-      <p class="disclaimer">*Subject to eligibility and IK's T&C. Opportunities to apply, not a job guarantee.</p>
+    <div class="readiness-grid">
+      <div class="readiness-col card-3d reveal">
+        <h3 class="readiness-col-title">🎯 Practice &amp; interview readiness</h3>
+        <div class="readiness-items">
+          <div class="readiness-item"><span class="ri-ico">🎤</span><div><h4>Live mock interviews</h4><p>Real rounds with MAANG+ engineers and specific, actionable feedback.</p></div></div>
+          <div class="readiness-item"><span class="ri-ico">🤖</span><div><h4>AI mock interview</h4><p>Practise between live rounds so you walk in warm, not cold.</p></div></div>
+          <div class="readiness-item highlight-feature"><span class="ri-ico">🧠</span><div><h4>AIQ Analyser <span class="new-badge">New</span></h4><p>An AI-readiness diagnostic that scores you across DSA, system thinking, and agentic-AI skills — then maps a personalised plan to close the gaps before interview day.</p></div></div>
+          <div class="readiness-item"><span class="ri-ico">📄</span><div><h4>AI resume analyser</h4><p>Flags gaps and sharpens how you present your projects and impact.</p></div></div>
+          <div class="readiness-item"><span class="ri-ico">▶️</span><div><h4>Recorded mock library</h4><p>See how strong candidates think — and borrow what works.</p></div></div>
+        </div>
+      </div>
+      <div class="readiness-col card-3d reveal">
+        <h3 class="readiness-col-title">📈 Career support</h3>
+        <div class="career-grid">
+          <div class="career-item"><span class="check">✓</span><span><b>Resume building &amp; review</b></span></div>
+          <div class="career-item"><span class="check">✓</span><span><b>LinkedIn &amp; GitHub optimisation</b></span></div>
+          <div class="career-item"><span class="check">✓</span><span><b>Salary negotiation</b></span></div>
+          <div class="career-item"><span class="check">✓</span><span><b>Behavioural readiness</b></span></div>
+        </div>
+        <div class="career-highlight">
+          <div class="career-highlight-num">5</div>
+          <h3>Application opportunities</h3>
+          <p>When you meet the criteria, our Careers Team puts your profile forward for relevant openings.</p>
+          <p class="disclaimer">*Subject to eligibility and IK's T&amp;C. Opportunities to apply, not a job guarantee.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -994,6 +1263,43 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
       <div class="step reveal"><div class="step-num">4</div><h4>Build</h4><p>Ship your capstone.</p></div>
       <div class="step reveal"><div class="step-num">5</div><h4>Apply</h4><p>Careers support + opportunities.</p></div>
     </div>
+  </div>
+</section>
+
+<!-- EMI / Affordability -->
+<section class="emi-section" id="pricing">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="eyebrow reveal">Affordable by design</div>
+      <h2 class="reveal">Built to fit an <span class="gradient-text">early-career</span> budget.</h2>
+      <p class="reveal">One program. One transparent fee. No hidden add-ons — and you never pay it all at once.</p>
+    </div>
+    <div class="emi-card reveal">
+      <div class="emi-left">
+        <div class="emi-fee-label">One-time program fee</div>
+        <div class="emi-fee">₹70,000</div>
+        <div class="emi-sub">or split it with <b>0% no-cost EMI</b> — pick a plan:</div>
+        <div class="emi-chips" id="emiChips">
+          <button class="emi-chip" type="button" data-months="3">3 mo</button>
+          <button class="emi-chip active" type="button" data-months="12">12 mo</button>
+          <button class="emi-chip" type="button" data-months="6">6 mo</button>
+        </div>
+        <div class="emi-partners">
+          <span>Propelld</span><span>Eduvanz</span><span>InCred</span><span>HDFC EMI</span><span>ICICI EMI</span>
+        </div>
+      </div>
+      <div class="emi-right">
+        <div class="emi-pm-label">Pay as little as</div>
+        <div class="emi-pm"><span id="emiPerMonth">₹5,834</span><small>/month</small></div>
+        <div class="emi-perday">≈ <b id="emiPerDay">₹195</b>/day — less than your daily commute.</div>
+        <ul class="emi-points">
+          <li><span class="check">✓</span> 0% interest up to 12 months</li>
+          <li><span class="check">✓</span> No upfront payment to start</li>
+          <li><span class="check">✓</span> Employer reimbursement support</li>
+        </ul>
+      </div>
+    </div>
+    <p class="emi-note reveal">Final pricing, scholarships, and financing are confirmed in the free webinar. Figures shown are indicative of 0% no-cost EMI.</p>
   </div>
 </section>
 
@@ -1024,7 +1330,7 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
       <div class="faq-item"><div class="faq-q"><h4>Who is this track for?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>Engineers building the foundation of their careers — final-year students, recent graduates, and those in their first engineering roles.</p></div></div>
       <div class="faq-item"><div class="faq-q"><h4>Do I need to be working already?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>No. Final-year students, new grads, and engineers in their first roles are all welcome.</p></div></div>
       <div class="faq-item"><div class="faq-q"><h4>Is it live or self-paced?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>Both. DSA and Agentic AI run live. System design and electives are self-paced.</p></div></div>
-      <div class="faq-item"><div class="faq-q"><h4>What does it cost?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>We share pricing and financing options live in the free webinar.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h4>What does it cost?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>The program fee is ₹70,000, with 0% no-cost EMI from ₹5,834/month. Scholarships and financing options are confirmed live in the free webinar.</p></div></div>
       <div class="faq-item"><div class="faq-q"><h4>What are "application opportunities"?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>When you meet the eligibility criteria, the Careers Team puts your profile forward for relevant openings. Opportunities to apply — not a job guarantee.</p></div></div>
       <div class="faq-item"><div class="faq-q"><h4>Is there a refund policy?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>Yes. 14-day refund window from your first class, same-day processing.</p></div></div>
     </div>
@@ -1130,7 +1436,7 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
     <a href="#top" class="brand"><span class="brand-mark">ik</span><span>Interview Kickstart</span></a>
     <div class="footer-links">
       <a href="#curriculum">Curriculum</a>
-      <a href="#careers">Careers</a>
+      <a href="#readiness">Careers</a>
       <a href="#faq">FAQ</a>
       <a href="#">About</a>
       <a href="#">Privacy</a>
@@ -1153,8 +1459,68 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 
 <script>
 // ═══════════════════════════════════════════
-// TERMINAL TYPING ANIMATION (3rd element)
+// THEME TOGGLE (light / dark)
 // ═══════════════════════════════════════════
+(function() {
+  var body = document.body;
+  var btn = document.getElementById('themeToggle');
+  var icon = document.getElementById('themeIcon');
+  function apply(theme) {
+    if (theme === 'light') { body.setAttribute('data-theme','light'); if(icon) icon.textContent = '☀️'; }
+    else { body.removeAttribute('data-theme'); if(icon) icon.textContent = '🌙'; }
+  }
+  var saved = 'dark';
+  try { saved = localStorage.getItem('ik-theme') || 'dark'; } catch(e) {}
+  apply(saved);
+  if (btn) btn.addEventListener('click', function() {
+    var next = body.hasAttribute('data-theme') ? 'dark' : 'light';
+    apply(next);
+    try { localStorage.setItem('ik-theme', next); } catch(e) {}
+  });
+})();
+
+// ═══════════════════════════════════════════
+// CURRICULUM ACCORDION
+// ═══════════════════════════════════════════
+(function() {
+  document.querySelectorAll('.acc-head').forEach(function(head) {
+    head.addEventListener('click', function() {
+      var item = head.closest('.acc-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(function(i){ i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+  // open first by default
+  var first = document.querySelector('.acc-item');
+  if (first) first.classList.add('open');
+})();
+
+// ═══════════════════════════════════════════
+// EMI CALCULATOR (single course ₹70,000, 0% EMI)
+// ═══════════════════════════════════════════
+(function() {
+  var FEE = 70000;
+  var pm = document.getElementById('emiPerMonth');
+  var pd = document.getElementById('emiPerDay');
+  var chips = document.querySelectorAll('.emi-chip');
+  function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+  function setMonths(months) {
+    var perMonth = FEE / months;
+    if (pm) pm.textContent = fmt(perMonth);
+    if (pd) pd.textContent = fmt(perMonth / 30);
+  }
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      setMonths(parseInt(chip.getAttribute('data-months'), 10));
+    });
+  });
+  setMonths(12);
+})();
+
+
 (function() {
   var el = document.getElementById('terminalCode');
   if (!el) return;
