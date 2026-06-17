@@ -1306,6 +1306,90 @@ body[data-theme="light"] .tm-ico { color: #15803D; }
 
 .tm-ico img { width: 22px; height: 22px; display: block; object-fit: contain; }
 body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
+
+/* ═══════════════════════════════════════════
+   EDITS: CTA FREE · EDGE LOCKUP · 5-COL ROADMAP · TESTIMONIALS
+   ═══════════════════════════════════════════ */
+
+/* CTA — emphasize FREE */
+.cta-free { font-weight: 800; letter-spacing: 0.02em; font-size: 1.04em; }
+.btn-primary .cta-free { color: var(--black); }
+.btn-ghost-sm .cta-free, .nav-cta .cta-free { color: var(--lime); }
+body[data-theme="light"] .btn-ghost-sm .cta-free, body[data-theme="light"] .nav-cta .cta-free { color: #15803D; }
+
+/* Edge eyebrow — IK monogram lockup */
+.edge-lockup { display: inline-flex; align-items: center; gap: 0.5rem; }
+.ik-mono { font-family: var(--font-mono); font-weight: 700; font-size: 1.02em; line-height: 1; letter-spacing: -0.04em; color: var(--lime); }
+.ik-mono i { font-style: normal; color: var(--white); margin: 0 0.01em; }
+body[data-theme="light"] .ik-mono { color: #15803D; }
+body[data-theme="light"] .ik-mono i { color: #0A0B0D; }
+
+/* Roadmap — 5 columns */
+@media (min-width: 760px) {
+  .roadmap { grid-template-columns: repeat(5, 1fr); gap: 0.85rem; }
+  .rm-line { left: 10%; right: 10%; }
+}
+
+/* Premium testimonials — rating strip */
+.rating-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin: 1.4rem auto 0; max-width: 760px; }
+.rating-chip { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--black); border: 1px solid var(--slate); border-radius: 100px; padding: 0.45rem 0.85rem; font-size: 0.76rem; color: var(--silver); }
+.rating-chip b { color: var(--white); font-weight: 700; font-family: var(--font-mono); }
+.rating-chip .stars { color: var(--lime); font-size: 0.7rem; letter-spacing: -1px; }
+.rating-chip .src { color: var(--muted); font-size: 0.68rem; }
+body[data-theme="light"] .rating-chip { background: #FFFFFF; }
+body[data-theme="light"] .rating-chip .stars { color: #15803D; }
+
+/* Marquee */
+.tw-wrap { position: relative; margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.tw-wrap::before, .tw-wrap::after { content: ""; position: absolute; top: 0; bottom: 0; width: 90px; z-index: 3; pointer-events: none; }
+.tw-wrap::before { left: 0; background: linear-gradient(90deg, var(--ink), transparent); }
+.tw-wrap::after { right: 0; background: linear-gradient(270deg, var(--ink), transparent); }
+@media (max-width: 600px) { .tw-wrap::before, .tw-wrap::after { width: 44px; } }
+.tw-row { display: flex; gap: 1rem; width: max-content; will-change: transform; }
+.tw-row-a { animation: twScroll 64s linear infinite; }
+.tw-row-b { animation: twScrollRev 78s linear infinite; }
+.tw-wrap:hover .tw-row { animation-play-state: paused; }
+@keyframes twScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes twScrollRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .tw-row-a, .tw-row-b { animation: none; }
+  .tw-wrap { overflow-x: auto; scrollbar-width: none; }
+  .tw-wrap::-webkit-scrollbar { display: none; }
+}
+.tw-card { flex: 0 0 348px; background: var(--black); border: 1px solid var(--slate); border-radius: 16px; padding: 1.3rem; display: flex; flex-direction: column; gap: 0.9rem; transition: border-color 0.3s ease; }
+.tw-card:hover { border-color: rgba(191,255,0,0.32); }
+@media (max-width: 600px) { .tw-card { flex: 0 0 286px; padding: 1.1rem; } }
+.tw-badge { align-self: flex-start; display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--lime); background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.2); border-radius: 100px; padding: 0.28rem 0.6rem; }
+body[data-theme="light"] .tw-badge { color: #0A0B0D; border-color: rgba(150,190,30,0.45); background: rgba(196,245,66,0.4); }
+.tw-quote { font-size: 0.875rem; line-height: 1.6; color: var(--silver); flex: 1 1 auto; }
+.tw-quote::before { content: '\201C'; color: var(--lime); font-weight: 700; }
+.tw-quote::after { content: '\201D'; color: var(--lime); font-weight: 700; }
+.tw-person { display: flex; align-items: center; gap: 0.7rem; padding-top: 0.2rem; border-top: 1px solid rgba(255,255,255,0.04); }
+body[data-theme="light"] .tw-person { border-top-color: rgba(10,10,15,0.06); }
+.mono-av { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 0.92rem; color: #050A0E; letter-spacing: -0.02em; box-shadow: 0 4px 14px rgba(0,0,0,0.28); }
+.tw-meta { min-width: 0; }
+.tw-meta .nm { font-size: 0.82rem; font-weight: 700; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tw-meta .rl { font-size: 0.7rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tw-meta .rl b { color: var(--silver); font-weight: 600; }
+
+/* Success stories */
+.stories-head { text-align: center; margin: 4rem auto 2rem; }
+.stories-head .eyebrow { justify-content: center; }
+.stories-head h3 { font-family: var(--font-display); font-size: clamp(1.3rem, 3.2vw, 1.9rem); font-weight: 800; color: var(--white); line-height: 1.2; margin-top: 0.4rem; }
+.stories-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; max-width: 1120px; margin: 0 auto; }
+@media (min-width: 560px) { .stories-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .stories-grid { grid-template-columns: repeat(4, 1fr); } }
+.story-card { background: var(--black); border: 1px solid var(--slate); border-radius: 16px; padding: 1.4rem; display: flex; flex-direction: column; gap: 0.9rem; transition: all 0.3s ease; }
+.story-card:hover { border-color: rgba(191,255,0,0.3); transform: translateY(-3px); }
+.story-top { display: flex; align-items: center; gap: 0.75rem; }
+.story-meta { min-width: 0; }
+.story-meta .nm { font-size: 0.85rem; font-weight: 700; color: var(--white); }
+.story-meta .rl { font-size: 0.7rem; color: var(--muted); line-height: 1.35; }
+.story-outcome { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--lime); line-height: 1; letter-spacing: -0.02em; }
+body[data-theme="light"] .story-outcome { color: #15803D; }
+.story-outcome span { display: block; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+.story-sum { font-size: 0.8rem; line-height: 1.6; color: var(--silver); }
+.story-card .mono-av { width: 46px; height: 46px; font-size: 1rem; }
 </style>
 </head>
 <body>
@@ -1339,7 +1423,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
           <span class="ts-thumb"></span>
         </span>
       </button>
-      <a href="#register" class="btn btn-primary nav-cta">Register FREE</a>
+      <a href="#register" class="btn btn-primary nav-cta">Register <span class="cta-free">FREE</span></a>
     </div>
   </div>
 </nav>
@@ -1376,7 +1460,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
         
         <!-- CTAs -->
         <div class="hero-ctas reveal reveal-delay-4">
-          <a href="#register" class="btn btn-primary">Register FREE →</a>
+          <a href="#register" class="btn btn-primary">Register <span class="cta-free">FREE</span> →</a>
           <a href="#curriculum" class="btn btn-terminal">view_technical_syllabus.sh</a>
         </div>
 
@@ -1417,7 +1501,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
         <!-- Item 4: under-terminal cohort details + actions -->
         <div class="terminal-meta reveal reveal-delay-4">
           <div class="tmeta-chips">
-            <span class="tmeta-chip tmeta-chip-hl">700+ MAANG+ Instructors</span>
+            <span class="tmeta-chip tmeta-chip-hl">700+ MAANG+ Engineers</span>
             <span class="tmeta-chip"><b>July 2026</b> cohort</span>
             <span class="tmeta-chip">14 weeks live</span>
             <span class="tmeta-chip">Live + Self-Paced</span>
@@ -1426,7 +1510,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
             <span class="tmeta-chip">Live Capstone Project</span>
           </div>
           <div class="tmeta-btns">
-            <a href="#register" class="btn btn-ghost-sm">Register FREE →</a>
+            <a href="#register" class="btn btn-ghost-sm">Register <span class="cta-free">FREE</span> →</a>
             <a href="#curriculum" class="btn btn-terminal">view_technical_syllabus.sh</a>
           </div>
         </div>
@@ -1660,7 +1744,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
           <span class="acc-arrow">▼</span>
         </button>
         <div class="acc-body"><div class="acc-inner">
-          <p class="acc-desc">Turn skills into offers — resume and profile, technical interview prep, behavioural rounds, and negotiation.</p>
+          <p class="acc-desc">Turn skills into offers — resume and profile, technical interview prep, behavioural rounds, and salary negotiation.</p>
           <div class="acc-cols">
             <div><h5>Key topics</h5><ul class="acc-list"><li>ATS-friendly resume &amp; portfolio</li><li>LinkedIn &amp; GitHub optimisation</li><li>Technical interview strategy &amp; mocks</li><li>STAR method for behavioural rounds</li><li>Salary research &amp; offer negotiation</li></ul></div>
             <div><h5>Tools</h5><div class="acc-tags"><span>Mock platforms</span><span>STAR framework</span><span>Salary benchmarks</span></div></div>
@@ -1669,7 +1753,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
       </div>
     </div>
     <div class="curric-cta reveal">
-      <a href="#register" class="btn btn-primary">Register FREE &#8594;</a>
+      <a href="#register" class="btn btn-primary">Register <span class="cta-free">FREE</span> &#8594;</a>
       <a href="#register" class="btn btn-ghost-sm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9.5 14.5 12 17l2.5-2.5"/></svg> Download Curriculum</a>
     </div>
   </div>
@@ -1699,7 +1783,11 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
       </div>
       <div class="rm-node">
         <div class="rm-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1 1-1.4 4-1.4 4s3-.4 4-1.4M9.5 11.5a8 8 0 0 1 7.5-8.5c2 0 3 1 3 3a8 8 0 0 1-8.5 7.5l-2-2z"/><circle cx="14.5" cy="9.5" r="1.2"/></svg></div>
-        <div class="rm-card card-3d accent"><div class="rm-top"><span class="rm-step">04</span><span class="rm-weeks">Weeks 12–14</span></div><h4>Career Launch</h4><p>Resume, mocks, behavioural prep, negotiation — and application opportunities when you qualify.</p></div>
+        <div class="rm-card card-3d"><div class="rm-top"><span class="rm-step">04</span><span class="rm-weeks">Weeks 12–14</span></div><h4>Career Launch</h4><p>Resume, mocks, behavioural prep, and salary negotiation — walk out interview-ready.</p></div>
+      </div>
+      <div class="rm-node">
+        <div class="rm-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2.5 11 13M21.5 2.5l-6.5 19-4-8.5-8.5-4 19-6.5z"/></svg></div>
+        <div class="rm-card card-3d accent"><div class="rm-top"><span class="rm-step">05</span><span class="rm-weeks">Ongoing</span></div><h4>5 Application Opportunities</h4><p>When you qualify, our Careers Team puts your profile forward for up to 5 relevant openings — opportunities to apply, T&amp;C apply.</p></div>
       </div>
     </div>
   </div>
@@ -1711,7 +1799,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">Meet Your Instructors</div>
-      <h2 class="reveal">700+ MAANG+ <span class="gradient-text">Engineers.</span></h2>
+      <h2 class="reveal">700+ Engineers from <span class="gradient-text">MAANG+ &amp; Top Product Companies.</span></h2>
       <p class="reveal">Engineers who interview candidates at MAANG+ every week — not university faculty.</p>
     </div>
     <div class="instructors-strip-wrap reveal">
@@ -1736,7 +1824,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
   <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:8%; right:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Outcomes</div><div class="gh-mrow"><span class="gh-ml">Mentors</span><span class="gh-mv">700+</span></div><div class="gh-mrow"><span class="gh-ml">Live mocks</span><span class="gh-mv">2</span></div><div class="gh-mrow"><span class="gh-ml">Projects</span><span class="gh-mv">Capstone</span></div></div></div></div></div><div class="gh" style="bottom:9%; left:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Readiness</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">92</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Resume</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">ATS</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">Mocks</span><span class="gh-mv">&check;</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">The Interview Kickstart Edge</div>
+      <div class="eyebrow reveal"><span class="edge-lockup"><span class="ik-mono">{<i>ik</i>}</span> The Interview Kickstart Edge</span></div>
       <h2 class="reveal">What you get that others don't.</h2>
     </div>
     <div class="edge-grid">
@@ -1745,7 +1833,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
       <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.4L5 16v3h3l5.1-5a3.5 3.5 0 0 1 4.4-4.6l-2.3 2.3-2.1-.6-.6-2.1 2.5-2.5z"/></svg></div><span class="edge-meta">→ Real stack</span></div><h3>Industry-trusted tools</h3><p>Work with tools MAANG+ teams use daily: LangChain, MCP, LangGraph, Firebase — not toy examples.</p></div>
       <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1 1-1.4 4-1.4 4s3-.4 4-1.4M9.5 11.5a8 8 0 0 1 7.5-8.5c2 0 3 1 3 3a8 8 0 0 1-8.5 7.5l-2-2z"/><circle cx="14.5" cy="9.5" r="1.2"/></svg></div><span class="edge-meta">→ Ship real work</span></div><h3>Career-boosting outcomes</h3><p>Graduate with portfolio-ready projects and skills that actually get you through the door.</p></div>
       <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><span class="edge-meta">→ 2 live mocks</span></div><h3>Real mock practice</h3><p>Two live mocks with detailed feedback from engineers who've sat on the other side of the table.</p></div>
-      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></div><span class="edge-meta">→ 5 opp. (T&C)</span></div><h3>Careers team in your corner</h3><p>Resume, LinkedIn, negotiation, and application opportunities when you qualify.</p></div>
+      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></div><span class="edge-meta">→ 5 opp. (T&C)</span></div><h3>Careers team in your corner</h3><p>Resume, LinkedIn, salary negotiation, and application opportunities when you qualify.</p></div>
     </div>
   </div>
 </section>
@@ -1851,19 +1939,54 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
   <div class="sect-backdrop sb-green" aria-hidden="true"><div class="gh" style="top:8%; left:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Package Hike</div><div class="gh-salrow"><span class="gh-big">&#8377;3.2 LPA</span><span class="gh-arrowtxt">&rarr;</span><span class="gh-big accent">&#8377;32 LPA</span></div><div class="gh-mrow"><span class="gh-ml">+900% &middot; 2024 cohort</span></div></div></div></div></div><div class="gh" style="bottom:8%; right:-4%; transform:rotate(8deg) scale(1.05)"><div class="gh-inner s3"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Overall Score</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">91</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Coding</span><span class="gh-mv">9/10</span></div><div class="gh-mrow"><span class="gh-ml">Design</span><span class="gh-mv">9/10</span></div><div class="gh-mrow"><span class="gh-ml">Comm.</span><span class="gh-mv">8.5</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">In their words</div>
-      <h2 class="reveal">What early-career engineers say.</h2>
-      <p class="reveal" style="font-style:italic; font-size:0.72rem; color:var(--muted);">Placeholder — replace with verified quotes before launch.</p>
+      <div class="eyebrow reveal">Real engineers · Real outcomes · Real career acceleration</div>
+      <h2 class="reveal">What our <span class="gradient-text">learners say.</span></h2>
+      <div class="rating-strip reveal">
+        <span class="rating-chip"><span class="stars">★★★★★</span> <b>4.8</b> <span class="src">Google</span></span>
+        <span class="rating-chip"><span class="stars">★★★★★</span> <b>4.81</b> <span class="src">Trustpilot</span></span>
+        <span class="rating-chip"><span class="stars">★★★★★</span> <b>4.78</b> <span class="src">Course Report</span></span>
+        <span class="rating-chip"><span class="stars">★★★★★</span> <b>4.7</b> <span class="src">Career Karma</span></span>
+      </div>
     </div>
-    <div class="profile-wall reveal" aria-hidden="true">
-      <div class="pw-row pw-row-a"><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/3.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/11.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/15.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/12.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/21.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/26.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/29.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/47.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/3.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/11.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/15.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/41.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/12.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/21.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/26.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/29.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/33.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/47.jpg" alt="" loading="lazy"></span></div>
-      <div class="pw-row pw-row-b"><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/63.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/79.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/85.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/90.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/52.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/76.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/83.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/86.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/63.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/79.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/85.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/women/90.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/52.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/76.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/83.jpg" alt="" loading="lazy"></span><span class="pw-av"><img src="https://randomuser.me/api/portraits/men/86.jpg" alt="" loading="lazy"></span></div>
+    <div class="tw-wrap reveal">
+      <div class="tw-row tw-row-a">
+        <div class="tw-card"><span class="tw-badge">Multiple Offers</span><p class="tw-quote">The platform helped me structure my preparation despite a full-time leadership role and family responsibilities.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#BFFF00,#22D3EE)">SR</span><div class="tw-meta"><div class="nm">Swapna R Reddy</div><div class="rl">Engineering Leader · <b>Amazon</b></div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">~100% Comp Increase</span><p class="tw-quote">IK helped me not be puzzled in interviews — I learned how to understand the problem and confidently arrive at a solution.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#A855F7,#22D3EE)">AT</span><div class="tw-meta"><div class="nm">Arindam Thakur</div><div class="rl">Staff TPM · <b>Intuit</b></div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">Broke into MAANG</span><p class="tw-quote">I did the whole process from scratch — resume to LinkedIn to applying — after four years of barely getting a response.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#22D3EE,#3B82F6)">NR</span><div class="tw-meta"><div class="nm">Nikhil Kumar Reddy</div><div class="rl">Senior Product Leader · <b>MAANG</b></div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">Chose Best Offer</span><p class="tw-quote">I found myself clearing first, second, third, and final rounds across multiple companies — and I could choose the best offer.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#BFFF00,#22C55E)">SJ</span><div class="tw-meta"><div class="nm">Sanjay Jha</div><div class="rl">Manager · Fast-Track Program</div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">System Design</span><p class="tw-quote">Unless you learn the system design patterns, your design won't be efficient — now I have that confidence.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#F59E0B,#BFFF00)">VP</span><div class="tw-meta"><div class="nm">Vikas P</div><div class="rl">Lead Portfolio Architect</div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">Interview Confidence</span><p class="tw-quote">IK gave me a structured way of learning — I'm now confident enough for any technical, management, or leadership interview.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#22C55E,#22D3EE)">GP</span><div class="tw-meta"><div class="nm">Guruprasad</div><div class="rl">Senior SE Manager</div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">Multiple Offers</span><p class="tw-quote">The platform helped me structure my preparation despite a full-time leadership role and family responsibilities.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#BFFF00,#22D3EE)">SR</span><div class="tw-meta"><div class="nm">Swapna R Reddy</div><div class="rl">Engineering Leader · <b>Amazon</b></div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">~100% Comp Increase</span><p class="tw-quote">IK helped me not be puzzled in interviews — I learned how to understand the problem and confidently arrive at a solution.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#A855F7,#22D3EE)">AT</span><div class="tw-meta"><div class="nm">Arindam Thakur</div><div class="rl">Staff TPM · <b>Intuit</b></div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">Broke into MAANG</span><p class="tw-quote">I did the whole process from scratch — resume to LinkedIn to applying — after four years of barely getting a response.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#22D3EE,#3B82F6)">NR</span><div class="tw-meta"><div class="nm">Nikhil Kumar Reddy</div><div class="rl">Senior Product Leader · <b>MAANG</b></div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">Chose Best Offer</span><p class="tw-quote">I found myself clearing first, second, third, and final rounds across multiple companies — and I could choose the best offer.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#BFFF00,#22C55E)">SJ</span><div class="tw-meta"><div class="nm">Sanjay Jha</div><div class="rl">Manager · Fast-Track Program</div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">System Design</span><p class="tw-quote">Unless you learn the system design patterns, your design won't be efficient — now I have that confidence.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#F59E0B,#BFFF00)">VP</span><div class="tw-meta"><div class="nm">Vikas P</div><div class="rl">Lead Portfolio Architect</div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">Interview Confidence</span><p class="tw-quote">IK gave me a structured way of learning — I'm now confident enough for any technical, management, or leadership interview.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#22C55E,#22D3EE)">GP</span><div class="tw-meta"><div class="nm">Guruprasad</div><div class="rl">Senior SE Manager</div></div></div></div>
+      </div>
+      <div class="tw-row tw-row-b">
+        <div class="tw-card"><span class="tw-badge">Built Real GenAI Skills</span><p class="tw-quote">The focus on Generative and Agentic AI, with a hands-on capstone, helped me move from theory to building real solutions.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#A855F7,#EC4899)">AB</span><div class="tw-meta"><div class="nm">Arun Baskaran</div><div class="rl">20+ YoE · <b>Accenture</b></div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">DSA &amp; System Design</span><p class="tw-quote">Complex concepts in DSA and System Design were taught with real clarity — it renewed my first-principles thinking.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#3B82F6,#22D3EE)">AJ</span><div class="tw-meta"><div class="nm">Aman Jain</div><div class="rl">18+ YoE</div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">Coding Patterns</span><p class="tw-quote">The algorithms content gave me clear problem-solving patterns to approach new coding problems independently.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#BFFF00,#A855F7)">GN</span><div class="tw-meta"><div class="nm">Ganesh Narayanamurthy</div><div class="rl">15+ YoE · <b>Oracle</b></div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">DSA Confidence</span><p class="tw-quote">Trees, Graphs, and Dynamic Programming felt far more approachable — and support was always there when I needed it.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#EC4899,#F59E0B)">DM</span><div class="tw-meta"><div class="nm">Deepa Maheshwari</div><div class="rl">12+ YoE · <b>AVEVA</b></div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">System Design</span><p class="tw-quote">The System Design curriculum is exceptional for building a strong foundation in scalable, high-performing systems.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#22D3EE,#BFFF00)">AA</span><div class="tw-meta"><div class="nm">Ashish Agarwal</div><div class="rl">Early Engineering · <b>LSEG</b></div></div></div></div>
+        <div class="tw-card"><span class="tw-badge">Data Engineering</span><p class="tw-quote">Hands-on assignments on scalable data pipelines taught me to architect data systems efficiently under time constraints.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#22C55E,#BFFF00)">HK</span><div class="tw-meta"><div class="nm">Hrishikesh Kulkarni</div><div class="rl">10+ YoE · <b>Qorix</b></div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">Built Real GenAI Skills</span><p class="tw-quote">The focus on Generative and Agentic AI, with a hands-on capstone, helped me move from theory to building real solutions.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#A855F7,#EC4899)">AB</span><div class="tw-meta"><div class="nm">Arun Baskaran</div><div class="rl">20+ YoE · <b>Accenture</b></div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">DSA &amp; System Design</span><p class="tw-quote">Complex concepts in DSA and System Design were taught with real clarity — it renewed my first-principles thinking.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#3B82F6,#22D3EE)">AJ</span><div class="tw-meta"><div class="nm">Aman Jain</div><div class="rl">18+ YoE</div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">Coding Patterns</span><p class="tw-quote">The algorithms content gave me clear problem-solving patterns to approach new coding problems independently.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#BFFF00,#A855F7)">GN</span><div class="tw-meta"><div class="nm">Ganesh Narayanamurthy</div><div class="rl">15+ YoE · <b>Oracle</b></div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">DSA Confidence</span><p class="tw-quote">Trees, Graphs, and Dynamic Programming felt far more approachable — and support was always there when I needed it.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#EC4899,#F59E0B)">DM</span><div class="tw-meta"><div class="nm">Deepa Maheshwari</div><div class="rl">12+ YoE · <b>AVEVA</b></div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">System Design</span><p class="tw-quote">The System Design curriculum is exceptional for building a strong foundation in scalable, high-performing systems.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#22D3EE,#BFFF00)">AA</span><div class="tw-meta"><div class="nm">Ashish Agarwal</div><div class="rl">Early Engineering · <b>LSEG</b></div></div></div></div>
+        <div class="tw-card" aria-hidden="true"><span class="tw-badge">Data Engineering</span><p class="tw-quote">Hands-on assignments on scalable data pipelines taught me to architect data systems efficiently under time constraints.</p><div class="tw-person"><span class="mono-av" style="background:linear-gradient(135deg,#22C55E,#BFFF00)">HK</span><div class="tw-meta"><div class="nm">Hrishikesh Kulkarni</div><div class="rl">10+ YoE · <b>Qorix</b></div></div></div></div>
+      </div>
     </div>
-    <p class="pw-caption reveal"><b>700+ engineers</b> from across India are leveling up with live AI-native training.</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card card-3d reveal"><p class="testimonial-text">The live DSA classes rewired how I approach problems. I stopped memorising and started seeing patterns. That shift changed everything.</p><div class="testimonial-author"><div class="testimonial-avatar"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Testimonial" loading="lazy"></div><div class="testimonial-info"><h4>Backend Engineer</h4><p>Early-career · Bengaluru</p></div></div></div>
-      <div class="testimonial-card card-3d reveal"><p class="testimonial-text">The mock interviews were the part I dreaded and the part that helped most. The feedback was specific enough that I knew exactly what to fix.</p><div class="testimonial-author"><div class="testimonial-avatar"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Testimonial" loading="lazy"></div><div class="testimonial-info"><h4>Software Engineer</h4><p>New grad · Hyderabad</p></div></div></div>
-      <div class="testimonial-card card-3d reveal"><p class="testimonial-text">Adding Agentic AI to my skill set changed the kinds of roles I felt confident applying for. The curriculum felt current, not outdated.</p><div class="testimonial-author"><div class="testimonial-avatar"><img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Testimonial" loading="lazy"></div><div class="testimonial-info"><h4>Software Engineer</h4><p>First role · Pune</p></div></div></div>
+    <div class="stories-head reveal">
+      <div class="eyebrow">Learner success stories</div>
+      <h3>Where structured prep takes you next.</h3>
+    </div>
+    <div class="stories-grid">
+      <div class="story-card card-3d reveal"><div class="story-top"><span class="mono-av" style="background:linear-gradient(135deg,#BFFF00,#22D3EE)">DD</span><div class="story-meta"><div class="nm">Deepan Dhanakodi</div><div class="rl">Senior Engineering Manager</div></div></div><div class="story-outcome">43%<span>Salary hike</span></div><p class="story-sum">Chose structured mentorship over waiting it out — and transitioned into a product role with a 43% salary increase.</p></div>
+      <div class="story-card card-3d reveal"><div class="story-top"><span class="mono-av" style="background:linear-gradient(135deg,#A855F7,#22D3EE)">MG</span><div class="story-meta"><div class="nm">Megha Gaikwad</div><div class="rl">Chief Business Officer · 360 World Inc.</div></div></div><div class="story-outcome">EM → CBO<span>Executive leap</span></div><p class="story-sum">Turned Generative AI upskilling and technical leadership development into a Chief Business Officer role.</p></div>
+      <div class="story-card card-3d reveal"><div class="story-top"><span class="mono-av" style="background:linear-gradient(135deg,#F59E0B,#BFFF00)">DY</span><div class="story-meta"><div class="nm">Devesh Yadav</div><div class="rl">Senior Software Engineer</div></div></div><div class="story-outcome">Tech Lead<span>Leadership shift</span></div><p class="story-sum">Strengthened system design thinking to move from service delivery into stronger technical leadership.</p></div>
+      <div class="story-card card-3d reveal"><div class="story-top"><span class="mono-av" style="background:linear-gradient(135deg,#22C55E,#22D3EE)">RG</span><div class="story-meta"><div class="nm">Rahul Ghodeswar</div><div class="rl">Senior Product Manager</div></div></div><div class="story-outcome">Senior PM<span>Product growth</span></div><p class="story-sum">Rebuilt confidence and formal product foundations to move past stagnation and unlock senior product roles.</p></div>
     </div>
   </div>
 </section>
@@ -1895,7 +2018,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
       <h2 class="reveal">Start with the Free Webinar to UpLevel Your Tech Career</h2>
       <p class="reveal">Meet an advisor, see the full curriculum, find out if this track fits — and ask anything.</p>
       <div class="cta-form reveal">
-        <div class="cta-form-header"><h3>Register FREE for the webinar</h3><p>Sat, 21 Jun · 6:30 PM IST</p></div>
+        <div class="cta-form-header"><h3>Register <span class="cta-free">FREE</span> for the webinar</h3><p>Sat, 21 Jun · 6:30 PM IST</p></div>
         <div class="cta-fomo"><span class="fomo-dot"></span>Only <b>23</b> seats left in <b>July cohort</b></div>
         <form id="regForm">
           <div class="form-row">
@@ -1969,7 +2092,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
               </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Register FREE for the webinar →</button>
+          <button type="submit" class="btn btn-primary">Register <span class="cta-free">FREE</span> for the webinar →</button>
           <p class="privacy">By registering you agree to our privacy policy.</p>
         </form>
       </div>
@@ -1992,7 +2115,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
       <h2>AI is reshaping every engineering role in India.</h2>
       <p>The engineers getting hired aren't the ones who waited. Build AI-native skills now — early enough that it defines your career instead of rescuing it. The webinar is free. The seats aren't unlimited.</p>
       <div class="yourmove-ctas">
-        <a href="#register" class="btn btn-primary">Register FREE for the webinar →</a>
+        <a href="#register" class="btn btn-primary">Register <span class="cta-free">FREE</span> for the webinar →</a>
         <a href="#curriculum" class="btn btn-ghost">See the curriculum</a>
       </div>
       <div class="yourmove-social">
