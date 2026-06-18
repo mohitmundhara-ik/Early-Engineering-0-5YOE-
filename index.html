@@ -841,7 +841,11 @@ body[data-theme="light"] .float-badge { background: rgba(255,255,255,0.94); bord
 .transform-card.after li::before { content: '✓'; color: var(--green); flex-shrink: 0; }
 
 /* Edge Cards */
-.edge-section { background: linear-gradient(180deg, var(--ink), var(--black)); }
+.edge-section { background: linear-gradient(180deg, var(--ink2), var(--black)); }
+.edge-section::after { content: ''; position: absolute; top: -8%; left: 50%; transform: translateX(-50%); width: 920px; max-width: 130%; height: 480px; background: radial-gradient(ellipse 58% 60% at 50% 38%, rgba(191,255,0,0.11), rgba(191,255,0,0.04) 45%, transparent 72%); pointer-events: none; z-index: 0; }
+body[data-theme="light"] .edge-section { background: linear-gradient(180deg, #FFFFFF, var(--ink2)); }
+body[data-theme="light"] .edge-section::after { background: radial-gradient(ellipse 58% 60% at 50% 38%, rgba(150,190,30,0.16), transparent 70%); }
+.edge-section > .wrap { position: relative; z-index: 1; }
 .edge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 @media (min-width: 640px) { .edge-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .edge-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -1578,6 +1582,33 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
   .rating-chip .stars { font-size: 0.6rem; }
   .rating-chip .src { font-size: 0.62rem; }
 }
+
+/* ── Custom dropdown (smooth, fully visible in dark + light) ── */
+.cdrop { position: relative; }
+.cdrop-trigger { width: 100%; min-height: 50px; padding: 0 0.95rem; border-radius: 12px; background: rgba(255,255,255,0.025); border: 1.5px solid var(--steel); color: var(--white); font-family: var(--font-body); font-size: 16px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; cursor: pointer; transition: border-color .18s ease, box-shadow .18s ease, background .18s ease; }
+.cdrop-trigger:hover { border-color: rgba(191,255,0,0.45); background: rgba(255,255,255,0.05); }
+.cdrop.open .cdrop-trigger, .cdrop-trigger:focus-visible { border-color: var(--lime); box-shadow: 0 0 0 3px rgba(191,255,0,0.16); background: rgba(255,255,255,0.05); outline: none; }
+.cdrop-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cdrop-value.is-placeholder { color: var(--muted); }
+.cdrop-arrow { width: 12px; height: 8px; flex-shrink: 0; color: var(--silver); transition: transform .2s ease; }
+.cdrop.open .cdrop-arrow { transform: rotate(180deg); color: var(--lime); }
+.cdrop-list { position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 60; list-style: none; margin: 0; padding: 0.3rem; background: #0F1D32; border: 1px solid var(--steel); border-radius: 12px; box-shadow: 0 18px 44px rgba(0,0,0,0.55); max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-6px) scale(0.985); transform-origin: top center; transition: opacity .16s ease, transform .2s cubic-bezier(.2,.8,.2,1), max-height .22s ease; pointer-events: none; }
+.cdrop.open .cdrop-list { max-height: 264px; overflow-y: auto; opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; -webkit-overflow-scrolling: touch; }
+.cdrop.drop-up .cdrop-list { top: auto; bottom: calc(100% + 6px); transform-origin: bottom center; }
+.cdrop-opt { padding: 0.62rem 0.7rem; border-radius: 8px; font-size: 0.9rem; color: var(--silver); cursor: pointer; transition: background .12s ease, color .12s ease; }
+.cdrop-opt:hover, .cdrop-opt.active { background: rgba(191,255,0,0.13); color: #fff; }
+.cdrop-opt.selected { color: var(--lime); font-weight: 600; }
+.cdrop.error .cdrop-trigger { border-color: #EF4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.15); }
+.cdrop-list::-webkit-scrollbar { width: 8px; }
+.cdrop-list::-webkit-scrollbar-track { background: transparent; }
+.cdrop-list::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 8px; }
+body[data-theme="light"] .cdrop-trigger { background: #FFFFFF; border-color: rgba(10,10,15,0.14); color: var(--silver); }
+body[data-theme="light"] .cdrop-trigger:hover { border-color: rgba(150,190,30,0.6); }
+body[data-theme="light"] .cdrop.open .cdrop-trigger, body[data-theme="light"] .cdrop-trigger:focus-visible { border-color: #15803D; box-shadow: 0 0 0 3px rgba(196,245,66,0.3); }
+body[data-theme="light"] .cdrop-list { background: #FFFFFF; border-color: rgba(10,10,15,0.12); box-shadow: 0 18px 44px rgba(10,10,15,0.14); }
+body[data-theme="light"] .cdrop-opt { color: #334155; }
+body[data-theme="light"] .cdrop-opt:hover, body[data-theme="light"] .cdrop-opt.active { background: rgba(150,190,30,0.16); color: #0A0B0D; }
+body[data-theme="light"] .cdrop-opt.selected { color: #15803D; }
 </style>
 </head>
 <body>
@@ -2149,68 +2180,18 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
           <div class="form-field"><label for="ff-email">Email</label><input id="ff-email" type="email" placeholder="you@email.com" required></div>
           <div class="form-row">
             <div class="form-field"><label for="ff-grad">Graduation year (UG/PG)</label>
-              <select id="ff-grad" required>
-                <option value="" disabled selected>Select year</option>
-                <option>Before 2020</option>
-                <option>2020</option>
-                <option>2021</option>
-                <option>2022</option>
-                <option>2023</option>
-                <option>2024</option>
-                <option>2025</option>
-                <option>2026</option>
-                <option>2027 or later</option>
-              </select>
+              <div class="cdrop"><button type="button" class="cdrop-trigger" id="ff-grad" aria-haspopup="listbox" aria-expanded="false"><span class="cdrop-value is-placeholder">Select year</span><svg class="cdrop-arrow" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><input type="hidden" name="ff-grad" data-req="1"><ul class="cdrop-list" role="listbox" tabindex="-1"><li class="cdrop-opt" role="option" data-value="Before 2020">Before 2020</li><li class="cdrop-opt" role="option" data-value="2020">2020</li><li class="cdrop-opt" role="option" data-value="2021">2021</li><li class="cdrop-opt" role="option" data-value="2022">2022</li><li class="cdrop-opt" role="option" data-value="2023">2023</li><li class="cdrop-opt" role="option" data-value="2024">2024</li><li class="cdrop-opt" role="option" data-value="2025">2025</li><li class="cdrop-opt" role="option" data-value="2026">2026</li><li class="cdrop-opt" role="option" data-value="2027 or later">2027 or later</li></ul></div>
             </div>
             <div class="form-field"><label for="ff-exp">Years of experience</label>
-              <select id="ff-exp" required>
-                <option value="" disabled selected>Select experience</option>
-                <option>0–1 years</option>
-                <option>1–2 years</option>
-                <option>2–3 years</option>
-                <option>3–4 years</option>
-                <option>4–5 years</option>
-                <option>5+ years</option>
-              </select>
+              <div class="cdrop"><button type="button" class="cdrop-trigger" id="ff-exp" aria-haspopup="listbox" aria-expanded="false"><span class="cdrop-value is-placeholder">Select experience</span><svg class="cdrop-arrow" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><input type="hidden" name="ff-exp" data-req="1"><ul class="cdrop-list" role="listbox" tabindex="-1"><li class="cdrop-opt" role="option" data-value="0–1 years">0–1 years</li><li class="cdrop-opt" role="option" data-value="1–2 years">1–2 years</li><li class="cdrop-opt" role="option" data-value="2–3 years">2–3 years</li><li class="cdrop-opt" role="option" data-value="3–4 years">3–4 years</li><li class="cdrop-opt" role="option" data-value="4–5 years">4–5 years</li><li class="cdrop-opt" role="option" data-value="5+ years">5+ years</li></ul></div>
             </div>
           </div>
           <div class="form-row">
             <div class="form-field"><label for="ff-role">Current role</label>
-              <select id="ff-role" required>
-                <option value="" disabled selected>Select role</option>
-                <option>Back-end</option>
-                <option>Cloud Engineer</option>
-                <option>Cyber Security</option>
-                <option>Data Engineer</option>
-                <option>Data Science</option>
-                <option>Front-end</option>
-                <option>Full Stack</option>
-                <option>Machine Learning / AI</option>
-                <option>Engineering Manager - any domain</option>
-                <option>Tech Product Manager</option>
-                <option>Technical Program Manager</option>
-                <option>Test Engineer / SDET / QE</option>
-                <option>Android Developer</option>
-                <option>iOS Developer</option>
-                <option>Site Reliability Engineer</option>
-                <option>Embedded Software Engineer</option>
-                <option>Other Software Engineers</option>
-                <option>Data Analyst / Business Analyst</option>
-                <option>DevOps Engineer</option>
-                <option>None of the above</option>
-              </select>
+              <div class="cdrop"><button type="button" class="cdrop-trigger" id="ff-role" aria-haspopup="listbox" aria-expanded="false"><span class="cdrop-value is-placeholder">Select role</span><svg class="cdrop-arrow" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><input type="hidden" name="ff-role" data-req="1"><ul class="cdrop-list" role="listbox" tabindex="-1"><li class="cdrop-opt" role="option" data-value="Back-end">Back-end</li><li class="cdrop-opt" role="option" data-value="Cloud Engineer">Cloud Engineer</li><li class="cdrop-opt" role="option" data-value="Cyber Security">Cyber Security</li><li class="cdrop-opt" role="option" data-value="Data Engineer">Data Engineer</li><li class="cdrop-opt" role="option" data-value="Data Science">Data Science</li><li class="cdrop-opt" role="option" data-value="Front-end">Front-end</li><li class="cdrop-opt" role="option" data-value="Full Stack">Full Stack</li><li class="cdrop-opt" role="option" data-value="Machine Learning / AI">Machine Learning / AI</li><li class="cdrop-opt" role="option" data-value="Engineering Manager - any domain">Engineering Manager - any domain</li><li class="cdrop-opt" role="option" data-value="Tech Product Manager">Tech Product Manager</li><li class="cdrop-opt" role="option" data-value="Technical Program Manager">Technical Program Manager</li><li class="cdrop-opt" role="option" data-value="Test Engineer / SDET / QE">Test Engineer / SDET / QE</li><li class="cdrop-opt" role="option" data-value="Android Developer">Android Developer</li><li class="cdrop-opt" role="option" data-value="iOS Developer">iOS Developer</li><li class="cdrop-opt" role="option" data-value="Site Reliability Engineer">Site Reliability Engineer</li><li class="cdrop-opt" role="option" data-value="Embedded Software Engineer">Embedded Software Engineer</li><li class="cdrop-opt" role="option" data-value="Other Software Engineers">Other Software Engineers</li><li class="cdrop-opt" role="option" data-value="Data Analyst / Business Analyst">Data Analyst / Business Analyst</li><li class="cdrop-opt" role="option" data-value="DevOps Engineer">DevOps Engineer</li><li class="cdrop-opt" role="option" data-value="None of the above">None of the above</li></ul></div>
             </div>
             <div class="form-field"><label for="ff-target">Where do you want to be?</label>
-              <select id="ff-target" required>
-                <option value="" disabled selected>Your target</option>
-                <option>AI / ML Engineer</option>
-                <option>Agentic AI Engineer</option>
-                <option>SWE at a MAANG+ company</option>
-                <option>Machine Learning Engineer</option>
-                <option>Senior / Staff Engineer</option>
-                <option>Switch to a higher-paying role</option>
-                <option>Still exploring my path</option>
-              </select>
+              <div class="cdrop"><button type="button" class="cdrop-trigger" id="ff-target" aria-haspopup="listbox" aria-expanded="false"><span class="cdrop-value is-placeholder">Your target</span><svg class="cdrop-arrow" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><input type="hidden" name="ff-target" data-req="1"><ul class="cdrop-list" role="listbox" tabindex="-1"><li class="cdrop-opt" role="option" data-value="AI / ML Engineer">AI / ML Engineer</li><li class="cdrop-opt" role="option" data-value="Agentic AI Engineer">Agentic AI Engineer</li><li class="cdrop-opt" role="option" data-value="SWE at a MAANG+ company">SWE at a MAANG+ company</li><li class="cdrop-opt" role="option" data-value="Machine Learning Engineer">Machine Learning Engineer</li><li class="cdrop-opt" role="option" data-value="Senior / Staff Engineer">Senior / Staff Engineer</li><li class="cdrop-opt" role="option" data-value="Switch to a higher-paying role">Switch to a higher-paying role</li><li class="cdrop-opt" role="option" data-value="Still exploring my path">Still exploring my path</li></ul></div>
             </div>
           </div>
           <button type="submit" class="btn btn-primary"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> →</button>
@@ -2442,8 +2423,35 @@ stickyObs.observe(heroSection);
 // Form
 document.getElementById('regForm').addEventListener('submit', function(e) {
   e.preventDefault();
+  var _ok=true,_bad=null; this.querySelectorAll('.cdrop input[type=hidden][data-req]').forEach(function(h){var d=h.closest('.cdrop'); if(!h.value){d.classList.add('error');_ok=false;if(!_bad)_bad=d;}else{d.classList.remove('error');}}); if(!_ok){ if(_bad){_bad.scrollIntoView({block:'center',behavior:'smooth'}); _bad.querySelector('.cdrop-trigger').focus();} return; }
   this.innerHTML = '<div style="text-align:center;padding:1.25rem"><div style="font-size:1.75rem;margin-bottom:0.4rem;color:var(--green)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div><h4 style="color:var(--white);font-size:1rem">You\'re registered!</h4><p style="color:var(--silver);font-size:0.82rem">Check your email for the Zoom link.</p></div>';
 });
+
+// Custom dropdowns (smooth, accessible)
+(function(){
+  function closeAll(except){
+    document.querySelectorAll('.cdrop.open').forEach(function(d){ if(d!==except){ d.classList.remove('open','drop-up'); var t=d.querySelector('.cdrop-trigger'); if(t) t.setAttribute('aria-expanded','false'); } });
+  }
+  function init(drop){
+    var trigger=drop.querySelector('.cdrop-trigger'), valueEl=drop.querySelector('.cdrop-value'),
+        hidden=drop.querySelector('input[type=hidden]'), opts=[].slice.call(drop.querySelectorAll('.cdrop-opt'));
+    var activeIdx=-1;
+    function setActive(i){ opts.forEach(function(o){o.classList.remove('active');}); if(i>=0&&i<opts.length){opts[i].classList.add('active'); opts[i].scrollIntoView({block:'nearest'}); activeIdx=i;} else { activeIdx=-1; } }
+    function open(){ closeAll(drop); var r=trigger.getBoundingClientRect(); drop.classList.toggle('drop-up', (window.innerHeight - r.bottom) < 280 && r.top > 280); drop.classList.add('open'); trigger.setAttribute('aria-expanded','true'); var sel=drop.querySelector('.cdrop-opt.selected'); setActive(sel?opts.indexOf(sel):-1); }
+    function close(){ drop.classList.remove('open','drop-up'); trigger.setAttribute('aria-expanded','false'); }
+    function choose(o){ opts.forEach(function(x){x.classList.remove('selected');}); o.classList.add('selected'); valueEl.textContent=o.textContent; valueEl.classList.remove('is-placeholder'); hidden.value=o.getAttribute('data-value'); drop.classList.remove('error'); close(); trigger.focus(); }
+    trigger.addEventListener('click', function(e){ e.stopPropagation(); drop.classList.contains('open')?close():open(); });
+    opts.forEach(function(o){ o.addEventListener('click', function(e){ e.stopPropagation(); choose(o); }); });
+    trigger.addEventListener('keydown', function(e){
+      if(e.key==='ArrowDown'){ e.preventDefault(); if(!drop.classList.contains('open')) open(); else setActive(Math.min(activeIdx+1, opts.length-1)); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); if(drop.classList.contains('open')) setActive(Math.max(activeIdx-1, 0)); }
+      else if(e.key==='Enter'||e.key===' '){ if(drop.classList.contains('open')&&activeIdx>=0){ e.preventDefault(); choose(opts[activeIdx]); } else if(!drop.classList.contains('open')){ e.preventDefault(); open(); } }
+      else if(e.key==='Escape'){ close(); }
+    });
+  }
+  document.addEventListener('click', function(){ closeAll(null); });
+  document.querySelectorAll('.cdrop').forEach(init);
+})();
 
 // Countdown
 function updateCountdown() {
