@@ -566,7 +566,7 @@ section { padding: 4rem 0; }
 @media (max-width: 480px) { .section-header { margin-bottom: 2rem; } }
 .section-header h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 4.2vw, 2.7rem);
+  font-size: clamp(2rem, 4.8vw, 3.1rem);
   font-weight: 800;
   color: var(--white);
   line-height: 1.2;
@@ -1098,7 +1098,7 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 @media (max-width: 600px) {
   section { padding: 2.4rem 0; }
   .section-header { margin-bottom: 1.5rem; }
-  .section-header h2 { font-size: 1.75rem; line-height: 1.2; }
+  .section-header h2 { font-size: 2.1rem; line-height: 1.18; }
   .section-header p { font-size: 0.85rem; }
   .section-header .eyebrow, .section-header .reveal .eyebrow { margin-bottom: 0.5rem; }
   /* Hero */
@@ -1136,7 +1136,7 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 }
 @media (max-width: 400px) {
   .hero-headline-main { font-size: 1.8rem; }
-  .section-header h2 { font-size: 1.55rem; }
+  .section-header h2 { font-size: 1.85rem; }
 }
 
 /* ════════ SECTIONAL LAYERED BACKDROP SYSTEM (ghost-UI watermark) ════════ */
@@ -1503,7 +1503,7 @@ body[data-theme="light"] .cv-sep { color: #15803D; border-color: rgba(150,190,30
 
 /* [8] Desktop typography scale-up (maintains hierarchy) */
 @media (min-width: 1024px) {
-  .section-header h2 { font-size: clamp(2rem, 3.4vw, 2.9rem); }
+  .section-header h2 { font-size: clamp(2.5rem, 4vw, 3.6rem); }
   .section-header p { font-size: 1.05rem; line-height: 1.65; }
   .hero-subline { font-size: 1.16rem; }
   .edge-card h3, .curric-card h3, .practice-card h4 { font-size: 1.15rem; }
@@ -1926,13 +1926,16 @@ body[data-theme="light"] .cv-sep { color: #15803D; border-color: rgba(150,190,30
   <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:8%; right:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Outcomes</div><div class="gh-mrow"><span class="gh-ml">Mentors</span><span class="gh-mv">700+</span></div><div class="gh-mrow"><span class="gh-ml">Live mocks</span><span class="gh-mv">2</span></div><div class="gh-mrow"><span class="gh-ml">Projects</span><span class="gh-mv">Capstone</span></div></div></div></div></div><div class="gh" style="bottom:9%; left:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Readiness</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">92</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Resume</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">ATS</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">Mocks</span><span class="gh-mv">&check;</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">The Interview Kickstart Edge</div>
+      <div class="eyebrow reveal"><span class="edge-lockup"><span class="ik-mono">{<i>ik</i>}</span> The Interview Kickstart Edge</span></div>
       <h2 class="reveal">What you get that others don't.</h2>
     </div>
     <div class="edge-grid">
+      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M8.5 13h.01M15.5 13h.01M9 18v2M15 18v2"/></svg></div><span class="edge-meta">→ 700+ instructors</span></div><h3>Taught by people who hire</h3><p>Live classes from engineers, hiring managers, and tech leads at MAANG+ — not career coaches reading slides.</p></div>
+      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><span class="edge-meta">→ Live sessions</span></div><h3>Live + mentor-guided</h3><p>Interactive workshops with real-time support — not pre-recorded videos you watch alone and never finish.</p></div>
+      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.4L5 16v3h3l5.1-5a3.5 3.5 0 0 1 4.4-4.6l-2.3 2.3-2.1-.6-.6-2.1 2.5-2.5z"/></svg></div><span class="edge-meta">→ Real stack</span></div><h3>Industry-trusted tools</h3><p>Work with tools MAANG+ teams use daily: LangChain, MCP, LangGraph, Firebase — not toy examples.</p></div>
+      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1 1-1.4 4-1.4 4s3-.4 4-1.4M9.5 11.5a8 8 0 0 1 7.5-8.5c2 0 3 1 3 3a8 8 0 0 1-8.5 7.5l-2-2z"/><circle cx="14.5" cy="9.5" r="1.2"/></svg></div><span class="edge-meta">→ Ship real work</span></div><h3>Career-boosting outcomes</h3><p>Graduate with portfolio-ready projects and skills that actually get you through the door.</p></div>
       <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><span class="edge-meta">→ 2 live mocks</span></div><h3>Real mock practice</h3><p>Two live mocks with detailed feedback from engineers who've sat on the other side of the table.</p></div>
       <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></div></div><div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities</b></span></div><h3>Careers team in your corner</h3><p>Resume, LinkedIn, salary negotiation, and curated application opportunities when you qualify (T&amp;C apply).</p></div>
-      <div class="edge-card card-3d reveal edge-spin-card"><div class="edge-spin"><div class="ring"></div><div class="ring2"></div><div class="core">Upgraded<br>Profile</div></div><div class="edge-spin-body"><h3>An upgraded profile</h3><p>Portfolio, resume, and proof-of-skill that move you up the stack — visibly hireable.</p></div></div>
     </div>
   </div>
 </section>
