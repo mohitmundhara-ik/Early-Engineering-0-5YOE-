@@ -127,7 +127,7 @@ body[data-theme="light"] .practice-icon, body[data-theme="light"] .readiness-col
   font-weight: 500;
 }
 .btn-terminal:hover { background: var(--ink2); border-color: var(--lime); }
-.btn-terminal::before { content: '$ '; opacity: 0.5; }
+.btn-terminal::before { content: ''; }
 @media (max-width: 480px) { .btn-terminal { font-size: 0.75rem; } }
 
 /* Ribbon */
@@ -1454,6 +1454,78 @@ body[data-theme="light"] .tool-pill { background: #FFFFFF; border-color: rgba(10
 body[data-theme="light"] .tool-pill svg.mono { color: #0A0B0D; }
 body[data-theme="light"] .tool-pill.glyph svg { color: #15803D; }
 @media (prefers-reduced-motion: reduce) { .tool-marquee-track { animation: none; } .tool-marquee-wrap { overflow-x: auto; } }
+
+/* ═══ FINAL POLISH PASS ═══ */
+
+/* [3] Tighten "Register FREE Webinar" into one cohesive unit */
+.cta-free { font-weight: 800; letter-spacing: 0; font-size: 1em; }
+/* [4] Make FREE visible on the lime nav button (was lime-on-lime) */
+.nav-cta .cta-free { color: var(--black); }
+body[data-theme="light"] .nav-cta .cta-free { color: #0A0B0D; }
+
+/* [1] Premium webinar form fields (Linear/Stripe/Vercel feel) */
+.cta-form { padding: 1.75rem; }
+.cta-form .form-field { margin-bottom: 0.8rem; }
+.cta-form .form-field label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.005em; color: var(--silver); margin-bottom: 0.4rem; text-transform: none; }
+.cta-form .form-field input, .cta-form .form-field select {
+  width: 100%; min-height: 50px; padding: 0 0.95rem; border-radius: 12px;
+  background: rgba(255,255,255,0.025); border: 1.5px solid var(--steel); color: var(--white);
+  font-size: 16px; outline: none; -webkit-appearance: none; appearance: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.cta-form .form-field input::placeholder { color: var(--muted); }
+.cta-form .form-field input:hover, .cta-form .form-field select:hover { border-color: rgba(191,255,0,0.45); background: rgba(255,255,255,0.05); }
+.cta-form .form-field input:focus, .cta-form .form-field select:focus { border-color: var(--lime); background: rgba(255,255,255,0.05); box-shadow: 0 0 0 3px rgba(191,255,0,0.16); }
+.cta-form .form-field select { cursor: pointer; padding-right: 2.4rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394A3B8' d='M6 8L2 4h8z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.95rem center; }
+.cta-form .form-row { gap: 0.7rem; margin-bottom: 0; }
+.cta-form .btn { margin-top: 0.75rem; min-height: 52px; }
+body[data-theme="light"] .cta-form .form-field input, body[data-theme="light"] .cta-form .form-field select { background: #FFFFFF; border-color: rgba(10,10,15,0.14); }
+body[data-theme="light"] .cta-form .form-field input:hover, body[data-theme="light"] .cta-form .form-field select:hover { border-color: rgba(150,190,30,0.6); }
+body[data-theme="light"] .cta-form .form-field input:focus, body[data-theme="light"] .cta-form .form-field select:focus { border-color: #15803D; box-shadow: 0 0 0 3px rgba(196,245,66,0.3); }
+
+/* [6] Prominent "5 Application Opportunities" on the careers edge card */
+.edge-opp { display: flex; align-items: center; gap: 0.85rem; margin: 0.2rem 0 0.85rem; }
+.edge-opp-num { font-family: var(--font-display); font-size: 3.6rem; font-weight: 800; line-height: 0.85; color: var(--lime); letter-spacing: -0.02em; }
+.edge-opp-stack { display: flex; flex-direction: column; line-height: 1.12; }
+.edge-opp-stack b { font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; color: var(--white); }
+body[data-theme="light"] .edge-opp-num { color: #15803D; }
+.edge-opp-card { border-color: rgba(191,255,0,0.4); background: linear-gradient(160deg, var(--ink2), rgba(191,255,0,0.05)); }
+
+/* [7] 89% vs 19% comparison card */
+.crisis-vs { display: flex; align-items: stretch; gap: 0.6rem; margin: 0.3rem 0 0.85rem; }
+.cv-col { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; }
+.cv-num { font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 2.7rem); font-weight: 800; line-height: 1; color: var(--silver); letter-spacing: -0.02em; }
+.cv-col.cv-hl .cv-num { background: linear-gradient(135deg, var(--lime), #9BE000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+body[data-theme="light"] .cv-col.cv-hl .cv-num { background: none; -webkit-text-fill-color: #15803D; color: #15803D; }
+.cv-lbl { font-size: 0.74rem; color: var(--muted); line-height: 1.35; }
+.cv-sep { align-self: center; font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700; color: var(--lime); border: 1px solid rgba(191,255,0,0.35); border-radius: 100px; padding: 0.2rem 0.45rem; height: fit-content; }
+body[data-theme="light"] .cv-sep { color: #15803D; border-color: rgba(150,190,30,0.5); }
+
+/* [8] Desktop typography scale-up (maintains hierarchy) */
+@media (min-width: 1024px) {
+  .section-header h2 { font-size: clamp(2rem, 3.4vw, 2.9rem); }
+  .section-header p { font-size: 1.05rem; line-height: 1.65; }
+  .hero-subline { font-size: 1.16rem; }
+  .edge-card h3, .curric-card h3, .practice-card h4 { font-size: 1.15rem; }
+  .edge-card p, .practice-card p, .curric-card p, .career-item, .crisis-body { font-size: 0.92rem; line-height: 1.6; }
+  .crisis-head { font-size: 1.05rem; }
+  .crisis-num { font-size: 2.6rem; }
+  .tm-name { font-size: 0.9rem; }
+  .tm-desc { font-size: 0.82rem; }
+  .instructor-name { font-size: 0.95rem; }
+  .faq-q h4 { font-size: 1.02rem; }
+  .faq-a p { font-size: 0.95rem; }
+  .emi-pm span, .emi-total b { font-size: 1.05em; }
+  .eyebrow { font-size: 0.8rem; }
+  .tw-quote { font-size: 0.95rem; }
+  .rating-chip { font-size: 0.84rem; }
+}
+
+/* [11] Mobile: hide the your_career.py terminal (keep chips + CTAs) */
+@media (max-width: 768px) {
+  .hero-terminal-wrap { display: none !important; }
+  .terminal-meta { margin-top: 0; }
+}
 </style>
 </head>
 <body>
@@ -1554,12 +1626,6 @@ body[data-theme="light"] .tool-pill.glyph svg { color: #15803D; }
               <pre id="terminalCode"></pre>
             </div>
           </div>
-          <!-- Floating badges (anchored to the terminal only) -->
-          <span class="float-badge fb-cohort"><span class="fb-dot lime"></span>Next Cohort - July Cohort</span>
-          <span class="float-badge fb-dsa"><span class="fb-dot blue"></span>Live DSA · 9 weeks</span>
-          <span class="float-badge fb-seats"><span class="fb-dot lime"></span>23 seats left</span>
-          <span class="float-badge fb-mock"><span class="fb-dot blue"></span>Live Mock Interview</span>
-          <span class="float-badge fb-agentic"><span class="fb-dot lime"></span>Agentic AI · 5 Weeks Live</span>
         </div>
 
         <!-- Item 4: under-terminal cohort details + actions -->
@@ -1645,19 +1711,6 @@ body[data-theme="light"] .tool-pill.glyph svg { color: #15803D; }
       <h2 class="opp-h2 reveal">The biggest opportunity in engineering isn't AI.&nbsp; It's the gap between <span class="hl-muted">using AI</span> and <span class="gradient-text">building it</span>.</h2>
     </div>
 
-    <div class="gap-stats reveal">
-      <div class="gap-stat">
-        <div class="gap-num">89%</div>
-        <div class="gap-label">of engineers <b>believe</b> they're AI-ready</div>
-      </div>
-      <div class="gap-divider"><span class="gap-vs">VS</span></div>
-      <div class="gap-stat accent">
-        <div class="gap-num">19%</div>
-        <div class="gap-label">are actually <b>building</b> AI systems</div>
-      </div>
-    </div>
-    <p class="gap-caption reveal">That 70-point gap is exactly where offers are won or lost. This track puts you in the <b style="color:var(--lime)">19%</b>.</p>
-    <p class="gap-source reveal">Source: CyberMedia Research – AI Skilling Survey (Engineers n=400)</p>
 
     <div class="transform-grid">
       <div class="transform-card before card-3d reveal">
@@ -1693,10 +1746,14 @@ body[data-theme="light"] .tool-pill.glyph svg { color: #15803D; }
     </div>
 
     <div class="crisis-grid" style="margin-top:1.5rem">
-      <div class="crisis-card card-3d reveal">
-        <div class="crisis-top"><span class="crisis-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0M16 6.5a3 3 0 0 1 0 5.6M22 20a5.5 5.5 0 0 0-4-5.3"/></svg></span><div class="crisis-num">10<span>×</span></div></div>
-        <div class="crisis-head">Open agentic-AI roles per qualified engineer</div>
-        <div class="crisis-body">Demand for engineers who can ship RAG and multi-agent systems is far outpacing the supply of people who actually can.</div>
+      <div class="crisis-card card-3d accent reveal">
+        <div class="crisis-vs">
+          <div class="cv-col"><span class="cv-num">89%</span><span class="cv-lbl">believe they're AI-ready</span></div>
+          <span class="cv-sep">VS</span>
+          <div class="cv-col cv-hl"><span class="cv-num">19%</span><span class="cv-lbl">actually building AI systems</span></div>
+        </div>
+        <div class="crisis-body">That 70-point gap is exactly where offers are won or lost. This track puts you in the <b style="color:var(--lime)">19%</b>.</div>
+        <div class="crisis-src hl">Source: CyberMedia Research &ndash; AI Skilling Survey (Engineers n=400)</div>
       </div>
       <div class="crisis-card card-3d reveal">
         <div class="crisis-top"><span class="crisis-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 20v-6M13 20V9M18 20v-9"/></svg></span><div class="crisis-num">71<span>%</span></div></div>
@@ -1869,12 +1926,12 @@ body[data-theme="light"] .tool-pill.glyph svg { color: #15803D; }
   <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:8%; right:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Outcomes</div><div class="gh-mrow"><span class="gh-ml">Mentors</span><span class="gh-mv">700+</span></div><div class="gh-mrow"><span class="gh-ml">Live mocks</span><span class="gh-mv">2</span></div><div class="gh-mrow"><span class="gh-ml">Projects</span><span class="gh-mv">Capstone</span></div></div></div></div></div><div class="gh" style="bottom:9%; left:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Readiness</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">92</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Resume</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">ATS</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">Mocks</span><span class="gh-mv">&check;</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal"><span class="edge-lockup"><span class="ik-mono">{<i>ik</i>}</span> The Interview Kickstart Edge</span></div>
+      <div class="eyebrow reveal">The Interview Kickstart Edge</div>
       <h2 class="reveal">What you get that others don't.</h2>
     </div>
     <div class="edge-grid">
       <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><span class="edge-meta">→ 2 live mocks</span></div><h3>Real mock practice</h3><p>Two live mocks with detailed feedback from engineers who've sat on the other side of the table.</p></div>
-      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></div><span class="edge-meta">→ 5 opp. (T&C)</span></div><h3>Careers team in your corner</h3><p>Resume, LinkedIn, salary negotiation, and application opportunities when you qualify.</p></div>
+      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></div></div><div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities</b></span></div><h3>Careers team in your corner</h3><p>Resume, LinkedIn, salary negotiation, and curated application opportunities when you qualify (T&amp;C apply).</p></div>
       <div class="edge-card card-3d reveal edge-spin-card"><div class="edge-spin"><div class="ring"></div><div class="ring2"></div><div class="core">Upgraded<br>Profile</div></div><div class="edge-spin-body"><h3>An upgraded profile</h3><p>Portfolio, resume, and proof-of-skill that move you up the stack — visibly hireable.</p></div></div>
     </div>
   </div>
@@ -2245,6 +2302,7 @@ body[data-theme="light"] .tool-pill.glyph svg { color: #15803D; }
   function typeLine() {
     if (i >= lines.length) {
       el.innerHTML = built + '<span class="terminal-cursor"></span>';
+      setTimeout(function() { i = 0; built = ''; typeLine(); }, 4500);
       return;
     }
     built += (i > 0 ? '\n' : '') + lines[i].html;
