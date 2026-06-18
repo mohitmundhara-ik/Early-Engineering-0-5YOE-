@@ -8,6 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="format-detection" content="telephone=no">
 <title>Applied AI Accelerator for NextGen Engineers — Interview Kickstart India</title>
+<meta name="description" content="A 14-week live program for early-career engineers (0–5 YOE) to master DSA, System Design, and Agentic AI — taught by 700+ MAANG+ practitioners. Build RAG and multi-agent systems and target AI engineering roles. Register for the free webinar.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23BFFF00'/%3E%3Ctext x='50' y='50' font-family='monospace' font-size='52' font-weight='700' fill='%23050A0E' text-anchor='middle' dominant-baseline='central'%3Eik%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23BFFF00'/%3E%3Ctext x='50' y='50' font-family='monospace' font-size='52' font-weight='700' fill='%23050A0E' text-anchor='middle' dominant-baseline='central'%3Eik%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +22,7 @@
   --ink2: #0F1D32;
   --slate: #1A2942;
   --steel: #2A3F5F;
-  --muted: #64748B;
+  --muted: #7D8CA1;
   --silver: #94A3B8;
   --white: #FFFFFF;
   --lime: #BFFF00;
@@ -624,7 +625,7 @@ section { padding: 4rem 0; }
 .acc-desc { font-size: 0.86rem; color: var(--silver); line-height: 1.6; margin-bottom: 1rem; }
 .acc-cols { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 @media (min-width: 640px) { .acc-cols { grid-template-columns: 1.4fr 1fr; gap: 1.5rem; } }
-.acc-cols h5 { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.6rem; }
+.acc-cols .acc-col-h { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.6rem; }
 .acc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
 .acc-list li { font-size: 0.84rem; color: var(--silver); padding-left: 1.2rem; position: relative; line-height: 1.4; }
 .acc-list li::before { content: '✓'; position: absolute; left: 0; color: var(--lime); font-weight: 700; }
@@ -995,8 +996,8 @@ body[data-theme="light"] .grid-backdrop::before {
 .faq-item { border-bottom: 1px solid var(--slate); }
 .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; cursor: pointer; gap: 1rem; -webkit-tap-highlight-color: transparent; }
 .faq-q:hover { color: var(--white); }
-.faq-q h4 { font-size: 0.9rem; font-weight: 600; flex: 1; }
-@media (max-width: 480px) { .faq-q h4 { font-size: 0.85rem; } }
+.faq-q h3 { font-size: 0.9rem; font-weight: 600; flex: 1; }
+@media (max-width: 480px) { .faq-q h3 { font-size: 0.85rem; } }
 .faq-q .arrow { font-size: 0.6rem; color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
 .faq-item.open .faq-q .arrow { transform: rotate(180deg); color: var(--lime); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
@@ -1513,7 +1514,7 @@ body[data-theme="light"] .cv-sep { color: #15803D; border-color: rgba(150,190,30
   .tm-name { font-size: 0.9rem; }
   .tm-desc { font-size: 0.82rem; }
   .instructor-name { font-size: 0.95rem; }
-  .faq-q h4 { font-size: 1.02rem; }
+  .faq-q h3 { font-size: 1.02rem; }
   .faq-a p { font-size: 0.95rem; }
   .emi-pm span, .emi-total b { font-size: 1.05em; }
   .eyebrow { font-size: 0.8rem; }
@@ -1891,8 +1892,8 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
         <div class="acc-body"><div class="acc-inner">
           <p class="acc-desc">A self-paced primer for anyone who needs Python before the Agentic AI track. Skip it if you already code in Python.</p>
           <div class="acc-cols">
-            <div><h5>Key topics</h5><ul class="acc-list"><li>Environment setup &amp; syntax</li><li>Data types, operators, control flow</li><li>Functions &amp; scope</li><li>Lists, dictionaries &amp; sets</li><li>Intro to OOP in Python</li></ul></div>
-            <div><h5>Tools</h5><div class="acc-tags"><span>Python</span><span>Jupyter</span><span>Google Colab</span></div></div>
+            <div><p class="acc-col-h">Key topics</p><ul class="acc-list"><li>Environment setup &amp; syntax</li><li>Data types, operators, control flow</li><li>Functions &amp; scope</li><li>Lists, dictionaries &amp; sets</li><li>Intro to OOP in Python</li></ul></div>
+            <div><p class="acc-col-h">Tools</p><div class="acc-tags"><span>Python</span><span>Jupyter</span><span>Google Colab</span></div></div>
           </div>
         </div></div>
       </div>
@@ -1904,8 +1905,8 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
         <div class="acc-body"><div class="acc-inner">
           <p class="acc-desc">One week of AI-powered interview prep with Claude Code, then five weeks of language-agnostic DSA taught in pseudocode.</p>
           <div class="acc-cols">
-            <div><h5>Key topics</h5><ul class="acc-list"><li>AI-powered interview prep with Claude Code</li><li>Sorting algorithms &amp; complexity analysis</li><li>Recursion &amp; backtracking</li><li>Trees, heaps &amp; tries</li><li>Graphs: BFS, DFS, shortest paths</li><li>Dynamic programming patterns</li></ul></div>
-            <div><h5>Tools</h5><div class="acc-tags"><span>Claude Code</span><span>Pseudocode</span><span>CLI</span></div></div>
+            <div><p class="acc-col-h">Key topics</p><ul class="acc-list"><li>AI-powered interview prep with Claude Code</li><li>Sorting algorithms &amp; complexity analysis</li><li>Recursion &amp; backtracking</li><li>Trees, heaps &amp; tries</li><li>Graphs: BFS, DFS, shortest paths</li><li>Dynamic programming patterns</li></ul></div>
+            <div><p class="acc-col-h">Tools</p><div class="acc-tags"><span>Claude Code</span><span>Pseudocode</span><span>CLI</span></div></div>
           </div>
         </div></div>
       </div>
@@ -1917,8 +1918,8 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
         <div class="acc-body"><div class="acc-inner">
           <p class="acc-desc">Build real agentic systems — RAG, multi-agent orchestration, observability, MCP — and ship a portfolio-ready capstone.</p>
           <div class="acc-cols">
-            <div><h5>Key topics</h5><ul class="acc-list"><li>RAG pipelines &amp; vector databases</li><li>Multi-agent systems with LangGraph</li><li>Observability &amp; evaluation</li><li>Model Context Protocol (MCP) &amp; deployment</li><li>End-to-end capstone &amp; demo day</li></ul></div>
-            <div><h5>Tools</h5><div class="acc-tags"><span>LangChain</span><span>LangGraph</span><span>ChromaDB</span><span>Pinecone</span><span>LangSmith</span><span>MCP</span><span>Streamlit</span><span>Hugging Face</span><span>Claude API</span></div></div>
+            <div><p class="acc-col-h">Key topics</p><ul class="acc-list"><li>RAG pipelines &amp; vector databases</li><li>Multi-agent systems with LangGraph</li><li>Observability &amp; evaluation</li><li>Model Context Protocol (MCP) &amp; deployment</li><li>End-to-end capstone &amp; demo day</li></ul></div>
+            <div><p class="acc-col-h">Tools</p><div class="acc-tags"><span>LangChain</span><span>LangGraph</span><span>ChromaDB</span><span>Pinecone</span><span>LangSmith</span><span>MCP</span><span>Streamlit</span><span>Hugging Face</span><span>Claude API</span></div></div>
           </div>
         </div></div>
       </div>
@@ -1930,8 +1931,8 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
         <div class="acc-body"><div class="acc-inner">
           <p class="acc-desc">Turn skills into offers — resume and profile, technical interview prep, behavioural rounds, and salary negotiation.</p>
           <div class="acc-cols">
-            <div><h5>Key topics</h5><ul class="acc-list"><li>ATS-friendly resume &amp; portfolio</li><li>LinkedIn &amp; GitHub optimisation</li><li>Technical interview strategy &amp; mocks</li><li>STAR method for behavioural rounds</li><li>Salary research &amp; offer negotiation</li></ul></div>
-            <div><h5>Tools</h5><div class="acc-tags"><span>Mock platforms</span><span>STAR framework</span><span>Salary benchmarks</span></div></div>
+            <div><p class="acc-col-h">Key topics</p><ul class="acc-list"><li>ATS-friendly resume &amp; portfolio</li><li>LinkedIn &amp; GitHub optimisation</li><li>Technical interview strategy &amp; mocks</li><li>STAR method for behavioural rounds</li><li>Salary research &amp; offer negotiation</li></ul></div>
+            <div><p class="acc-col-h">Tools</p><div class="acc-tags"><span>Mock platforms</span><span>STAR framework</span><span>Salary benchmarks</span></div></div>
           </div>
         </div></div>
       </div>
@@ -2110,12 +2111,12 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
       <h2 class="reveal">Questions, answered.</h2>
     </div>
     <div class="faq-list">
-      <div class="faq-item"><div class="faq-q"><h4>Who is this track for?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>Engineers building the foundation of their careers — final-year students, recent graduates, and those in their first engineering roles.</p></div></div>
-      <div class="faq-item"><div class="faq-q"><h4>Do I need to be working already?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>No. Final-year students, new grads, and engineers in their first roles are all welcome.</p></div></div>
-      <div class="faq-item"><div class="faq-q"><h4>Is it live or self-paced?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>Both. DSA and Agentic AI run live. System design and electives are self-paced.</p></div></div>
-      <div class="faq-item"><div class="faq-q"><h4>What does it cost?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>The program fee is ₹70,000, with 0% no-cost EMI from ₹5,834/month. Scholarships and financing options are confirmed live in the free webinar.</p></div></div>
-      <div class="faq-item"><div class="faq-q"><h4>What are "application opportunities"?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>When you meet the eligibility criteria, the Careers Team puts your profile forward for relevant openings. Opportunities to apply — not a job guarantee.</p></div></div>
-      <div class="faq-item"><div class="faq-q"><h4>Is there a refund policy?</h4><span class="arrow">▼</span></div><div class="faq-a"><p>Yes. 14-day refund window from your first class, same-day processing.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h3>Who is this track for?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>Engineers building the foundation of their careers — final-year students, recent graduates, and those in their first engineering roles.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h3>Do I need to be working already?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>No. Final-year students, new grads, and engineers in their first roles are all welcome.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h3>Is it live or self-paced?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>Both. DSA and Agentic AI run live. System design and electives are self-paced.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h3>What does it cost?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>The program fee is ₹70,000, with 0% no-cost EMI from ₹5,834/month. Scholarships and financing options are confirmed live in the free webinar.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h3>What are "application opportunities"?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>When you meet the eligibility criteria, the Careers Team puts your profile forward for relevant openings. Opportunities to apply — not a job guarantee.</p></div></div>
+      <div class="faq-item"><div class="faq-q"><h3>Is there a refund policy?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>Yes. 14-day refund window from your first class, same-day processing.</p></div></div>
     </div>
   </div>
 </section>
@@ -2142,13 +2143,13 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
         <div class="cta-fomo"><span class="fomo-dot"></span>Only <b>23</b> seats left in <b>July cohort</b></div>
         <form id="regForm">
           <div class="form-row">
-            <div class="form-field"><label>Full name</label><input type="text" placeholder="Your name" required></div>
-            <div class="form-field"><label>Phone</label><input type="tel" placeholder="+91" required></div>
+            <div class="form-field"><label for="ff-name">Full name</label><input id="ff-name" type="text" placeholder="Your name" required></div>
+            <div class="form-field"><label for="ff-phone">Phone</label><input id="ff-phone" type="tel" placeholder="+91" required></div>
           </div>
-          <div class="form-field"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+          <div class="form-field"><label for="ff-email">Email</label><input id="ff-email" type="email" placeholder="you@email.com" required></div>
           <div class="form-row">
-            <div class="form-field"><label>Graduation year (UG/PG)</label>
-              <select required>
+            <div class="form-field"><label for="ff-grad">Graduation year (UG/PG)</label>
+              <select id="ff-grad" required>
                 <option value="" disabled selected>Select year</option>
                 <option>Before 2020</option>
                 <option>2020</option>
@@ -2161,8 +2162,8 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
                 <option>2027 or later</option>
               </select>
             </div>
-            <div class="form-field"><label>Years of experience</label>
-              <select required>
+            <div class="form-field"><label for="ff-exp">Years of experience</label>
+              <select id="ff-exp" required>
                 <option value="" disabled selected>Select experience</option>
                 <option>0–1 years</option>
                 <option>1–2 years</option>
@@ -2174,8 +2175,8 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
             </div>
           </div>
           <div class="form-row">
-            <div class="form-field"><label>Current role</label>
-              <select required>
+            <div class="form-field"><label for="ff-role">Current role</label>
+              <select id="ff-role" required>
                 <option value="" disabled selected>Select role</option>
                 <option>Back-end</option>
                 <option>Cloud Engineer</option>
@@ -2199,8 +2200,8 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
                 <option>None of the above</option>
               </select>
             </div>
-            <div class="form-field"><label>Where do you want to be?</label>
-              <select required>
+            <div class="form-field"><label for="ff-target">Where do you want to be?</label>
+              <select id="ff-target" required>
                 <option value="" disabled selected>Your target</option>
                 <option>AI / ML Engineer</option>
                 <option>Agentic AI Engineer</option>
