@@ -847,7 +847,7 @@ body[data-theme="light"] .edge-section { background: linear-gradient(180deg, #FF
 body[data-theme="light"] .edge-section::after { background: radial-gradient(ellipse 58% 60% at 50% 38%, rgba(150,190,30,0.16), transparent 70%); }
 .edge-section > .wrap { position: relative; z-index: 1; }
 .edge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-@media (min-width: 640px) { .edge-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 768px) { .edge-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .edge-grid { grid-template-columns: repeat(3, 1fr); } }
 .edge-card { background: var(--ink2); border: 1px solid var(--slate); border-radius: 14px; padding: 1.5rem; transition: all 0.3s ease; }
 @media (max-width: 480px) { .edge-card { padding: 1.25rem; } }
@@ -1086,7 +1086,7 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   transform: translateY(100%);
   transition: transform 0.3s ease;
 }
-.sticky-left { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+.sticky-left { display: flex; align-items: center; gap: 0.6rem; min-width: 0; flex: 1 1 auto; }
 .sticky-ik { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 9px; background: #050A0E; color: var(--lime); font-family: var(--font-display); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
 @media (max-width: 480px) { .sticky-ik { display: none; } }
 .sticky-bar .btn-primary { background: #050A0E; color: #FFFFFF; box-shadow: none; }
@@ -1617,6 +1617,31 @@ body[data-theme="light"] .cdrop-opt.selected { color: #15803D; }
   .rating-chip .stars { font-size: 0.55rem; }
   .rating-chip .src { font-size: 0.58rem; }
 }
+
+/* ── Edge: horizontal slider on mobile so heavy cards never get clipped ── */
+@media (max-width: 767px) {
+  .edge-grid {
+    grid-template-columns: none;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.85rem;
+    padding: 0.25rem 0 0.85rem;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
+    mask-image: linear-gradient(90deg, #000 88%, transparent 100%);
+  }
+  .edge-grid::-webkit-scrollbar { display: none; }
+  .edge-card { flex: 0 0 84%; min-width: 84%; scroll-snap-align: start; }
+}
+@media (max-width: 480px) { .edge-card { flex-basis: 86%; min-width: 86%; } }
+
+/* ── Sticky bar: title truncates, button never overlaps, CTA visible in light mode ── */
+.sticky-text { min-width: 0; overflow: hidden; }
+.sticky-inner > .btn-primary, .sticky-bar .btn { flex-shrink: 0; width: auto; }
+body[data-theme="light"] .sticky-bar .btn-primary { color: #FFFFFF; }
+body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; background: #1A2942; }
 </style>
 </head>
 <body>
