@@ -1272,7 +1272,7 @@ body[data-theme="light"] .gh-bar i { background: rgba(10,10,15,0.12); }
 .opp-banner-sep { width: 1px; align-self: stretch; background: var(--steel); flex-shrink: 0; }
 .opp-banner-r { flex-shrink: 0; font-size: 0.95rem; color: var(--silver); line-height: 1.55; max-width: 220px; }
 .opp-banner b { color: var(--lime); font-weight: 700; }
-@media (max-width: 760px) { .opp-banner { flex-direction: column; align-items: flex-start; gap: 0.9rem; padding: 1.2rem; } .opp-banner-sep { width: 100%; height: 1px; align-self: auto; } .opp-banner-r { max-width: none; } }
+@media (max-width: 760px) { .opp-banner { flex-wrap: wrap; align-items: flex-start; gap: 0.7rem 0.85rem; padding: 1.2rem; } .opp-banner-ico { width: 30px; height: 30px; } .opp-banner-l { flex: 1 1 0; min-width: 0; } .opp-banner-sep { flex-basis: 100%; width: 100%; height: 1px; align-self: auto; } .opp-banner-r { flex: 1 1 100%; max-width: none; } }
 body[data-theme="light"] .tcard-media { background: radial-gradient(120% 120% at 30% 20%, #E8EEF6, #F4F4F0 72%); }
 body[data-theme="light"] .gap-divider .gap-vs { color: #15803D; border-color: rgba(22,163,74,0.5); background: rgba(196,245,66,0.18); }
 
@@ -1559,6 +1559,24 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
   .tmeta-chips { justify-content: center; }
   .tmeta-btns { justify-content: center; width: 100%; }
 }
+
+/* FIX: "FREE" spacing — label is one flex item, only the arrow keeps the gap */
+.cta-label { display: inline; }
+.cta-label .cta-free { margin: 0; }
+
+/* FIX: before-card image — keep the face in frame on mobile */
+@media (max-width: 700px) {
+  .transform-card.before .tcard-media { min-height: 200px; }
+  .transform-card.before .tcard-img { object-position: center 16%; }
+}
+
+/* FIX: "What our learners say" rating chips — 2x2 on mobile */
+@media (max-width: 560px) {
+  .rating-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; max-width: 360px; }
+  .rating-chip { justify-content: center; padding: 0.42rem 0.45rem; font-size: 0.7rem; gap: 0.3rem; }
+  .rating-chip .stars { font-size: 0.6rem; }
+  .rating-chip .src { font-size: 0.62rem; }
+}
 </style>
 </head>
 <body>
@@ -1592,7 +1610,7 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
           <span class="ts-thumb"></span>
         </span>
       </button>
-      <a href="#register" class="btn btn-primary nav-cta">Register <span class="cta-free">FREE</span> Webinar</a>
+      <a href="#register" class="btn btn-primary nav-cta"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span></a>
     </div>
   </div>
 </nav>
@@ -1629,7 +1647,7 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
         
         <!-- CTAs -->
         <div class="hero-ctas reveal reveal-delay-4">
-          <a href="#register" class="btn btn-primary">Register <span class="cta-free">FREE</span> Webinar →</a>
+          <a href="#register" class="btn btn-primary"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> →</a>
           <a href="#curriculum" class="btn btn-terminal">View Curriculum</a>
         </div>
 
@@ -1673,7 +1691,7 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
             <span class="tmeta-chip">Live Capstone Project</span>
           </div>
           <div class="tmeta-btns">
-            <a href="#register" class="btn btn-ghost-sm">Register <span class="cta-free">FREE</span> Webinar →</a>
+            <a href="#register" class="btn btn-ghost-sm"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> →</a>
             <a href="#curriculum" class="btn btn-terminal">View Curriculum</a>
           </div>
         </div>
@@ -1919,7 +1937,7 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
       </div>
     </div>
     <div class="curric-cta reveal">
-      <a href="#register" class="btn btn-primary">Register <span class="cta-free">FREE</span> Webinar &#8594;</a>
+      <a href="#register" class="btn btn-primary"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> &#8594;</a>
       <a href="#register" class="btn btn-ghost-sm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9.5 14.5 12 17l2.5-2.5"/></svg> Download Curriculum</a>
     </div>
   </div>
@@ -2120,7 +2138,7 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
         <span>Join <b>700+ early-career engineers</b> already in the cohort</span>
       </div>
       <div class="cta-form reveal">
-        <div class="cta-form-header"><h3>Register <span class="cta-free">FREE</span> Webinar</h3><p>Sat, 21 Jun · 6:30 PM IST</p></div>
+        <div class="cta-form-header"><h3><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span></h3><p>Sat, 21 Jun · 6:30 PM IST</p></div>
         <div class="cta-fomo"><span class="fomo-dot"></span>Only <b>23</b> seats left in <b>July cohort</b></div>
         <form id="regForm">
           <div class="form-row">
@@ -2194,7 +2212,7 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
               </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Register <span class="cta-free">FREE</span> Webinar →</button>
+          <button type="submit" class="btn btn-primary"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> →</button>
           <p class="privacy">By registering you agree to our privacy policy.</p>
         </form>
       </div>
