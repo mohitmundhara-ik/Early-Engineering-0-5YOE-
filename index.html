@@ -1650,12 +1650,12 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
 /* ═══════════════════════════════════════════
    IK EDGE — continuous sliding carousel + connectors
    ═══════════════════════════════════════════ */
-.edge-marquee-wrap { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); padding: 0.5rem 0; }
-.edge-marquee-track { display: flex; align-items: stretch; gap: 0; width: max-content; animation: edgeMarquee 48s linear infinite; }
-.edge-marquee-wrap:hover .edge-marquee-track { animation-play-state: paused; }
-@keyframes edgeMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.edge-marquee-wrap { position: relative; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); padding: 0.5rem 0; cursor: grab; scroll-behavior: auto; touch-action: pan-x; }
+.edge-marquee-wrap::-webkit-scrollbar { display: none; }
+.edge-marquee-wrap.dragging { cursor: grabbing; scroll-snap-type: none; }
+.edge-marquee-wrap.dragging .edge-slide, .edge-marquee-wrap.dragging .edge-connector { pointer-events: none; }
+.edge-marquee-track { display: flex; align-items: stretch; gap: 0; width: max-content; }
 @media (prefers-reduced-motion: reduce) {
-  .edge-marquee-track { animation: none; }
   .edge-marquee-wrap { overflow-x: auto; scrollbar-width: none; }
   .edge-marquee-wrap::-webkit-scrollbar { display: none; }
 }
@@ -1952,7 +1952,7 @@ body[data-theme="light"] .instr-brandline .iplus, body[data-theme="light"] .inst
       <div class="eyebrow reveal"><span class="edge-lockup"><span class="ik-mono">{<i>ik</i>}</span> The Interview Kickstart Edge</span></div>
       <h2 class="reveal">What you get that others don't.</h2>
     </div>
-    <div class="edge-marquee-wrap reveal">
+    <div class="edge-marquee-wrap reveal" id="edgeMarquee">
       <div class="edge-marquee-track">
         <!-- SET 1 -->
         <div class="edge-slide"><div class="edge-card card-3d"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M8.5 13h.01M15.5 13h.01M9 18v2M15 18v2"/></svg></div><span class="edge-meta">→ 700+ instructors</span></div><h3>Taught by people who hire</h3><p>Live classes from engineers, hiring managers, and tech leads at MAANG+.</p></div></div>
@@ -1982,7 +1982,7 @@ body[data-theme="light"] .instr-brandline .iplus, body[data-theme="light"] .inst
         <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
       </div>
     </div>
-    <p class="edge-slide-hint">← slides automatically · hover to pause →</p>
+    <p class="edge-slide-hint">← slides automatically · drag or swipe to explore →</p>
   </div>
 </section>
 
@@ -2550,6 +2550,82 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
   document.addEventListener('click', function(){ closeAll(null); });
   document.querySelectorAll('.cdrop').forEach(init);
 })();
+
+// ═══════════════════════════════════════════
+// IK EDGE — auto-scroll + manual drag/swipe
+// ═══════════════════════════════════════════
+(function() {
+  var wrap = document.getElementById('edgeMarquee');
+  if (!wrap) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SPEED = 0.5;            // px per frame for auto-scroll
+  var RESUME_DELAY = 2200;    // ms idle before auto-scroll resumes after interaction
+  var paused = false;
+  var resumeTimer = null;
+  var rafId = null;
+
+  function half() { return wrap.scrollWidth / 2; }      // track holds 2 identical sets
+  function normalize() {
+    var h = half();
+    if (h <= 0) return;
+    if (wrap.scrollLeft >= h) wrap.scrollLeft -= h;
+    else if (wrap.scrollLeft < 0) wrap.scrollLeft += h;
+  }
+  function tick() {
+    if (!paused && !reduce) { wrap.scrollLeft += SPEED; normalize(); }
+    rafId = requestAnimationFrame(tick);
+  }
+  function pause() { paused = true; if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; } }
+  function scheduleResume() {
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function(){ paused = false; }, RESUME_DELAY);
+  }
+
+  // Hover pauses (desktop), leaving resumes
+  wrap.addEventListener('mouseenter', pause);
+  wrap.addEventListener('mouseleave', function(){ if (!dragging) scheduleResume(); });
+
+  // Pointer drag (mouse + touch via Pointer Events)
+  var dragging = false, startX = 0, startScroll = 0, moved = false;
+  wrap.addEventListener('pointerdown', function(e) {
+    dragging = true; moved = false; pause();
+    startX = e.clientX; startScroll = wrap.scrollLeft;
+    wrap.classList.add('dragging');
+    try { wrap.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  wrap.addEventListener('pointermove', function(e) {
+    if (!dragging) return;
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 3) moved = true;
+    wrap.scrollLeft = startScroll - dx;
+    normalize();
+  });
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    wrap.classList.remove('dragging');
+    try { if (e && e.pointerId != null) wrap.releasePointerCapture(e.pointerId); } catch (err) {}
+    scheduleResume();
+  }
+  wrap.addEventListener('pointerup', endDrag);
+  wrap.addEventListener('pointercancel', endDrag);
+  // Suppress accidental link clicks after a real drag
+  wrap.addEventListener('click', function(e) {
+    if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+  }, true);
+
+  // Native wheel / touch scroll also pauses then resumes
+  wrap.addEventListener('wheel', function(){ pause(); scheduleResume(); }, { passive: true });
+  wrap.addEventListener('touchstart', pause, { passive: true });
+  wrap.addEventListener('touchend', scheduleResume, { passive: true });
+
+  // Keep within seamless loop bounds on any scroll
+  wrap.addEventListener('scroll', normalize, { passive: true });
+
+  // Start in the first set, then run the loop
+  requestAnimationFrame(function(){ wrap.scrollLeft = 0; tick(); });
+})();
+
 
 // Countdown
 function updateCountdown() {
