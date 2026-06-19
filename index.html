@@ -1647,6 +1647,53 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   .edge-card { padding: 1.25rem; }
   .edge-meta { font-size: 0.62rem; }
 }
+/* ═══════════════════════════════════════════
+   IK EDGE — continuous sliding carousel + connectors
+   ═══════════════════════════════════════════ */
+.edge-marquee-wrap { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); padding: 0.5rem 0; }
+.edge-marquee-track { display: flex; align-items: stretch; gap: 0; width: max-content; animation: edgeMarquee 48s linear infinite; }
+.edge-marquee-wrap:hover .edge-marquee-track { animation-play-state: paused; }
+@keyframes edgeMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .edge-marquee-track { animation: none; }
+  .edge-marquee-wrap { overflow-x: auto; scrollbar-width: none; }
+  .edge-marquee-wrap::-webkit-scrollbar { display: none; }
+}
+.edge-slide { flex: 0 0 340px; max-width: 340px; display: flex; align-items: stretch; }
+@media (max-width: 600px) { .edge-slide { flex-basis: 290px; max-width: 290px; } }
+.edge-slide .edge-card { width: 100%; margin: 0; display: flex; flex-direction: column; }
+/* connector: dot leaving one card, travelling to the next */
+.edge-connector { flex: 0 0 56px; display: flex; align-items: center; justify-content: center; position: relative; }
+@media (max-width: 600px) { .edge-connector { flex-basis: 40px; } }
+.edge-connector::before { content: ""; position: absolute; left: 6px; right: 6px; top: 50%; height: 2px; transform: translateY(-50%); background: repeating-linear-gradient(90deg, rgba(191,255,0,0.45) 0 7px, transparent 7px 14px); }
+.edge-connector .ec-dot { position: relative; z-index: 1; width: 11px; height: 11px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 10px var(--lime-glow); animation: ecTravel 2.6s ease-in-out infinite; }
+@keyframes ecTravel { 0% { transform: translateX(-16px); opacity: 0.35; } 50% { transform: translateX(16px); opacity: 1; } 100% { transform: translateX(-16px); opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .edge-connector .ec-dot { animation: none; } }
+body[data-theme="light"] .edge-connector::before { background: repeating-linear-gradient(90deg, rgba(150,190,30,0.5) 0 7px, transparent 7px 14px); }
+body[data-theme="light"] .edge-connector .ec-dot { background: #15803D; box-shadow: 0 0 10px rgba(150,190,30,0.4); }
+.edge-slide-hint { text-align: center; font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); margin-top: 1rem; }
+/* roadmap-in-card (edge box) */
+.edge-roadmap-card { gap: 0.6rem; }
+.edge-roadmap-steps { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.3rem; }
+.edge-rm-step { display: flex; align-items: flex-start; gap: 0.6rem; }
+.edge-rm-num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.3); color: var(--lime); font-family: var(--font-mono); font-weight: 700; font-size: 0.72rem; display: flex; align-items: center; justify-content: center; }
+body[data-theme="light"] .edge-rm-num { color: #15803D; border-color: rgba(150,190,30,0.4); }
+.edge-rm-body b { display: block; font-family: var(--font-display); font-size: 0.84rem; font-weight: 700; color: var(--white); line-height: 1.2; }
+.edge-rm-body span { font-size: 0.7rem; color: var(--muted); }
+/* Instructor headline brand lockup (Meta · Amazon · Apple · Netflix · Google + Instructors to Train You) */
+.instr-brandline { display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 0.5rem; line-height: 1.15; }
+.instr-brandline .ibrand { display: inline-flex; align-items: center; }
+.instr-brandline .ibrand svg { width: 1em; height: 1em; display: block; }
+.instr-brandline .ibrand.meta svg { color: #0866FF; }
+.instr-brandline .ibrand.amazon svg { color: #FF9900; }
+.instr-brandline .ibrand.apple svg { color: var(--white); }
+.instr-brandline .ibrand.netflix svg { color: #E50914; }
+.instr-brandline .ibrand .gG { display: inline-flex; }
+.instr-brandline .iplus { color: var(--white); -webkit-text-fill-color: var(--white); margin: 0 0.1em; }
+.instr-brandline .itxt { color: var(--white); -webkit-text-fill-color: var(--white); }
+body[data-theme="light"] .instr-brandline .ibrand.apple svg { color: #0A0B0D; }
+body[data-theme="light"] .instr-brandline .iplus, body[data-theme="light"] .instr-brandline .itxt { color: #0A0B0D; -webkit-text-fill-color: #0A0B0D; }
+@media (max-width: 600px) { .instr-brandline { gap: 0.35rem; } }
 </style>
 </head>
 <body>
@@ -1665,14 +1712,13 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   <div class="wrap nav-inner">
     <a href="#top" class="brand"><span class="brand-mark">ik</span><span class="brand-name">Interview Kickstart</span></a>
     <div class="nav-links">
-      <a href="#transform">Why IK</a>
+      <a href="#benefits">Why IK</a>
       <a href="#curriculum">Curriculum</a>
       <a href="#readiness">Careers</a>
       <a href="#pricing">Pricing &amp; EMI</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="nav-right">
-      <div class="nav-timer"><span class="timer-dot"></span> Webinar in <span id="countdown">5d 6h</span></div>
       <button class="theme-switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle light or dark mode">
         <span class="ts-track">
           <span class="ts-ico ts-moon"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 10.5 4 6.5 6.5 0 0 0 20 14.5z"/></svg></span>
@@ -1680,7 +1726,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
           <span class="ts-thumb"></span>
         </span>
       </button>
-      <a href="#register" class="btn btn-primary nav-cta"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span></a>
+      <a href="#register" class="btn btn-primary nav-cta"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span></a>
     </div>
   </div>
 </nav>
@@ -1698,7 +1744,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
         <!-- Eyebrow -->
         <div class="hero-eyebrow reveal">
           <span class="dot"></span>
-          Engineered for Early-Career NextGen AI Builders (0-5 YOE)
+          Applied AI Accelerator for NextGen Engineers
         </div>
         
         <!-- Headline (Big Gradient) -->
@@ -1709,7 +1755,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
         
         <!-- Subline with Rotating Text -->
         <p class="hero-subline reveal reveal-delay-2">
-          Become the engineer companies want to hire in the AI era — master execution paths with the help of <b>700+ MAANG+</b> engineers across 
+          Become the engineer companies want to hire in the AI era - master execution paths with the help of <b>700+ MAANG+</b> practitioners across 
           <span class="rotating-wrapper">
             <span class="rotating-text" id="rotatingText">Agentic AI</span>
           </span>.
@@ -1717,7 +1763,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
         
         <!-- CTAs -->
         <div class="hero-ctas reveal reveal-delay-4">
-          <a href="#register" class="btn btn-primary"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> →</a>
+          <a href="#register" class="btn btn-primary"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</a>
           <a href="#curriculum" class="btn btn-terminal">View Curriculum</a>
         </div>
 
@@ -1752,16 +1798,15 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
         <!-- Item 4: under-terminal cohort details + actions -->
         <div class="terminal-meta reveal reveal-delay-4">
           <div class="tmeta-chips">
-            <span class="tmeta-chip tmeta-chip-hl">700+ MAANG+ Engineers</span>
+            <span class="tmeta-chip tmeta-chip-hl">700+ MAANG+ Practitioners</span>
             <span class="tmeta-chip"><b>July 2026</b> cohort</span>
             <span class="tmeta-chip">14 weeks live</span>
             <span class="tmeta-chip">Live + Self-Paced</span>
             <span class="tmeta-chip">Mentor Support</span>
-            <span class="tmeta-chip">MAANG+ Alumni</span>
             <span class="tmeta-chip">Live Capstone Project</span>
           </div>
           <div class="tmeta-btns">
-            <a href="#register" class="btn btn-ghost-sm"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> →</a>
+            <a href="#register" class="btn btn-ghost-sm"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</a>
             <a href="#curriculum" class="btn btn-terminal">View Curriculum</a>
           </div>
         </div>
@@ -1829,7 +1874,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">Problem → Transformation → Opportunity</div>
-      <h2 class="opp-h2 reveal">The biggest opportunity in engineering isn't AI.&nbsp; It's the gap between <span class="hl-muted">using AI</span> and <span class="gradient-text">building it</span>.</h2>
+      <h2 class="opp-h2 reveal">The real opportunity isn't <span class="hl-muted">using AI</span>.&nbsp; It's <span class="gradient-text">building with it</span>.</h2>
     </div>
 
 
@@ -1839,25 +1884,27 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
           <img class="tcard-img" src="data:image/jpeg;base64,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" alt="Early-career developer at a multi-monitor workstation reviewing code" loading="lazy">
         </div>
         <div class="tcard-content">
-          <div class="transform-label">✗ Most engineers today</div>
+          <div class="transform-label">✗ <b>Most Engineers Today</b></div>
           <ul>
-            <li>DSA feels like memorizing patterns you'll forget next week</li>
-            <li>System design? You draw a blank. Literally.</li>
-            <li>"AI skills" = you've copy-pasted ChatGPT prompts</li>
-            <li>Resume gets ghosted. Zero callbacks.</li>
-            <li>Freeze the moment interviewer asks a follow-up</li>
+            <li>Using AI tools</li>
+            <li>Following tutorials</li>
+            <li>Collecting certificates</li>
+            <li>Applying everywhere</li>
+            <li>Learning concepts</li>
+            <li>Competing with the crowd</li>
           </ul>
         </div>
       </div>
       <div class="transform-card after card-3d reveal">
         <div class="tcard-content">
-          <div class="transform-label">✓ Where you'll be</div>
+          <div class="transform-label">✓ <b>Where You'll Be</b></div>
           <ul>
-            <li>Pattern recognition that solves problems you've never seen</li>
-            <li>Talk trade-offs like someone who's actually built systems</li>
-            <li>Ship an AI project interviewers actually ask about</li>
-            <li>Profile that survives the 6-second recruiter scan</li>
-            <li>Mock reps mean you walk in warm, not shaking</li>
+            <li>Building AI products</li>
+            <li>Shipping projects</li>
+            <li>Creating proof of skill</li>
+            <li>Getting noticed faster</li>
+            <li>Solving real problems</li>
+            <li>Standing apart from it</li>
           </ul>
         </div>
         <div class="tcard-media">
@@ -1873,74 +1920,69 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
           <span class="cv-sep">VS</span>
           <div class="cv-col cv-hl"><span class="cv-num">19%</span><span class="cv-lbl">actually building AI systems</span></div>
         </div>
-        <div class="crisis-body">That 70-point gap is where offers are won. This track puts you in the <b style="color:var(--lime)">19%</b>.</div>
+        <div class="crisis-body">That 70-point gap is where offers are won. This program puts you in the <b style="color:var(--lime)">19%</b>.</div>
         <div class="crisis-src hl">Source: CyberMedia Research &ndash; AI Skilling Survey (n=400)</div>
       </div>
       <div class="crisis-card card-3d reveal">
         <div class="crisis-top"><span class="crisis-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 20v-6M13 20V9M18 20v-9"/></svg></span><div class="crisis-num">71<span>%</span></div></div>
-        <div class="crisis-head">Leaders prefer AI skills over seniority</div>
-        <div class="crisis-body">Leaders would hire a less-experienced engineer with AI skills over a senior one without them.</div>
+        <div class="crisis-head">Recruiters prefer AI skills over seniority</div>
+        <div class="crisis-body">Hiring Managers would hire a less-experienced engineer with AI skills over a senior one without them.</div>
         <div class="crisis-src">Source: Microsoft + LinkedIn Work Trend Index</div>
       </div>
       <div class="crisis-card card-3d reveal">
         <div class="crisis-top"><span class="crisis-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg></span><div class="crisis-num">44<span>%</span></div></div>
-        <div class="crisis-head">Of new tech roles are AI-tagged</div>
-        <div class="crisis-body">India's tech job postings increasingly demand GenAI and agentic-AI skills.</div>
+        <div class="crisis-head">Of new tech roles are AI Builder tagged</div>
+        <div class="crisis-body">India's tech job postings increasingly demand GenAI and Agentic AI skills, they want people who can build agentic systems. That skill is rare. <b style="color:var(--lime)">That's your opening.</b></div>
       </div>
       <div class="crisis-card card-3d accent reveal">
         <div class="crisis-top"><span class="crisis-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1 1-1.4 4-1.4 4s3-.4 4-1.4M9.5 11.5a8 8 0 0 1 7.5-8.5c2 0 3 1 3 3a8 8 0 0 1-8.5 7.5l-2-2z"/><circle cx="14.5" cy="9.5" r="1.2"/></svg></span><div class="crisis-num">NOW</div></div>
-        <div class="crisis-head">The window is open — early</div>
-        <div class="crisis-body">Agentic AI is new enough that 0–5 YOE engineers can lead it, not catch up. Move while the field is still forming.</div>
-        <div class="crisis-src hl">Why early-career is the advantage</div>
+        <div class="crisis-head">The window is open</div>
+        <div class="crisis-body">The next generation of AI leaders won't be chosen by experience alone. They'll be defined by what they build today.</div>
+        <div class="crisis-src hl">Learn. Build. Get Ahead.</div>
       </div>
-    </div>
-
-    <div class="opp-banner reveal">
-      <span class="opp-banner-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span>
-      <div class="opp-banner-l">Companies don't want people who used AI tools — they want people who can <b>build agentic systems</b>.</div>
-      <div class="opp-banner-sep"></div>
-      <div class="opp-banner-r">That skill is rare. <b>That's your opening.</b></div>
     </div>
   </div>
 </section>
 
-<!-- Readiness (Practice + Career merged) -->
-<section class="readiness-section grid-backdrop" id="readiness">
+<!-- The Interview Kickstart Edge -->
+<section class="edge-section" id="benefits">
+  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:8%; right:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Outcomes</div><div class="gh-mrow"><span class="gh-ml">Mentors</span><span class="gh-mv">700+</span></div><div class="gh-mrow"><span class="gh-ml">Live mocks</span><span class="gh-mv">2</span></div><div class="gh-mrow"><span class="gh-ml">Projects</span><span class="gh-mv">Capstone</span></div></div></div></div></div><div class="gh" style="bottom:9%; left:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Readiness</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">92</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Resume</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">ATS</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">Mocks</span><span class="gh-mv">&check;</span></div></div></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">Practice, readiness &amp; career support</div>
-      <h2 class="reveal">Knowing isn't the same as <span class="gradient-text">getting hired.</span></h2>
-      <p class="reveal">Everything between "I learned it" and "I got the offer" — practice, diagnostics, and a careers team in your corner.</p>
+      <div class="eyebrow reveal"><span class="edge-lockup"><span class="ik-mono">{<i>ik</i>}</span> The Interview Kickstart Edge</span></div>
+      <h2 class="reveal">What you get that others don't.</h2>
     </div>
-    <div class="readiness-grid">
-      <div class="readiness-col card-3d reveal">
-        <h3 class="readiness-col-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg> Practice &amp; interview readiness</h3>
-        <div class="readiness-items">
-          <div class="readiness-item"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></span><div><h4>Live mock interviews</h4><p>Real rounds with MAANG+ engineers and specific, actionable feedback.</p></div></div>
-          <div class="readiness-item"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M8.5 13h.01M15.5 13h.01M9 18v2M15 18v2"/></svg></span><div><h4>AI mock interview</h4><p>Practise between live rounds so you walk in warm, not cold.</p></div></div>
-          <div class="readiness-item highlight-feature"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 4A2.8 2.8 0 0 0 7 6.5 2.8 2.8 0 0 0 5.2 12 2.8 2.8 0 0 0 7 17.4 2.8 2.8 0 0 0 12 19a2.8 2.8 0 0 0 5-1.6 2.8 2.8 0 0 0 1.8-5.4A2.8 2.8 0 0 0 17 6.5 2.8 2.8 0 0 0 14.5 4 2.6 2.6 0 0 0 12 5.5 2.6 2.6 0 0 0 9.5 4zM12 5.5v13.5"/></svg></span><div><h4>AIQ Analyser <span class="new-badge">New</span></h4><p>An AI-readiness diagnostic that scores you across DSA, system thinking, and agentic-AI skills — then maps a personalised plan to close the gaps before interview day.</p></div></div>
-          <div class="readiness-item"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h5"/></svg></span><div><h4>AI resume analyser</h4><p>Flags gaps and sharpens how you present your projects and impact.</p></div></div>
-          <div class="readiness-item"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg></span><div><h4>Recorded mock library</h4><p>See how strong candidates think — and borrow what works.</p></div></div>
-        </div>
-      </div>
-      <div class="readiness-col card-3d reveal">
-        <h3 class="readiness-col-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg> Career support</h3>
-        <div class="career-grid">
-          <div class="career-item"><span class="check">✓</span><span><b>Resume building &amp; review</b></span></div>
-          <div class="career-item"><span class="check">✓</span><span><b>LinkedIn &amp; GitHub optimisation</b></span></div>
-          <div class="career-item"><span class="check">✓</span><span><b>Salary negotiation</b></span></div>
-          <div class="career-item"><span class="check">✓</span><span><b>Behavioural readiness</b></span></div>
-        </div>
-        <div class="career-highlight">
-          <div class="career-highlight-num">5</div>
-          <div class="career-highlight-body">
-            <h3>Application opportunities</h3>
-            <p>When you meet the criteria, our Careers Team puts your profile forward for relevant openings.</p>
-            <p class="disclaimer">*Subject to eligibility and IK's T&amp;C. Opportunities to apply, not a job guarantee.</p>
-          </div>
-        </div>
+    <div class="edge-marquee-wrap reveal">
+      <div class="edge-marquee-track">
+        <!-- SET 1 -->
+        <div class="edge-slide"><div class="edge-card card-3d"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M8.5 13h.01M15.5 13h.01M9 18v2M15 18v2"/></svg></div><span class="edge-meta">→ 700+ instructors</span></div><h3>Taught by people who hire</h3><p>Live classes from engineers, hiring managers, and tech leads at MAANG+.</p></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide"><div class="edge-card card-3d"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><span class="edge-meta">→ Live sessions</span></div><h3>Live + mentor-guided</h3><p>Interactive workshops with real-time support — not pre-recorded videos you watch alone and never finish.</p></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide"><div class="edge-card card-3d"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.4L5 16v3h3l5.1-5a3.5 3.5 0 0 1 4.4-4.6l-2.3 2.3-2.1-.6-.6-2.1 2.5-2.5z"/></svg></div><span class="edge-meta">→ Real stack</span></div><h3>Build with the Modern AI Stack</h3><p>Get hands-on experience with LangChain, LangGraph, MCP, Firebase, and other tools shaping AI development.</p></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide"><div class="edge-card card-3d edge-roadmap-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></div><span class="edge-meta">→ 14-week journey</span></div><h3>Your learning roadmap</h3><div class="edge-roadmap-steps"><div class="edge-rm-step"><span class="edge-rm-num">1</span><span class="edge-rm-body"><b>Python Primer</b><span>Self-paced · Week 0</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">2</span><span class="edge-rm-body"><b>Data Structures &amp; Algorithms</b><span>Live · Weeks 1–6</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">3</span><span class="edge-rm-body"><b>Agentic AI</b><span>Live · Weeks 7–11</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">4</span><span class="edge-rm-body"><b>Career Coaching</b><span>Live · Weeks 12–14</span></span></div></div></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide"><div class="edge-card card-3d edge-roles-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><span class="edge-meta">→ 2 Live mocks</span></div><h3>Interview Readiness → AI Careers</h3><p>Two live mock interviews, detailed feedback, and the interview readiness needed to break into the next generation of AI engineering roles such as</p><div class="edge-roles"><span>AI Engineer</span><span>GenAI Engineer</span><span>Agentic AI Engineer</span><span>AI Backend Engineer</span><span>AI Full Stack Engineer</span><span>AI Applications Engineer</span><span>AI Automation Engineer</span><span class="more">&amp; many more</span></div></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide"><div class="edge-card card-3d edge-opp-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></div></div><div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities</b></span></div><h3>Careers team in your corner</h3><p>Resume &amp; LinkedIn optimization, Salary negotiation, and curated Application opportunities when you qualify (T&amp;C apply).</p></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <!-- SET 2 (duplicate for seamless loop) -->
+        <div class="edge-slide" aria-hidden="true"><div class="edge-card card-3d"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M8.5 13h.01M15.5 13h.01M9 18v2M15 18v2"/></svg></div><span class="edge-meta">→ 700+ instructors</span></div><h3>Taught by people who hire</h3><p>Live classes from engineers, hiring managers, and tech leads at MAANG+.</p></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide" aria-hidden="true"><div class="edge-card card-3d"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><span class="edge-meta">→ Live sessions</span></div><h3>Live + mentor-guided</h3><p>Interactive workshops with real-time support — not pre-recorded videos you watch alone and never finish.</p></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide" aria-hidden="true"><div class="edge-card card-3d"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.4L5 16v3h3l5.1-5a3.5 3.5 0 0 1 4.4-4.6l-2.3 2.3-2.1-.6-.6-2.1 2.5-2.5z"/></svg></div><span class="edge-meta">→ Real stack</span></div><h3>Build with the Modern AI Stack</h3><p>Get hands-on experience with LangChain, LangGraph, MCP, Firebase, and other tools shaping AI development.</p></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide" aria-hidden="true"><div class="edge-card card-3d edge-roadmap-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></div><span class="edge-meta">→ 14-week journey</span></div><h3>Your learning roadmap</h3><div class="edge-roadmap-steps"><div class="edge-rm-step"><span class="edge-rm-num">1</span><span class="edge-rm-body"><b>Python Primer</b><span>Self-paced · Week 0</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">2</span><span class="edge-rm-body"><b>Data Structures &amp; Algorithms</b><span>Live · Weeks 1–6</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">3</span><span class="edge-rm-body"><b>Agentic AI</b><span>Live · Weeks 7–11</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">4</span><span class="edge-rm-body"><b>Career Coaching</b><span>Live · Weeks 12–14</span></span></div></div></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide" aria-hidden="true"><div class="edge-card card-3d edge-roles-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><span class="edge-meta">→ 2 Live mocks</span></div><h3>Interview Readiness → AI Careers</h3><p>Two live mock interviews, detailed feedback, and the interview readiness needed to break into the next generation of AI engineering roles such as</p><div class="edge-roles"><span>AI Engineer</span><span>GenAI Engineer</span><span>Agentic AI Engineer</span><span>AI Backend Engineer</span><span>AI Full Stack Engineer</span><span>AI Applications Engineer</span><span>AI Automation Engineer</span><span class="more">&amp; many more</span></div></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
+        <div class="edge-slide" aria-hidden="true"><div class="edge-card card-3d edge-opp-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></div></div><div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities</b></span></div><h3>Careers team in your corner</h3><p>Resume &amp; LinkedIn optimization, Salary negotiation, and curated Application opportunities when you qualify (T&amp;C apply).</p></div></div>
+        <div class="edge-connector" aria-hidden="true"><span class="ec-dot"></span></div>
       </div>
     </div>
+    <p class="edge-slide-hint">← slides automatically · hover to pause →</p>
   </div>
 </section>
 
@@ -1950,7 +1992,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
     <div class="section-header">
       <div class="eyebrow reveal">The curriculum</div>
       <h2 class="reveal">AI-ready. Interview-ready. <span class="gradient-text">Industry-ready.</span> In 14 weeks.</h2>
-      <p class="reveal">Three live tracks, one self-paced primer. Built around how MAANG+ teams actually work — taught live where it counts.</p>
+      <p class="reveal">Built around how MAANG+ teams actually work - taught live where it counts.</p>
     </div>
     <div class="accordion reveal">
       <div class="acc-item">
@@ -2007,7 +2049,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
       </div>
     </div>
     <div class="curric-cta reveal">
-      <a href="#register" class="btn btn-primary"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> &#8594;</a>
+      <a href="#register" class="btn btn-primary"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> &#8594;</a>
       <a href="#register" class="btn btn-ghost-sm"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9.5 14.5 12 17l2.5-2.5"/></svg> Download Curriculum</a>
     </div>
   </div>
@@ -2042,21 +2084,42 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   </div>
 </section>
 
-<!-- Edge -->
-<section class="edge-section" id="benefits">
-  <div class="sect-backdrop sb-lime" aria-hidden="true"><div class="gh" style="top:8%; right:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Outcomes</div><div class="gh-mrow"><span class="gh-ml">Mentors</span><span class="gh-mv">700+</span></div><div class="gh-mrow"><span class="gh-ml">Live mocks</span><span class="gh-mv">2</span></div><div class="gh-mrow"><span class="gh-ml">Projects</span><span class="gh-mv">Capstone</span></div></div></div></div></div><div class="gh" style="bottom:9%; left:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Readiness</div><div class="gh-scorewrap"><div class="gh-ringwrap"><div class="gh-ring"></div><span class="gh-ringnum">92</span></div><div class="gh-scol"><div class="gh-mrow"><span class="gh-ml">Resume</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">ATS</span><span class="gh-mv">&check;</span></div><div class="gh-mrow"><span class="gh-ml">Mocks</span><span class="gh-mv">&check;</span></div></div></div></div></div></div></div></div>
+<!-- Readiness (Practice + Career merged) -->
+<section class="readiness-section grid-backdrop" id="readiness">
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal"><span class="edge-lockup"><span class="ik-mono">{<i>ik</i>}</span> The Interview Kickstart Edge</span></div>
-      <h2 class="reveal">What you get that others don't.</h2>
+      <div class="eyebrow reveal">Practice, readiness &amp; career support</div>
+      <h2 class="reveal">Knowing isn't the same as <span class="gradient-text">getting hired.</span></h2>
+      <p class="reveal">Everything between "I learned it" and "I got the offer" - the structure, feedback, and support that turn learning into offers.</p>
     </div>
-    <div class="edge-grid">
-      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M8.5 13h.01M15.5 13h.01M9 18v2M15 18v2"/></svg></div><span class="edge-meta">→ 700+ instructors</span></div><h3>Taught by people who hire</h3><p>Live classes from engineers, hiring managers, and tech leads at MAANG+ — not career coaches reading slides.</p></div>
-      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><span class="edge-meta">→ Live sessions</span></div><h3>Live + mentor-guided</h3><p>Interactive workshops with real-time support — not pre-recorded videos you watch alone and never finish.</p></div>
-      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.4L5 16v3h3l5.1-5a3.5 3.5 0 0 1 4.4-4.6l-2.3 2.3-2.1-.6-.6-2.1 2.5-2.5z"/></svg></div><span class="edge-meta">→ Real stack</span></div><h3>Industry-trusted tools</h3><p>Work with tools MAANG+ teams use daily: LangChain, MCP, LangGraph, Firebase — not toy examples.</p></div>
-      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><span class="edge-meta">→ 2 live mocks</span></div><h3>Real mock practice</h3><p>Two live mocks with detailed feedback from engineers who've sat on the other side of the table.</p></div>
-      <div class="edge-card card-3d reveal edge-roles-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg></div><span class="edge-meta">→ Roles you can target</span></div><h3>Career-boosting outcomes</h3><div class="edge-roles"><span>AI Engineer</span><span>GenAI Engineer</span><span>Agentic AI Engineer</span><span>AI Backend Engineer</span><span>AI Full Stack Engineer</span><span>AI Applications Engineer</span><span>AI Automation Engineer</span><span class="more">&amp; more</span></div></div>
-      <div class="edge-card card-3d reveal"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg></div></div><div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities</b></span></div><h3>Careers team in your corner</h3><p>Resume, LinkedIn, salary negotiation, and curated application opportunities when you qualify (T&amp;C apply).</p></div>
+    <div class="readiness-grid">
+      <div class="readiness-col card-3d reveal">
+        <h3 class="readiness-col-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg> Practice &amp; Interview Readiness</h3>
+        <div class="readiness-items">
+          <div class="readiness-item"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></span><div><h4>Live Mock Interviews</h4><p>Interview practice with MAANG+ engineers and feedback you can act on immediately.</p></div></div>
+          <div class="readiness-item"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M8.5 13h.01M15.5 13h.01M9 18v2M15 18v2"/></svg></span><div><h4>AI Mock Interview</h4><p>Practise between live rounds so you walk in warm, not cold.</p></div></div>
+          <div class="readiness-item highlight-feature"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 4A2.8 2.8 0 0 0 7 6.5 2.8 2.8 0 0 0 5.2 12 2.8 2.8 0 0 0 7 17.4 2.8 2.8 0 0 0 12 19a2.8 2.8 0 0 0 5-1.6 2.8 2.8 0 0 0 1.8-5.4A2.8 2.8 0 0 0 17 6.5 2.8 2.8 0 0 0 14.5 4 2.6 2.6 0 0 0 12 5.5 2.6 2.6 0 0 0 9.5 4zM12 5.5v13.5"/></svg></span><div><h4>AIQ Analyser <span class="new-badge">New</span></h4><p>Get your Agentic AI Readiness Score, detailed skill-gap analysis, and a personalized roadmap to become an interview-ready AI Builder.</p></div></div>
+          <div class="readiness-item"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h5"/></svg></span><div><h4>AI Resume Analyser</h4><p>Flags gaps and sharpens how you present your projects and impact.</p></div></div>
+          <div class="readiness-item"><span class="ri-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg></span><div><h4>Recorded Mock Library</h4><p>See how top candidates approach interviews, communicate their thinking, and solve problems under pressure.</p></div></div>
+        </div>
+      </div>
+      <div class="readiness-col card-3d reveal">
+        <h3 class="readiness-col-title"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5v14h16M7 15l3-3 2.5 2.5L18 9M15 9h3v3"/></svg> Career support</h3>
+        <div class="career-grid">
+          <div class="career-item"><span class="check">✓</span><span><b>Resume Building &amp; Review</b></span></div>
+          <div class="career-item"><span class="check">✓</span><span><b>LinkedIn &amp; GitHub Optimisation</b></span></div>
+          <div class="career-item"><span class="check">✓</span><span><b>Salary Negotiation</b></span></div>
+          <div class="career-item"><span class="check">✓</span><span><b>Behavioural Readiness</b></span></div>
+        </div>
+        <div class="career-highlight">
+          <div class="career-highlight-num">5</div>
+          <div class="career-highlight-body">
+            <h3>Application opportunities*</h3>
+            <p>When you meet the criteria, our Careers Team puts your profile forward for relevant openings.</p>
+            <p class="disclaimer">*Subject to eligibility and IK's T&amp;C. Opportunities to apply, not a job guarantee.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2067,8 +2130,8 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   <div class="wrap">
     <div class="section-header">
       <div class="eyebrow reveal">Meet Your Instructors</div>
-      <h2 class="reveal">700+ MAANG+ <span class="gradient-text">practitioners.</span></h2>
-      <p class="reveal">Active Engineers, tech leads who interview candidates at MAANG+ every week — not university faculty.</p>
+      <h2 class="reveal instr-headline"><span class="instr-brandline"><span class="ibrand meta" aria-label="Meta"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M6.9 4C3.5 4 1.6 7.4 1.6 11.7c0 3.4 1.5 5.9 3.9 5.9 1.9 0 3.2-1.5 4.7-4.3.6-1 1.1-2.1 1.6-3.1.4.8.9 1.9 1.5 3 1.6 3 2.9 4.4 4.8 4.4 2.5 0 3.8-2.6 3.8-6.1C21.9 7 19.9 4 16.7 4c-1.7 0-3 1.1-4.3 3.2C11 5 9.4 4 7.6 4h-.7Zm.4 2.3c1 0 2 .9 3 2.5-1.2 1.9-2 3.2-2.5 4-1 1.7-1.7 2.3-2.5 2.3-1 0-1.6-1.4-1.6-3.6 0-3 1.4-5.2 3.6-5.2h.5Zm9.4 0c2 0 3.4 2.2 3.4 5.3 0 2.3-.7 3.6-1.8 3.6-.9 0-1.5-.7-2.7-2.7-.4-.7-1-1.8-1.8-3.2 1-1.9 2-2.9 2.9-3h0Z"/></svg></span><span class="ibrand amazon" aria-label="Amazon"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M.05 18.9c.3-.4.7-.4 1.2-.1 3.2 1.9 6.7 2.8 10.5 2.8 2.5 0 5.3-.5 7.9-1.6.4-.2.8-.4 1-.5.4-.2.8.1.5.6-.3.4-.7.7-1.2 1.1-1.5 1.1-3.3 1.7-5.1 2.1-3 .6-6 .5-9-.3-2.1-.6-4-1.6-5.6-3-.2-.2-.3-.4-.1-.6Zm13-9.5c0-1.1 0-2-.5-2.8-.5-.6-1.3-.8-2-.6-1 .3-1.5 1-1.6 2-.1.3-.3.4-.5.3l-2-.2c-.2 0-.4-.2-.3-.5C6.6 5 8.6 3.9 10.6 3.9c1 0 2.4.3 3.2 1.1 1 1 1 2.4 1 3.9v3.5c0 1 .4 1.5.8 2.1.1.2.2.4 0 .6-.5.4-1.3 1.1-1.7 1.5-.2.1-.4.1-.5 0-.7-.6-.9-.9-1.2-1.4-1.2 1.2-2 1.5-3.5 1.5-1.8 0-3.2-1.1-3.2-3.3 0-1.7 1-2.9 2.3-3.5 1.1-.5 2.7-.6 3.9-.7v-.3Zm-.4 4.7c.3-.6.3-1.1.3-1.8v-.4c-1.5 0-3 .3-3 2 0 .9.5 1.5 1.3 1.5.6 0 1.1-.4 1.4-1.3Zm9.1 5.4c-.2-.3-1.5-.1-2-.1-.2 0-.2-.1 0-.3.9-.6 2.5-.4 2.7-.2.2.2 0 1.8-.9 2.6-.1.1-.3.1-.2-.1.2-.6.6-1.7.4-1.9Z"/></svg></span><span class="ibrand apple" aria-label="Apple"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M17.05 12.5c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.7-2.7-.7-1.4 0-2.7.8-3.4 2.1-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.5 2 1-.1 1.4-.7 2.6-.7s1.5.7 2.6.6c1.1 0 1.8-1 2.4-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.3-3.1Zm-2-5.7c.5-.7.9-1.6.8-2.5-.8 0-1.8.5-2.4 1.2-.5.6-1 1.5-.8 2.4.9.1 1.8-.4 2.4-1.1Z"/></svg></span><span class="ibrand netflix" aria-label="Netflix"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M5.4 2v20l4.5-.6V13l4.2 9.1c1.6 0 3.1.2 4.5.4V2h-4.5v9.2L9.9 2H5.4Z"/></svg></span><span class="ibrand gG" aria-label="Google"><svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.6-.1-1.2-.2-1.8h-9.2v3.5h5.3c-.2 1.2-.9 2.3-2 3v2.5h3.2c1.9-1.7 2.9-4.3 2.9-7.2Z"/><path fill="#34A853" d="M12.2 22c2.7 0 4.9-.9 6.6-2.4l-3.2-2.5c-.9.6-2 .9-3.4.9-2.6 0-4.8-1.7-5.6-4.1H3.3v2.6C5 19.9 8.3 22 12.2 22Z"/><path fill="#FBBC04" d="M6.6 13.9c-.2-.6-.3-1.2-.3-1.9s.1-1.3.3-1.9V7.5H3.3C2.6 8.8 2.2 10.3 2.2 12s.4 3.2 1.1 4.5l3.3-2.6Z"/><path fill="#EA4335" d="M12.2 6c1.5 0 2.8.5 3.8 1.5l2.8-2.8C17.1 3.1 14.9 2.2 12.2 2.2 8.3 2.2 5 4.3 3.3 7.5l3.3 2.6C7.4 7.7 9.6 6 12.2 6Z"/></svg></span><span class="iplus">+</span> <span class="itxt">Instructors to Train You</span></span></h2>
+      <p class="reveal">Get mentored by AI/ML leaders who are building the next generation of AI systems and interviewing engineers at top global companies.</p>
     </div>
     <div class="instructors-strip-wrap reveal">
       <div class="instructors-strip">
@@ -2083,7 +2146,6 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
       <a href="#register" class="instructor-card instructor-more"><div class="instructor-more-num">+690</div><div class="instructor-more-cta">More Instructors →</div><div class="instructor-more-sub">Meet the full faculty</div></a>
       </div>
     </div>
-    <p class="strip-hint">← scroll to meet more of the 700+ instructor panel →</p>
   </div>
 </section>
 
@@ -2092,7 +2154,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   <div class="sect-backdrop sb-gold" aria-hidden="true"><div class="gh" style="top:9%; left:-4%; transform:rotate(-8deg) scale(1.1)"><div class="gh-inner "><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">Your ROI</div><div class="gh-salrow"><span class="gh-big">&#8377;4 LPA</span><span class="gh-arrowtxt">&rarr;</span><span class="gh-big accent">&#8377;28 LPA</span></div><div class="gh-mrow"><span class="gh-ml">Projected after program</span></div></div></div></div></div><div class="gh" style="bottom:6%; right:-4%; transform:rotate(7deg) scale(1.05)"><div class="gh-inner s2"><div class="gh-card"><div class="gh-bar"><i></i><i></i><i></i></div><div class="gh-pad"><div class="gh-t">EMI Plan</div><div class="gh-bigrow"><span class="gh-big">&#8377;4,999</span><span class="gh-bigsub">/ mo</span></div><div class="gh-track"><i style="width:40%"></i></div><div class="gh-mrow"><span class="gh-ml">0% no-cost EMI</span></div><div class="gh-mrow"><span class="gh-ml">12 months</span></div></div></div></div></div></div>
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">Affordable by design</div>
+      <div class="eyebrow reveal">Premium Learning, Flexible Payments</div>
       <h2 class="reveal">Built to fit an <span class="gradient-text">early-career</span> budget.</h2>
       <p class="reveal">One program. One transparent fee. No hidden add-ons — and you never pay it all at once.</p>
     </div>
@@ -2121,7 +2183,6 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
         </ul>
       </div>
     </div>
-    <p class="emi-note reveal">Final pricing, scholarships, and financing are confirmed in the free webinar. Figures shown are indicative of 0% no-cost EMI.</p>
   </div>
 </section>
 
@@ -2197,7 +2258,6 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
     <div class="cta-content">
       <div class="eyebrow reveal">Your move · next step</div>
       <h2 class="reveal">AI is reshaping every engineering role in India.</h2>
-      <p class="reveal">The engineers getting hired aren&rsquo;t the ones who waited. Build AI-native skills now &mdash; the webinar is free, and the seats aren&rsquo;t unlimited.</p>
       <div class="yourmove-social reveal" style="justify-content:center;margin:0 auto 1.5rem;">
         <div class="avatar-cluster">
           <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" loading="lazy">
@@ -2205,10 +2265,10 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
           <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="" loading="lazy">
           <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="" loading="lazy">
         </div>
-        <span>Join <b>700+ early-career engineers</b> already in the cohort</span>
+        <span>Join <b>early-career engineers</b> already in the cohort</span>
       </div>
       <div class="cta-form reveal">
-        <div class="cta-form-header"><h3><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span></h3><p>Sat, 21 Jun · 6:30 PM IST</p></div>
+        <div class="cta-form-header"><h3><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span></h3><p>Sat, 21 Jun · 6:30 PM IST</p></div>
         <div class="cta-fomo"><span class="fomo-dot"></span>Only <b>23</b> seats left in <b>July cohort</b></div>
         <form id="regForm">
           <div class="form-row">
@@ -2232,7 +2292,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
               <div class="cdrop"><button type="button" class="cdrop-trigger" id="ff-target" aria-haspopup="listbox" aria-expanded="false"><span class="cdrop-value is-placeholder">Your target</span><svg class="cdrop-arrow" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><input type="hidden" name="ff-target" data-req="1"><ul class="cdrop-list" role="listbox" tabindex="-1"><li class="cdrop-opt" role="option" data-value="AI / ML Engineer">AI / ML Engineer</li><li class="cdrop-opt" role="option" data-value="Agentic AI Engineer">Agentic AI Engineer</li><li class="cdrop-opt" role="option" data-value="SWE at a MAANG+ company">SWE at a MAANG+ company</li><li class="cdrop-opt" role="option" data-value="Machine Learning Engineer">Machine Learning Engineer</li><li class="cdrop-opt" role="option" data-value="Senior / Staff Engineer">Senior / Staff Engineer</li><li class="cdrop-opt" role="option" data-value="Switch to a higher-paying role">Switch to a higher-paying role</li><li class="cdrop-opt" role="option" data-value="Still exploring my path">Still exploring my path</li></ul></div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary"><span class="cta-label">Register <span class="cta-free">FREE</span> Webinar</span> →</button>
+          <button type="submit" class="btn btn-primary"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</button>
           <p class="privacy">By registering you agree to our privacy policy.</p>
         </form>
       </div>
@@ -2357,7 +2417,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   if (!el) return;
   var lines = [
     { html: '<span class="t-kw">from</span> ik <span class="t-kw">import</span> DSA, SystemDesign, AgenticAI' },
-    { html: '<span class="t-kw">from</span> ik.career <span class="t-kw">import</span> Mocks, Resume, Offers' },
+    { html: '<span class="t-kw">from</span> ik.career <span class="t-kw">import</span> Mocks, Resume, Opportunities' },
     { html: '' },
     { html: '<span class="t-com"># Where you are today</span>' },
     { html: 'you = <span class="t-fn">Engineer</span>(exp=<span class="t-str">"early-career"</span>)' },
@@ -2399,7 +2459,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
 })();
 
 // Synced rotating headline + subline
-var promoWords = ['Salary Growth','Promotion','Top-Tier Companies'];
+var promoWords = ['Salary Growth','Promotion','Path to Top-Tier Companies'];
 var skillWords = ['DSA','Gen AI','Agentic AI'];
 var rotPromo = document.getElementById('rotPromo');
 var rotSkillHead = document.getElementById('rotSkillHead');
@@ -2493,13 +2553,15 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
 
 // Countdown
 function updateCountdown() {
+  var cd = document.getElementById('countdown');
+  if (!cd) return;
   var webinar = new Date('2026-06-21T18:30:00+05:30');
   var now = new Date();
   var diff = webinar - now;
-  if (diff <= 0) { document.getElementById('countdown').textContent = 'Starting soon!'; return; }
+  if (diff <= 0) { cd.textContent = 'Starting soon!'; return; }
   var d = Math.floor(diff / 86400000);
   var h = Math.floor((diff % 86400000) / 3600000);
-  document.getElementById('countdown').textContent = d + 'd ' + h + 'h';
+  cd.textContent = d + 'd ' + h + 'h';
 }
 updateCountdown();
 setInterval(updateCountdown, 60000);
