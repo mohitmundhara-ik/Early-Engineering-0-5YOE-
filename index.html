@@ -648,6 +648,8 @@ section { padding: 4rem 0; }
 .crisis-card.accent .crisis-num { font-size: 2rem; }
 .crisis-head { font-family: var(--font-display); font-size: 0.98rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; line-height: 1.25; }
 .crisis-body { font-size: 0.82rem; color: var(--silver); line-height: 1.55; }
+.crisis-emph { font-style: italic; color: var(--white); font-weight: 600; background: linear-gradient(transparent 62%, var(--lime-soft) 62%); padding: 0 0.08em; border-radius: 3px; }
+body[data-theme="light"] .crisis-emph { color: #0A0B0D; background: linear-gradient(transparent 62%, rgba(196,245,66,0.55) 62%); }
 .crisis-src { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); margin-top: 0.85rem; border-top: 1px solid var(--slate); padding-top: 0.55rem; }
 
 /* ═══════════════════════════════════════════
@@ -724,6 +726,8 @@ body[data-theme="light"] .hl-tool { color: #15803D; }
 @media (min-width: 760px) { .emi-card { grid-template-columns: 1fr 1fr; gap: 2rem; } }
 .emi-fee-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.35rem; }
 .emi-fee { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 0.85rem; }
+.emi-fee-old { font-size: 1.3rem; font-weight: 700; color: var(--muted); text-decoration: line-through; margin-right: 0.55rem; vertical-align: middle; }
+.emi-fee-gst { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; color: var(--accent); vertical-align: middle; letter-spacing: 0.02em; }
 .emi-sub { font-size: 0.85rem; color: var(--silver); margin-bottom: 0.85rem; }
 .emi-sub b { color: var(--accent); }
 .emi-chips { display: flex; gap: 0.5rem; margin-bottom: 1.1rem; }
@@ -842,7 +846,13 @@ body[data-theme="light"] .hero-pill-hl { background: rgba(196,245,66,0.3); borde
 body[data-theme="light"] .hero-pill-hl .p-ico, body[data-theme="light"] .hero-pill .p-ico { color: #0A0B0D; }
 body[data-theme="light"] .nav-cta, body[data-theme="light"] .btn-primary { color: #0A0B0D; }
 body[data-theme="light"] .hero-bg, body[data-theme="light"] .hero-grid, body[data-theme="light"] .yourmove-glow { opacity: 0.4; }
-body[data-theme="light"] .new-badge { background: rgba(196,245,66,0.18); color: #0A0B0D; }
+body[data-theme="light"] .new-badge { background: #C4F542; color: #0A0B0D; }
+body[data-theme="light"] .readiness-item.highlight-feature {
+  background: linear-gradient(160deg, rgba(196,245,66,0.42), rgba(196,245,66,0.1));
+  border-color: rgba(150,190,30,0.6);
+  box-shadow: 0 4px 16px rgba(150,190,30,0.18);
+}
+body[data-theme="light"] .readiness-item.highlight-feature h4 { color: #15803D; }
 /* terminal flips with theme - light: white window, black header bar, dark code */
 body[data-theme="light"] .hero-terminal { background: #FFFFFF; border-color: rgba(10,10,15,0.12); box-shadow: 0 30px 70px rgba(10,10,15,0.12), 0 0 0 1px rgba(22,163,74,0.06); }
 body[data-theme="light"] .terminal-bar { background: #0B1220; border-bottom-color: rgba(255,255,255,0.06); }
@@ -1224,9 +1234,10 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 .sticky-ik { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 9px; background: #050A0E; color: var(--accent); font-family: var(--font-display); font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
 @media (max-width: 480px) { .sticky-ik { display: none; } }
 .sticky-bar .btn-primary { background: #050A0E; color: #FFFFFF; box-shadow: none; }
+.sticky-bar .btn-primary .cta-free { color: #FFFFFF; }
 .sticky-bar .btn-primary:hover { background: #1A2942; }
 .sticky-bar.show { transform: translateY(0); }
-.sticky-inner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.6rem 0; }
+.sticky-inner { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.6rem 1.2rem; }
 .sticky-text .title { font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; line-height: 1.18; color: #050A0E; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .sticky-text .meta { font-size: 0.65rem; color: rgba(5,10,14,0.72); }
 .sticky-text .meta b { color: #050A0E; }
@@ -1787,6 +1798,7 @@ body[data-theme="light"] .cdrop-opt.selected { color: #15803D; }
 .sticky-text { min-width: 0; overflow: hidden; }
 .sticky-inner > .btn-primary, .sticky-bar .btn { flex-shrink: 0; width: auto; }
 body[data-theme="light"] .sticky-bar .btn-primary { color: #FFFFFF; }
+body[data-theme="light"] .sticky-bar .btn-primary .cta-free { color: #FFFFFF; }
 body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; background: #1A2942; }
 @media (max-width: 767px) {
   .edge-card { padding: 1.25rem; }
@@ -1824,7 +1836,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
 @media (min-width: 901px) { .edge-slide-hint { display: none; } }
 /* roadmap-in-card (edge box) */
 .edge-roadmap-card { gap: 0.6rem; }
-.edge-roadmap-steps { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.3rem; }
+.edge-roadmap-steps { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.3rem; flex: 1 1 auto; justify-content: space-between; }
 .edge-rm-step { display: flex; align-items: flex-start; gap: 0.6rem; }
 .edge-rm-num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.3); color: var(--accent); font-family: var(--font-mono); font-weight: 700; font-size: 0.72rem; display: flex; align-items: center; justify-content: center; }
 body[data-theme="light"] .edge-rm-num { color: #15803D; border-color: rgba(150,190,30,0.35); }
@@ -1832,6 +1844,7 @@ body[data-theme="light"] .edge-rm-num { color: #15803D; border-color: rgba(150,1
 .edge-rm-body span { font-size: 0.7rem; color: var(--muted); }
 /* ── IK Edge: 3-card layout ── */
 .edge-track.edge-three { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+.edge-trio-card { justify-content: space-between; }
 .edge-trio-item { display: flex; gap: 0.85rem; padding: 0.95rem 0; border-bottom: 1px solid var(--steel); }
 .edge-trio-item:first-child { padding-top: 0; }
 .edge-trio-item:last-child { border-bottom: none; padding-bottom: 0; }
@@ -1883,7 +1896,8 @@ body[data-theme="light"] .instr-brandline .iplus, body[data-theme="light"] .inst
 .crisis-viewport { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; scroll-snap-type: x mandatory; padding: 8px 2px 14px; }
 .crisis-viewport::-webkit-scrollbar { display: none; }
 .crisis-track { display: flex; gap: 1rem; align-items: stretch; }
-.crisis-card.card-3d:hover { transform: none; box-shadow: none; }
+@media (hover: hover) { .crisis-card.card-3d:hover { border-color: rgba(191,255,0,0.25); } }
+body[data-theme="light"] .crisis-card.card-3d:hover { border-color: rgba(150,190,30,0.4); }
 .crisis-track .crisis-card { flex: 0 0 320px; max-width: 320px; scroll-snap-align: start; }
 @media (min-width: 1000px) { .crisis-track .crisis-card { flex-basis: calc((100% - 3rem) / 4); max-width: none; } }
 .crisis-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: rgba(15,22,34,0.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--white); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .3s ease, border-color .2s, background .2s, transform .15s; box-shadow: 0 6px 18px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; }
@@ -1908,6 +1922,16 @@ body[data-theme="light"] .instr-brandline .iplus, body[data-theme="light"] .inst
 body[data-theme="light"] .crisis-arrow { background: rgba(255,255,255,0.55); border-color: rgba(0,0,0,0.1); color: #0A0B0D; }
 body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 @media (max-width: 480px) { .crisis-arrow { width: 38px; height: 38px; } .crisis-arrow.prev { left: 2px; } .crisis-arrow.next { right: 2px; } }
+
+/* Slider control row: prev arrow + hint + next arrow, all on one line */
+.slider-controls { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-top: 1rem; flex-wrap: nowrap; }
+.slider-controls .edge-slide-hint { margin: 0; white-space: nowrap; font-size: 0.7rem; }
+.slider-controls .edge-arrow, .slider-controls .crisis-arrow {
+  display: flex; position: static; top: auto; bottom: auto; left: auto; right: auto;
+  transform: none; opacity: 1; pointer-events: auto; flex: 0 0 auto; width: 38px; height: 38px;
+}
+.slider-controls .edge-arrow[hidden], .slider-controls .crisis-arrow[hidden] { visibility: hidden; display: flex; }
+@media (min-width: 901px) { .edge-slider .slider-controls { display: none; } }
 </style>
 </head>
 <body>
@@ -2097,8 +2121,6 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 
 
     <div class="crisis-slider reveal" style="margin-top:1.5rem">
-      <button class="crisis-arrow prev" id="crisisPrev" type="button" aria-label="Previous" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <button class="crisis-arrow next" id="crisisNext" type="button" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
       <div class="crisis-viewport" id="crisisViewport">
         <div class="crisis-track">
       <div class="crisis-card card-3d accent reveal">
@@ -2107,7 +2129,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
           <span class="cv-sep">VS</span>
           <div class="cv-col cv-hl"><span class="cv-num">19%</span><span class="cv-lbl">actually building AI systems</span></div>
         </div>
-        <div class="crisis-body">That 70-point gap is where offers are won. This program puts you in the <b style="color:var(--accent)">19%</b>.</div>
+        <div class="crisis-body"><em class="crisis-emph">Knowing AI is no longer enough. The advantage belongs to engineers who can build with it.</em></div>
         <div class="crisis-src hl">Source: CyberMedia Research &ndash; AI Skilling Survey (n=400)</div>
       </div>
       <div class="crisis-card card-3d reveal">
@@ -2129,8 +2151,8 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
       </div>
         </div>
       </div>
+      <div class="slider-controls"><button class="crisis-arrow prev" id="crisisPrev" type="button" aria-label="Previous" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><p class="edge-slide-hint crisis-slide-hint">Swipe or tap the arrows</p><button class="crisis-arrow next" id="crisisNext" type="button" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div>
     </div>
-    <p class="edge-slide-hint crisis-slide-hint">← swipe or tap the arrows to explore →</p>
   </div>
 </section>
 
@@ -2143,8 +2165,6 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
       <h2 class="reveal">Built to Turn Potential Into <span class="gradient-text">Career Growth.</span></h2>
     </div>
     <div class="edge-slider reveal">
-      <button class="edge-arrow prev" id="edgePrev" type="button" aria-label="Previous" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <button class="edge-arrow next" id="edgeNext" type="button" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
       <div class="edge-viewport" id="edgeViewport">
         <div class="edge-track edge-three">
           <!-- Card 1 · Instructors + Live/Mentor + Modern AI Stack -->
@@ -2171,8 +2191,8 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
           </div>
         </div>
       </div>
+      <div class="slider-controls"><button class="edge-arrow prev" id="edgePrev" type="button" aria-label="Previous" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><p class="edge-slide-hint">Swipe or tap the arrows</p><button class="edge-arrow next" id="edgeNext" type="button" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div>
     </div>
-    <p class="edge-slide-hint">← swipe or tap the arrows to explore →</p>
   </div>
 </section>
 
@@ -2350,7 +2370,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
     <div class="emi-card reveal">
       <div class="emi-left">
         <div class="emi-fee-label">One-time program fee</div>
-        <div class="emi-fee">₹70,000</div>
+        <div class="emi-fee"><span class="emi-fee-old">₹1,00,000</span>₹70,000 <span class="emi-fee-gst">+ GST</span></div>
         <div class="emi-sub">or split it with <b>0% no-cost EMI</b> - pick a plan:</div>
         <div class="emi-chips" id="emiChips">
           <button class="emi-chip" type="button" data-months="3">3 mo</button>
@@ -2828,8 +2848,8 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
         hidden=drop.querySelector('input[type=hidden]'), opts=[].slice.call(drop.querySelectorAll('.cdrop-opt'));
     var activeIdx=-1;
     function setActive(i){ opts.forEach(function(o){o.classList.remove('active');}); if(i>=0&&i<opts.length){opts[i].classList.add('active'); opts[i].scrollIntoView({block:'nearest'}); activeIdx=i;} else { activeIdx=-1; } }
-    function open(){ closeAll(drop); var r=trigger.getBoundingClientRect(); drop.classList.toggle('drop-up', (window.innerHeight - r.bottom) < 280 && r.top > 280); drop.classList.add('open'); trigger.setAttribute('aria-expanded','true'); var sel=drop.querySelector('.cdrop-opt.selected'); setActive(sel?opts.indexOf(sel):-1); }
-    function close(){ drop.classList.remove('open','drop-up'); trigger.setAttribute('aria-expanded','false'); }
+    function open(){ closeAll(drop); var r=trigger.getBoundingClientRect(); var list=drop.querySelector('.cdrop-list'); var below=window.innerHeight-r.bottom, above=r.top; var up = below < 320 && above > below; drop.classList.toggle('drop-up', up); if(list){ var avail=(up?above:below)-18; list.style.maxHeight=Math.max(150, Math.min(320, avail))+'px'; } drop.classList.add('open'); trigger.setAttribute('aria-expanded','true'); var sel=drop.querySelector('.cdrop-opt.selected'); setActive(sel?opts.indexOf(sel):-1); }
+    function close(){ drop.classList.remove('open','drop-up'); var list=drop.querySelector('.cdrop-list'); if(list) list.style.maxHeight=''; trigger.setAttribute('aria-expanded','false'); }
     function choose(o){ opts.forEach(function(x){x.classList.remove('selected');}); o.classList.add('selected'); valueEl.textContent=o.textContent; valueEl.classList.remove('is-placeholder'); hidden.value=o.getAttribute('data-value'); drop.classList.remove('error'); close(); trigger.focus(); }
     trigger.addEventListener('click', function(e){ e.stopPropagation(); drop.classList.contains('open')?close():open(); });
     opts.forEach(function(o){ o.addEventListener('click', function(e){ e.stopPropagation(); choose(o); }); });
