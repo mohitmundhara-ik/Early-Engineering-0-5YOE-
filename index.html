@@ -166,10 +166,44 @@ nav.scrolled {
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; color: var(--black);
 }
-.nav-links { display: none; gap: 1.5rem; }
+.nav-links { display: none; gap: 1.5rem; align-items: center; }
 @media (min-width: 960px) { .nav-links { display: flex; } }
 .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--silver); transition: color 0.2s; }
 .nav-links a:hover { color: var(--white); }
+/* Hamburger toggle (shown below the inline breakpoint) */
+.nav-toggle { display: none; width: 40px; height: 40px; border: 1px solid var(--slate); border-radius: 10px; background: var(--ink2); align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0; transition: border-color .2s; }
+.nav-toggle:hover { border-color: var(--lime); }
+.nav-toggle-bars { display: flex; flex-direction: column; gap: 4px; width: 18px; }
+.nav-toggle-bars span { display: block; height: 2px; width: 100%; background: var(--white); border-radius: 2px; transition: transform .25s ease, opacity .2s ease; }
+.nav-toggle.open .nav-toggle-bars span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.open .nav-toggle-bars span:nth-child(2) { opacity: 0; }
+.nav-toggle.open .nav-toggle-bars span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+body[data-theme="light"] .nav-toggle { background: #FFFFFF; }
+body[data-theme="light"] .nav-toggle-bars span { background: #0A0B0D; }
+@media (max-width: 959px) { .nav-toggle { display: inline-flex; } }
+/* Dropdown menu on small/medium screens */
+@media (max-width: 959px) {
+  .nav-links {
+    position: absolute; top: calc(100% + 1px); left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--black); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+    padding: 0.3rem 1.1rem 1rem; z-index: 99;
+    max-height: 80vh; overflow-y: auto;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 0.92rem 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.95rem; }
+  .nav-links a:last-of-type { border-bottom: none; }
+  body[data-theme="light"] .nav-links { background: #FAFAF7; border-bottom-color: rgba(10,10,15,0.1); }
+  body[data-theme="light"] .nav-links a { border-bottom-color: rgba(10,10,15,0.06); color: #2c3038; }
+}
+/* CTA inside the dropdown - only when standalone CTA is hidden (very small screens) */
+.nav-menu-cta { display: none; }
+@media (max-width: 599px) {
+  .nav-menu-cta { display: inline-flex !important; align-items: center; justify-content: center; gap: 0.35rem; margin-top: 0.8rem; padding: 0.85rem 1rem !important; background: var(--lime) !important; color: var(--black) !important; border-radius: 10px; font-weight: 700; font-size: 0.9rem !important; border-bottom: none !important; }
+  .nav-menu-cta .cta-free { color: var(--black); }
+  body[data-theme="light"] .nav-menu-cta { color: var(--black) !important; }
+}
 .nav-right { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
 .nav-timer { display: none; }
 @media (min-width: 1080px) {
@@ -190,7 +224,8 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
 @media (max-width: 520px) { .ts-track { width: 48px; height: 26px; } .ts-thumb { width: 20px; height: 20px; } body[data-theme="light"] .ts-thumb { transform: translateX(22px); } }
 .nav-cta { display: inline-flex; }
 .nav-cta.btn { min-height: 38px; padding: 0 1.1rem; font-size: 0.78rem; border-radius: 10px; }
-@media (max-width: 560px) { .nav-cta.btn { min-height: 34px; padding: 0 0.7rem; font-size: 0.7rem; border-radius: 9px; white-space: nowrap; } .nav-right { gap: 0.5rem; } }
+@media (max-width: 599px) { .nav-cta { display: none; } }
+@media (max-width: 760px) { .nav-cta.btn { min-height: 34px; padding: 0 0.75rem; font-size: 0.72rem; border-radius: 9px; white-space: nowrap; } .nav-right { gap: 0.5rem; } }
 @media (max-width: 520px) { .brand-name { display: none; } .theme-toggle { width: 34px; height: 34px; } }
 .rib-sep { opacity: 0.4; margin: 0 0.4rem; }
 
@@ -1835,13 +1870,14 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 <nav id="nav">
   <div class="wrap nav-inner">
     <a href="#top" class="brand"><span class="brand-mark">ik</span><span class="brand-name">Interview Kickstart</span></a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
+      <a href="#benefits">Why IK</a>
       <a href="#curriculum">Curriculum</a>
-      <a href="#benefits">Career Support</a>
-      <a href="#mentors">Instructors</a>
+      <a href="#readiness">Career Support</a>
       <a href="#pricing">Pricing &amp; EMI</a>
       <a href="#outcomes">Outcomes</a>
       <a href="#faq">FAQ</a>
+      <a href="#register" class="nav-menu-cta"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</a>
     </div>
     <div class="nav-right">
       <button class="theme-switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle light or dark mode">
@@ -1852,6 +1888,9 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
         </span>
       </button>
       <a href="#register" class="btn btn-primary nav-cta"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span></a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -2186,7 +2225,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 <section class="readiness-section grid-backdrop" id="readiness">
   <div class="wrap">
     <div class="section-header">
-      <div class="eyebrow reveal">Practice, readiness &amp; career support</div>
+      <div class="eyebrow reveal">Interview Readiness &amp; Career Support</div>
       <h2 class="reveal">Knowing isn't the same as <span class="gradient-text">getting hired.</span></h2>
       <p class="reveal">Everything between "I learned it" and "I got the offer" - the structure, feedback, and support that turn learning into offers.</p>
     </div>
@@ -2494,6 +2533,36 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
     apply(next);
     try { localStorage.setItem('ik-theme', next); } catch(e) {}
   });
+})();
+
+// ═══════════════════════════════════════════
+// MOBILE NAV - hamburger dropdown
+// ═══════════════════════════════════════════
+(function() {
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  if (!toggle || !links) return;
+  function setOpen(open) {
+    links.classList.toggle('open', open);
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  function close() { setOpen(false); }
+  toggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    setOpen(!links.classList.contains('open'));
+  });
+  // close on link tap
+  links.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', close); });
+  // close on outside click
+  document.addEventListener('click', function(e) {
+    if (links.classList.contains('open') && !links.contains(e.target) && !toggle.contains(e.target)) close();
+  });
+  // close on Esc
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
+  // close when resizing up to desktop
+  window.addEventListener('resize', function() { if (window.innerWidth >= 960) close(); });
 })();
 
 // ═══════════════════════════════════════════
