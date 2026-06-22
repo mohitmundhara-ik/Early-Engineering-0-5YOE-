@@ -164,11 +164,18 @@ nav.scrolled {
 .brand { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; color: var(--white); flex-shrink: 0; }
 .brand-mark {
   width: 34px; height: 34px;
-  background: var(--lime);
+  background: var(--ink2);
+  border: 1px solid var(--slate);
   border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; color: var(--black);
+  font-family: var(--font-mono); font-size: 0.84rem; font-weight: 700; color: var(--accent); letter-spacing: -0.06em;
 }
+.brand-mark i { font-style: normal; color: var(--white); margin: 0 0.02em; }
+body[data-theme="light"] .brand-mark { background: #0A0B0D; border-color: transparent; }
+body[data-theme="light"] .brand-mark i { color: #FFFFFF; }
+.brand-name { display: flex; flex-direction: column; line-height: 0.98; }
+.brand-name b { font-family: var(--font-display); font-weight: 800; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--accent); }
+body[data-theme="light"] .brand-name b { color: #15803D; }
 .nav-links { display: none; gap: 1.5rem; align-items: center; }
 @media (min-width: 960px) { .nav-links { display: flex; } }
 .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--silver); transition: color 0.2s; }
@@ -1116,6 +1123,11 @@ body[data-theme="light"] .broch-list li .bchk svg { color: #15803D; }
 body[data-theme="light"] .broch-right { background: rgba(0,0,0,0.015); border-color: var(--slate); }
 .broch-right h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--white); margin: 0 0 0.3rem; }
 .broch-right .broch-rsub { font-size: 0.82rem; color: var(--muted); margin: 0 0 1.3rem; }
+@media (max-width: 859px) {
+  .broch-dialog .broch-sub, .broch-dialog .broch-list,
+  .broch-dialog .broch-right h3, .broch-dialog .broch-rsub { display: none; }
+  .broch-dialog .broch-left h2 { margin-bottom: 0.2rem; }
+}
 .broch-form { display: flex; flex-direction: column; gap: 0.85rem; }
 .broch-form .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
 .broch-form label { font-size: 0.72rem; font-weight: 600; color: var(--silver); }
@@ -1441,6 +1453,7 @@ body[data-theme="light"] .tm-ico img { filter: brightness(0.5) saturate(1.5); }
 /* CTA - emphasize FREE */
 .cta-free { font-weight: 800; letter-spacing: 0.02em; font-size: 1.04em; }
 .btn-primary .cta-free { color: var(--black); }
+body[data-theme="light"] .btn-primary .cta-free { color: #0A0B0D; }
 .btn-ghost-sm .cta-free, .nav-cta .cta-free { color: var(--accent); }
 body[data-theme="light"] .btn-ghost-sm .cta-free, body[data-theme="light"] .nav-cta .cta-free { color: #15803D; }
 
@@ -1617,6 +1630,10 @@ body[data-theme="light"] .cta-form .form-field input:focus, body[data-theme="lig
 .edge-opp-stack b { font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; color: var(--white); }
 body[data-theme="light"] .edge-opp-num { color: #15803D; }
 .edge-opp-card { border-color: rgba(191,255,0,0.4); background: linear-gradient(160deg, var(--ink2), rgba(191,255,0,0.05)); }
+.edge-roadmap-card { border-color: rgba(191,255,0,0.4); background: linear-gradient(160deg, var(--ink2), rgba(191,255,0,0.05)); }
+body[data-theme="light"] .edge-roadmap-card { border-color: rgba(150,190,30,0.4); background: linear-gradient(160deg, #FFFFFF, rgba(196,245,66,0.12)); }
+.edge-support-card .edge-opp { margin: 0.2rem 0 0.5rem; }
+.edge-opp-sub { font-size: 0.78rem; line-height: 1.4; color: var(--muted); font-style: italic; margin: 0; }
 
 /* [7] 89% vs 19% comparison card */
 .crisis-vs { display: flex; align-items: stretch; gap: 0.6rem; margin: 0.3rem 0 0.85rem; }
@@ -1791,14 +1808,15 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   .edge-viewport::-webkit-scrollbar { display: none; }
   .edge-track { display: flex; grid-template-columns: none; gap: 1rem; }
   .edge-track .edge-card { flex: 0 0 82%; max-width: 360px; scroll-snap-align: start; }
-  .edge-arrow { display: flex; position: absolute; top: auto; bottom: 6px; transform: none; z-index: 5; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--steel); background: var(--ink2); color: var(--white); align-items: center; justify-content: center; cursor: pointer; transition: opacity .25s, border-color .2s, background .2s, transform .15s; box-shadow: 0 6px 18px rgba(0,0,0,0.4); }
-  .edge-arrow:hover { border-color: var(--accent); background: var(--ink); }
+  .edge-arrow { display: flex; position: absolute; top: auto; bottom: 6px; transform: none; z-index: 5; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: rgba(15,22,34,0.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--white); align-items: center; justify-content: center; cursor: pointer; transition: opacity .3s ease, border-color .2s, background .2s, transform .15s; box-shadow: 0 6px 18px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; }
+  .edge-slider.arrows-on .edge-arrow:not([hidden]), .edge-slider:hover .edge-arrow:not([hidden]) { opacity: 1; pointer-events: auto; }
+  .edge-arrow:hover { border-color: var(--accent); background: rgba(15,22,34,0.7); }
   .edge-arrow:active { transform: scale(0.94); }
   .edge-arrow svg { width: 18px; height: 18px; }
   .edge-arrow.prev { left: calc(50% - 48px); right: auto; }
   .edge-arrow.next { left: calc(50% + 6px); right: auto; }
   .edge-arrow[hidden] { opacity: 0; pointer-events: none; }
-  body[data-theme="light"] .edge-arrow { background: #FFFFFF; color: #0A0B0D; }
+  body[data-theme="light"] .edge-arrow { background: rgba(255,255,255,0.55); border-color: rgba(0,0,0,0.1); color: #0A0B0D; }
   body[data-theme="light"] .edge-arrow:hover { border-color: #15803D; }
 }
 @media (max-width: 600px) { .edge-track .edge-card { flex-basis: 84%; max-width: 320px; } }
@@ -1868,8 +1886,9 @@ body[data-theme="light"] .instr-brandline .iplus, body[data-theme="light"] .inst
 .crisis-card.card-3d:hover { transform: none; box-shadow: none; }
 .crisis-track .crisis-card { flex: 0 0 320px; max-width: 320px; scroll-snap-align: start; }
 @media (min-width: 1000px) { .crisis-track .crisis-card { flex-basis: calc((100% - 3rem) / 4); max-width: none; } }
-.crisis-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--steel); background: var(--ink2); color: var(--white); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .25s, border-color .2s, background .2s, transform .15s; box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
-.crisis-arrow:hover { border-color: var(--accent); background: var(--ink); }
+.crisis-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: rgba(15,22,34,0.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--white); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity .3s ease, border-color .2s, background .2s, transform .15s; box-shadow: 0 6px 18px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; }
+.crisis-slider.arrows-on .crisis-arrow:not([hidden]), .crisis-slider:hover .crisis-arrow:not([hidden]) { opacity: 1; pointer-events: auto; }
+.crisis-arrow:hover { border-color: var(--accent); background: rgba(15,22,34,0.7); }
 .crisis-arrow:active { transform: translateY(-50%) scale(0.94); }
 .crisis-arrow svg { width: 18px; height: 18px; }
 .crisis-arrow[hidden] { opacity: 0; pointer-events: none; }
@@ -1886,7 +1905,7 @@ body[data-theme="light"] .instr-brandline .iplus, body[data-theme="light"] .inst
   .crisis-arrow.next { left: calc(50% + 6px); right: auto; }
 }
 @media (max-width: 600px) { .crisis-track .crisis-card { flex-basis: 84%; max-width: 320px; } }
-body[data-theme="light"] .crisis-arrow { background: #FFFFFF; color: #0A0B0D; }
+body[data-theme="light"] .crisis-arrow { background: rgba(255,255,255,0.55); border-color: rgba(0,0,0,0.1); color: #0A0B0D; }
 body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 @media (max-width: 480px) { .crisis-arrow { width: 38px; height: 38px; } .crisis-arrow.prev { left: 2px; } .crisis-arrow.next { right: 2px; } }
 </style>
@@ -1899,13 +1918,13 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 <!-- Ribbon -->
 <div class="ribbon">
   <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s5 4 5 9a5 5 0 0 1-10 0c0-2 1-3 1-3s0 2 1.5 2S12 3 12 3z"/></svg> <b>Only 23 seats left</b> in the upcoming cohort <span class="rib-sep">·</span> Applications close soon
-  <a href="#register">Reserve your seat →</a>
+  <a href="#register"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</a>
 </div>
 
 <!-- Nav -->
 <nav id="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand"><span class="brand-mark">ik</span><span class="brand-name">Interview Kickstart</span></a>
+    <a href="#top" class="brand"><span class="brand-mark">{<i>ik</i>}</span><span class="brand-name"><b>INTERVIEW</b><b>KICKSTART</b></span></a>
     <div class="nav-links" id="navLinks">
       <a href="#benefits">Why IK</a>
       <a href="#curriculum">Curriculum</a>
@@ -2005,7 +2024,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
             <span class="tmeta-chip">Capstone Project</span>
           </div>
           <div class="tmeta-btns">
-            <a href="#register" class="btn btn-ghost-sm"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</a>
+            <a href="#register" class="btn btn-primary"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</a>
             <a href="#curriculum" class="btn btn-terminal">View Curriculum</a>
           </div>
         </div>
@@ -2106,11 +2125,12 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
         <div class="crisis-top"><span class="crisis-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-1 1-1.4 4-1.4 4s3-.4 4-1.4M9.5 11.5a8 8 0 0 1 7.5-8.5c2 0 3 1 3 3a8 8 0 0 1-8.5 7.5l-2-2z"/><circle cx="14.5" cy="9.5" r="1.2"/></svg></span><div class="crisis-num">NOW</div></div>
         <div class="crisis-head">The window is open</div>
         <div class="crisis-body">The next generation of AI leaders won't be chosen by experience alone. They'll be defined by what they build today.</div>
-        <div class="crisis-src hl"><b>Learn. Build. Get Ahead.</b></div>
+        <div class="crisis-src hl"><b>Ship real agentic-AI projects before your next interview.</b></div>
       </div>
         </div>
       </div>
     </div>
+    <p class="edge-slide-hint crisis-slide-hint">← swipe or tap the arrows to explore →</p>
   </div>
 </section>
 
@@ -2142,15 +2162,12 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
               <div class="edge-trio-txt"><h4>Build with the Modern AI Stack</h4><p>Get hands-on experience with <span class="hl-tool">LangChain</span>, <span class="hl-tool">LangGraph</span>, <span class="hl-tool">MCP</span>, <span class="hl-tool">Firebase</span> and other tools shaping AI development.</p></div>
             </div>
           </div>
-          <!-- Card 2 · Career Support / Interview Readiness → AI Careers -->
-          <div class="edge-card card-3d edge-support-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><span class="edge-badge">Career Support</span></div><h3>Interview Readiness → AI Careers</h3><div class="edge-combo-divider"></div><ul class="edge-list"><li>2 Live Mock Interviews with MAANG+ Engineers</li><li>Resume Building &amp; Review</li><li>LinkedIn &amp; GitHub Optimization</li><li>AIQ Analyzer &amp; Personalized Roadmap</li><li>Unlimited AI Mock Interviews &amp; Recorded Mock Library</li></ul></div>
-          <!-- Card 3 · 5 Application Opportunities + Your Learning Roadmap -->
-          <div class="edge-card card-3d edge-opp-card edge-combo-card">
-            <div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities*</b></span></div>
-            <p>Application opportunities when you qualify (T&amp;C apply).</p>
-            <div class="edge-combo-divider"></div>
+          <!-- Card 2 · Career Support + Application Opportunities -->
+          <div class="edge-card card-3d edge-support-card"><div class="edge-top"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><span class="edge-badge">Career Support</span></div><h3>Interview Readiness → AI Careers</h3><div class="edge-combo-divider"></div><ul class="edge-list"><li>2 Live Mock Interviews with MAANG+ Engineers</li><li>Resume Building &amp; Review</li><li>LinkedIn &amp; GitHub Optimization</li><li>AIQ Analyzer &amp; Personalized Roadmap</li><li>Unlimited AI Mock Interviews &amp; Recorded Mock Library</li></ul><div class="edge-combo-divider"></div><div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities*</b></span></div><p class="edge-opp-sub"><em>*When you meet the criteria, our Careers Team puts your profile forward for relevant openings.</em></p></div>
+          <!-- Card 3 · Your Learning Roadmap -->
+          <div class="edge-card card-3d edge-roadmap-card edge-combo-card">
             <div class="edge-combo-rmhead"><h4>Your Learning Roadmap</h4><span class="edge-meta">→ 14-week journey</span></div>
-            <div class="edge-roadmap-steps"><div class="edge-rm-step"><span class="edge-rm-num">1</span><span class="edge-rm-body"><b>Python Primer</b><span>Self-paced · Week 0</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">2</span><span class="edge-rm-body"><b>Data Structures &amp; Algorithms</b><span>Live · Weeks 1–6</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">3</span><span class="edge-rm-body"><b>Agentic AI</b><span>Live · Weeks 7–11</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">4</span><span class="edge-rm-body"><b>Career Coaching</b><span>Live · Weeks 12–14</span></span></div></div>
+            <div class="edge-roadmap-steps"><div class="edge-rm-step"><span class="edge-rm-num">1</span><span class="edge-rm-body"><b>Python Fundamentals</b><span>Self-paced · Week 0</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">2</span><span class="edge-rm-body"><b>Data Structures &amp; Algorithms</b><span>Live · Weeks 1–6</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">3</span><span class="edge-rm-body"><b>Agentic AI</b><span>Live · Weeks 7–11</span></span></div><div class="edge-rm-step"><span class="edge-rm-num">4</span><span class="edge-rm-body"><b>Career Coaching</b><span>Live · Weeks 12–14</span></span></div></div>
           </div>
         </div>
       </div>
@@ -2169,11 +2186,11 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
     <div class="accordion reveal">
       <div class="acc-item">
         <button class="acc-head" type="button">
-          <span class="acc-title"><span class="acc-tag self">Self-paced</span> Python Fundamentals <small>Week 0 · primer</small></span>
+          <span class="acc-title"><span class="acc-tag self">Self-paced</span> Python Fundamentals <small>Week 0</small></span>
           <span class="acc-arrow">▼</span>
         </button>
         <div class="acc-body"><div class="acc-inner">
-          <p class="acc-desc">A self-paced primer for anyone who needs Python before the Agentic AI track. Skip it if you already code in Python.</p>
+          <p class="acc-desc">A self-paced Python module for anyone who needs it before the Agentic AI track. Skip it if you already code in Python.</p>
           <div class="acc-cols">
             <div><p class="acc-col-h">Key topics</p><ul class="acc-list"><li>Environment setup &amp; syntax</li><li>Data types, operators, control flow</li><li>Functions &amp; scope</li><li>Lists, dictionaries &amp; sets</li><li>Intro to OOP in Python</li></ul></div>
             <div><p class="acc-col-h">Tools</p><div class="acc-tags"><span>Python</span><span>Jupyter</span><span>Google Colab</span></div></div>
@@ -2485,7 +2502,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
     <div class="broch-card">
       <div class="broch-left">
         <div class="eyebrow">Curriculum · Brochure</div>
-        <h2 id="brochModalTitle">From Learning AI to <span class="gradient-text">Building with it</span></h2>
+        <h2 id="brochModalTitle">From Learning AI to <span class="gradient-text">Building With It</span></h2>
         <p class="broch-sub">Download the brochure to explore:</p>
         <ul class="broch-list">
           <li><span class="bchk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span>Agentic AI curriculum</span></li>
@@ -2531,7 +2548,6 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
               <div class="form-field"><label for="bf-exp">Years of Experience</label><select id="bf-exp" required><option value="" disabled selected>Select experience</option><option>0-1 years</option><option>1-3 years</option><option>3-5 years</option><option>5-8 years</option><option>8+ years</option></select></div>
               <div class="form-field"><label for="bf-role">Current Role</label><select id="bf-role" required><option value="" disabled selected>Select role</option><option>Software Engineer</option><option>Data Scientist / ML Engineer</option><option>Data / Backend Engineer</option><option>Product / Program Manager</option><option>Student</option><option>Not Working</option><option>Other</option></select></div>
               <button type="submit" class="btn btn-primary">Download Brochure →</button>
-              <button type="button" class="broch-back" id="brochBack">← Back</button>
             </div>
             <p class="privacy">By sharing your details, you agree to our <a href="https://interviewkickstart.com/in/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>
           </form>
@@ -2549,7 +2565,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 <!-- Footer -->
 <footer>
   <div class="wrap footer-inner">
-    <a href="#top" class="brand"><span class="brand-mark">ik</span><span>Interview Kickstart</span></a>
+    <a href="#top" class="brand"><span class="brand-mark">{<i>ik</i>}</span><span class="brand-name"><b>INTERVIEW</b><b>KICKSTART</b></span></a>
     <div class="footer-links">
       <a href="#curriculum">Curriculum</a>
       <a href="#readiness">Careers</a>
@@ -2573,7 +2589,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
       <span class="sticky-ik">ik</span>
       <div class="sticky-text"><div class="title">Applied AI Accelerator for NextGen Engineers</div><div class="meta"><b>23</b> seats left · Applications close soon</div></div>
     </div>
-    <a href="#register" class="btn btn-primary">Reserve your seat →</a>
+    <a href="#register" class="btn btn-primary"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</a>
   </div>
 </div>
 
@@ -2928,6 +2944,27 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
 // ═══════════════════════════════════════════
 // DOWNLOAD BROCHURE - modal open/close + form submit
 // ═══════════════════════════════════════════
+(function(){
+  function wire(viewportId, sliderSel) {
+    var vp = document.getElementById(viewportId);
+    if (!vp) return;
+    var slider = vp.closest(sliderSel);
+    if (!slider) return;
+    var t;
+    function show() {
+      slider.classList.add('arrows-on');
+      clearTimeout(t);
+      t = setTimeout(function(){ slider.classList.remove('arrows-on'); }, 1800);
+    }
+    vp.addEventListener('scroll', show, { passive: true });
+    ['touchstart','pointerdown','wheel','mousemove'].forEach(function(ev){
+      slider.addEventListener(ev, show, { passive: true });
+    });
+  }
+  wire('edgeViewport', '.edge-slider');
+  wire('crisisViewport', '.crisis-slider');
+})();
+
 (function() {
   var modal = document.getElementById('brochModal');
   if (!modal) return;
