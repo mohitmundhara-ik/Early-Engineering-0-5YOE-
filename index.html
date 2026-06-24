@@ -210,9 +210,10 @@ body[data-theme="light"] .nav-toggle-bars span { background: #0A0B0D; }
 /* CTA inside the dropdown - only when standalone CTA is hidden (very small screens) */
 .nav-menu-cta { display: none; }
 @media (max-width: 599px) {
-  .nav-menu-cta { display: inline-flex !important; align-items: center; justify-content: center; gap: 0.35rem; margin-top: 0.8rem; padding: 0.85rem 1rem !important; background: var(--lime) !important; color: var(--black) !important; border-radius: 10px; font-weight: 700; font-size: 0.9rem !important; border-bottom: none !important; }
-  .nav-menu-cta .cta-free { color: var(--black); }
-  body[data-theme="light"] .nav-menu-cta { color: var(--black) !important; }
+  .nav-menu-cta { display: inline-flex !important; align-items: center; justify-content: center; gap: 0.35rem; margin-top: 0.8rem; padding: 0.85rem 1rem !important; background: var(--lime) !important; color: #0A0B0D !important; border-radius: 10px; font-weight: 700; font-size: 0.9rem !important; border-bottom: none !important; }
+  .nav-menu-cta .cta-free { color: #0A0B0D !important; }
+  body[data-theme="light"] .nav-menu-cta { color: #0A0B0D !important; }
+  body[data-theme="light"] .nav-menu-cta .cta-free { color: #0A0B0D !important; }
 }
 .nav-right { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
 .nav-timer { display: none; }
@@ -235,6 +236,7 @@ body[data-theme="light"] .ts-sun { opacity: 0; }
 .nav-cta { display: inline-flex; }
 .nav-cta.btn { min-height: 38px; padding: 0 1.1rem; font-size: 0.78rem; border-radius: 10px; }
 @media (max-width: 599px) { .nav-cta { display: none; } }
+.nav-links.open ~ .nav-right .nav-cta { display: none; }
 @media (max-width: 760px) { .nav-cta.btn { min-height: 34px; padding: 0 0.75rem; font-size: 0.72rem; border-radius: 9px; white-space: nowrap; } .nav-right { gap: 0.5rem; } }
 @media (max-width: 520px) { .brand-name { display: none; } .theme-toggle { width: 34px; height: 34px; } }
 .rib-sep { opacity: 0.4; margin: 0 0.4rem; }
@@ -1749,10 +1751,10 @@ body[data-theme="light"] .edge-roles span.more { color: #15803D; border-color: r
 .cdrop.open .cdrop-arrow { transform: rotate(180deg); color: var(--accent); }
 .cdrop.open { position: relative; z-index: 200; }
 .cdrop-list { position: absolute; top: calc(100% + 6px); left: 0; right: auto; min-width: 100%; width: max-content; max-width: min(300px, 86vw); z-index: 60; list-style: none; margin: 0; padding: 0.3rem; background: #0F1D32; border: 1px solid var(--steel); border-radius: 12px; box-shadow: 0 18px 44px rgba(0,0,0,0.55); max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-6px) scale(0.985); transform-origin: top center; transition: opacity .16s ease, transform .2s cubic-bezier(.2,.8,.2,1), max-height .22s ease; pointer-events: none; }
-.cdrop.open .cdrop-list { max-height: 300px; overflow-y: auto; opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; -webkit-overflow-scrolling: touch; }
+.cdrop.open .cdrop-list { max-height: 300px; overflow-y: auto; opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: y proximity; }
 .form-row .form-field:last-child .cdrop-list { left: auto; right: 0; }
 .cdrop.drop-up .cdrop-list { top: auto; bottom: calc(100% + 6px); transform-origin: bottom center; }
-.cdrop-opt { padding: 0.62rem 0.7rem; border-radius: 8px; font-size: 0.9rem; color: var(--silver); cursor: pointer; transition: background .12s ease, color .12s ease; }
+.cdrop-opt { padding: 0.62rem 0.7rem; border-radius: 8px; font-size: 0.9rem; color: var(--silver); cursor: pointer; transition: background .12s ease, color .12s ease; scroll-snap-align: start; }
 .cdrop-opt:hover, .cdrop-opt.active { background: rgba(191,255,0,0.13); color: #fff; }
 .cdrop-opt.selected { color: var(--accent); font-weight: 600; }
 .cdrop.error .cdrop-trigger { border-color: #EF4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.15); }
@@ -2021,7 +2023,6 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
           <span class="hero-who-label">Built for</span>
           <span class="hero-who-pill">Tech Professionals</span>
           <span class="hero-who-pill">Early Engineers</span>
-          <span class="hero-who-pill">Freshers</span>
           <span class="hero-who-pill">Career Switchers</span>
         </div>
       </div>
@@ -2776,7 +2777,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 })();
 
 // Synced rotating headline + subline
-var promoWords = ['Salary Growth','Promotion','Top-Tier Company Offer'];
+var promoWords = ['Salary Growth','Promotion'];
 var skillWords = ['DSA','Gen AI','Agentic AI'];
 var rotPromo = document.getElementById('rotPromo');
 var rotSkillHead = document.getElementById('rotSkillHead');
@@ -2852,7 +2853,7 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
         hidden=drop.querySelector('input[type=hidden]'), opts=[].slice.call(drop.querySelectorAll('.cdrop-opt'));
     var activeIdx=-1;
     function setActive(i){ opts.forEach(function(o){o.classList.remove('active');}); if(i>=0&&i<opts.length){opts[i].classList.add('active'); opts[i].scrollIntoView({block:'nearest'}); activeIdx=i;} else { activeIdx=-1; } }
-    function open(){ closeAll(drop); var r=trigger.getBoundingClientRect(); var list=drop.querySelector('.cdrop-list'); var optH=(opts[0]&&opts[0].offsetHeight)?opts[0].offsetHeight:40; var desired=Math.round(optH*4+12); var below=window.innerHeight-r.bottom-12, above=r.top-12; var up = below < desired && above > below; drop.classList.toggle('drop-up', up); if(list){ var avail=up?above:below; list.style.maxHeight=Math.max(120, Math.min(desired, avail))+'px'; } drop.classList.add('open'); trigger.setAttribute('aria-expanded','true'); var sel=drop.querySelector('.cdrop-opt.selected'); setActive(sel?opts.indexOf(sel):-1); }
+    function open(){ closeAll(drop); var r=trigger.getBoundingClientRect(); var list=drop.querySelector('.cdrop-list'); var optH=(opts[0]&&opts[0].offsetHeight)?opts[0].offsetHeight:40; var lpad=0; if(list){ var cs=getComputedStyle(list); lpad=(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0); } var desired=Math.round(optH*4+lpad); var below=window.innerHeight-r.bottom-12, above=r.top-12; var up = below < desired && above > below; drop.classList.toggle('drop-up', up); if(list){ var avail=up?above:below; var h=Math.min(desired, avail); var fit=Math.max(1, Math.floor((h-lpad)/optH)); list.style.maxHeight=Math.round(fit*optH+lpad)+'px'; } drop.classList.add('open'); trigger.setAttribute('aria-expanded','true'); var sel=drop.querySelector('.cdrop-opt.selected'); setActive(sel?opts.indexOf(sel):-1); }
     function close(){ drop.classList.remove('open','drop-up'); var list=drop.querySelector('.cdrop-list'); if(list) list.style.maxHeight=''; trigger.setAttribute('aria-expanded','false'); }
     function choose(o){ opts.forEach(function(x){x.classList.remove('selected');}); o.classList.add('selected'); valueEl.textContent=o.textContent; valueEl.classList.remove('is-placeholder'); hidden.value=o.getAttribute('data-value'); drop.classList.remove('error'); close(); trigger.focus(); }
     trigger.addEventListener('click', function(e){ e.stopPropagation(); drop.classList.contains('open')?close():open(); });
