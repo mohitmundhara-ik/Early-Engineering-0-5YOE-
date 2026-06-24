@@ -611,6 +611,7 @@ body[data-theme="light"] .tmeta-chip-hl { color: #0A0B0D !important; font-weight
    ═══════════════════════════════════════════ */
 section { padding: 2.25rem 0; }
 @media (max-width: 480px) { section { padding: 1.75rem 0; } }
+@media (max-width: 600px) { .edge-section { padding-top: 1rem; padding-bottom: 1.4rem; } .curric-section { padding-top: 1.5rem; padding-bottom: 1.5rem; } }
 .section-header { text-align: center; margin-bottom: 2.5rem; }
 @media (max-width: 480px) { .section-header { margin-bottom: 2rem; } }
 .section-header h2 {
@@ -906,9 +907,9 @@ body[data-theme="light"] .float-badge { background: rgba(255,255,255,0.94); bord
 .transform-card.after li::before { content: '✓'; color: var(--green); flex-shrink: 0; }
 
 /* Edge Cards */
-.edge-section { background: var(--black); padding-top: 1rem; padding-bottom: 1.4rem; }
+.edge-section { background: var(--black); }
 .edge-section::after { content: ''; position: absolute; top: -8%; left: 50%; transform: translateX(-50%); width: 920px; max-width: 130%; height: 480px; background: radial-gradient(ellipse 58% 60% at 50% 38%, rgba(191,255,0,0.11), rgba(191,255,0,0.04) 45%, transparent 72%); pointer-events: none; z-index: 0; }
-body[data-theme="light"] .edge-section { background: var(--black); padding-top: 1rem; padding-bottom: 1.4rem; }
+body[data-theme="light"] .edge-section { background: var(--black); }
 body[data-theme="light"] .edge-section::after { background: radial-gradient(ellipse 58% 60% at 50% 38%, rgba(150,190,30,0.16), transparent 70%); }
 .edge-section > .wrap { position: relative; z-index: 1; }
 .edge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
@@ -960,7 +961,7 @@ body[data-theme="light"] .instructor-avatar.no-photo span { color: #15803D; }
 .instructor-company img { height: 9px; }
 
 /* Curriculum */
-.curric-section { background: var(--black); position: relative; overflow: hidden; padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.curric-section { background: var(--black); position: relative; overflow: hidden; }
 .curric-section > .wrap { position: relative; z-index: 1; }
 /* Item 8: subtle line/grid backdrop layer (CSS only) */
 .grid-backdrop::before {
@@ -1449,7 +1450,8 @@ body[data-theme="light"] .gap-divider .gap-vs { color: #15803D; border-color: rg
 /* Wider premium container + breathing room (fills large screens) */
 .wrap { max-width: 1320px; }
 @media (min-width: 1024px) { .wrap { padding-left: 2rem; padding-right: 2rem; } }
-@media (min-width: 1280px) { section { padding: 2.5rem 0; } }
+@media (min-width: 768px) { section { padding: 2.75rem 0; } }
+@media (min-width: 1280px) { section { padding: 3.25rem 0; } }
 .hero-layout { max-width: 1280px; }
 .gap-stats { max-width: 860px; }
 .gap-caption { max-width: 640px; }
