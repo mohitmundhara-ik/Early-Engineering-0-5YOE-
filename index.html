@@ -1176,12 +1176,39 @@ body[data-theme="light"] .broch-form select { background-color: #FFFFFF; color: 
 .broch-back { background: none; border: none; color: var(--muted); font-size: 0.78rem; cursor: pointer; padding: 0.2rem; margin: 0 auto; font-family: inherit; }
 .broch-back:hover { color: var(--silver); }
 .broch-ok { display: none; text-align: center; padding: 0.5rem 0; }
-.broch-ok.show { display: block; }
-.broch-ok .bo-ring { width: 48px; height: 48px; margin: 0 auto 0.7rem; border-radius: 50%; background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.4); display: flex; align-items: center; justify-content: center; }
+.broch-ok.show { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+.broch-ok .bo-ring { width: 48px; height: 48px; margin: 0 auto 0.3rem; border-radius: 50%; background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .broch-ok .bo-ring svg { width: 22px; height: 22px; color: var(--accent); }
 body[data-theme="light"] .broch-ok .bo-ring svg { color: #15803D; }
-.broch-ok h4 { font-family: var(--font-display); color: var(--white); font-size: 1.05rem; margin: 0 0 0.3rem; }
-.broch-ok p { font-size: 0.85rem; color: var(--silver); margin: 0; }
+.broch-ok h4 { font-family: var(--font-display); color: var(--white); font-size: 1.05rem; margin: 0 0 0.1rem; }
+.broch-ok > p { font-size: 0.85rem; color: var(--silver); margin: 0; }
+.broch-ok hr { width: 100%; border: none; border-top: 1px solid var(--steel); margin: 0.5rem 0; }
+.broch-ok .bo-webinar-nudge { font-size: 0.78rem; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; margin: 0; }
+.broch-ok .bo-webinar-title { font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: var(--white); margin: 0 0 0.1rem; }
+.broch-ok .bo-webinar-sub { font-size: 0.82rem; color: var(--silver); margin: 0 0 0.5rem; }
+.broch-ok .btn { width: 100%; justify-content: center; }
+
+/* Webinar Success Popup */
+.webinar-popup { position: fixed; inset: 0; z-index: 3000; display: none; align-items: center; justify-content: center; padding: 1.25rem; }
+.webinar-popup.open { display: flex; }
+.webinar-popup-backdrop { position: absolute; inset: 0; background: rgba(3,6,10,0.85); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); animation: bmFade .25s ease; }
+.webinar-popup-card { position: relative; z-index: 1; background: var(--card); border: 1px solid var(--steel); border-radius: 20px; padding: 2rem 1.75rem 1.75rem; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,0.5); animation: bmFade .22s ease; }
+body[data-theme="light"] .webinar-popup-card { background: #fff; border-color: rgba(0,0,0,0.1); }
+.webinar-popup-close { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--steel); background: transparent; color: var(--silver); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s; }
+.webinar-popup-close:hover { border-color: var(--white); color: var(--white); }
+body[data-theme="light"] .webinar-popup-close { color: #555; border-color: rgba(0,0,0,0.15); }
+.webinar-popup-close svg { width: 14px; height: 14px; }
+.wp-confetti { font-size: 2.6rem; line-height: 1; margin-bottom: 0.6rem; }
+.wp-eyebrow { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin: 0 0 0.4rem; }
+.wp-title { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--white); margin: 0 0 0.8rem; line-height: 1.2; }
+body[data-theme="light"] .wp-title { color: #0A0B0D; }
+.wp-date-box { background: var(--black-mid); border: 1px solid var(--steel); border-radius: 12px; padding: 0.8rem 1rem; margin-bottom: 0.8rem; }
+body[data-theme="light"] .wp-date-box { background: #f5f7fa; border-color: rgba(0,0,0,0.1); }
+.wp-date { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--white); margin: 0 0 0.15rem; }
+body[data-theme="light"] .wp-date { color: #0A0B0D; }
+.wp-slot { font-size: 0.82rem; color: var(--silver); margin: 0; }
+.wp-inbox { font-size: 0.82rem; color: var(--silver); margin: 0 0 1rem; }
+.wp-resume { width: 100%; justify-content: center; }
 /* ── Brochure MODAL ── */
 .broch-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; padding: 1.25rem; }
 .broch-modal.open { display: flex; }
@@ -1272,7 +1299,12 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
 @media (max-width: 600px) {
   section { padding: 1.9rem 0; }
   .section-header { margin-bottom: 1.5rem; }
-  .section-header h2 { font-size: 2.1rem; line-height: 1.18; }
+  /* Heading sizes: each heading gets its own clamp so line count is controlled */
+  .hero-headline-main { font-size: clamp(1.55rem, 5.2vw, 2rem); line-height: 1.13; }
+  .section-header h2 { font-size: clamp(1.3rem, 4.8vw, 1.85rem); line-height: 1.2; }
+  .section-header h2.opp-h2 { font-size: clamp(1.25rem, 4.6vw, 1.75rem); line-height: 1.2; }
+  .instr-headline { font-size: clamp(1.1rem, 4.4vw, 1.6rem) !important; }
+  .yourmove-inner h2 { font-size: clamp(1.25rem, 4.5vw, 1.75rem); }
   .section-header p { font-size: 0.85rem; }
   .section-header .eyebrow, .section-header .reveal .eyebrow { margin-bottom: 0.5rem; }
   /* Hero */
@@ -1308,8 +1340,9 @@ footer { background: #030508; padding: 2rem 0; padding-bottom: calc(2rem + var(-
   footer { padding: 2rem 0 5.5rem; }
 }
 @media (max-width: 400px) {
-  .hero-headline-main { font-size: 1.8rem; }
-  .section-header h2 { font-size: 1.85rem; }
+  .hero-headline-main { font-size: 1.45rem; }
+  .section-header h2 { font-size: 1.2rem; }
+  .section-header h2.opp-h2 { font-size: 1.15rem; }
 }
 
 /* ════════ SECTIONAL LAYERED BACKDROP SYSTEM (ghost-UI watermark) ════════ */
@@ -1844,7 +1877,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   .edge-viewport { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; scroll-snap-type: x mandatory; padding-left: 16px; padding-right: 16px; scroll-padding-left: 16px; }
   .edge-viewport::-webkit-scrollbar { display: none; }
   .edge-track { display: flex; grid-template-columns: none; gap: 1rem; }
-  .edge-track .edge-card { flex: 0 0 82%; max-width: 360px; scroll-snap-align: start; }
+  .edge-track .edge-card { flex: 0 0 82%; max-width: 360px; scroll-snap-align: start; scroll-snap-stop: always; }
   .edge-arrow { display: flex; position: absolute; top: auto; bottom: 6px; transform: none; z-index: 5; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: rgba(15,22,34,0.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--white); align-items: center; justify-content: center; cursor: pointer; transition: opacity .3s ease, border-color .2s, background .2s, transform .15s; box-shadow: 0 6px 18px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; }
   .edge-slider.arrows-on .edge-arrow:not([hidden]), .edge-slider:hover .edge-arrow:not([hidden]) { opacity: 1; pointer-events: auto; }
   .edge-arrow:hover { border-color: var(--accent); background: rgba(15,22,34,0.7); }
@@ -1856,7 +1889,7 @@ body[data-theme="light"] .sticky-bar .btn-primary:hover { color: #FFFFFF; backgr
   body[data-theme="light"] .edge-arrow { background: rgba(255,255,255,0.55); border-color: rgba(0,0,0,0.1); color: #0A0B0D; }
   body[data-theme="light"] .edge-arrow:hover { border-color: #15803D; }
 }
-@media (max-width: 600px) { .edge-track .edge-card { flex-basis: 84%; max-width: 320px; } }
+@media (max-width: 600px) { .edge-track .edge-card { flex-basis: 84%; max-width: 320px; scroll-snap-stop: always; } }
 .edge-slide-hint { text-align: center; font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); margin-top: 1rem; }
 @media (min-width: 901px) { .edge-slide-hint { display: none; } }
 /* roadmap-in-card (edge box) */
@@ -2212,7 +2245,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
             </div>
           </div>
           <!-- Card 2 · Career Support + Application Opportunities -->
-          <div class="edge-card card-3d edge-support-card"><div class="edge-support-head"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><h3>Interview Readiness → Career Support</h3></div><div class="edge-combo-divider"></div><ul class="edge-list"><li>2 Live Mock Interviews with MAANG+ Engineers</li><li>Resume Building &amp; Review</li><li>LinkedIn &amp; GitHub Optimization</li><li>AIQ Analyzer &amp; Personalized Roadmap</li><li>Unlimited AI Mock Interviews &amp; Recorded Mock Library</li></ul><div class="edge-combo-divider"></div><div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities*</b></span></div><p class="edge-opp-sub"><em>*When you meet the criteria, our Careers Team puts your profile forward for relevant openings.</em></p></div>
+          <div class="edge-card card-3d edge-support-card"><div class="edge-support-head"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/></svg></div><h3>Interview Readiness → <span class="gradient-text">Career Support</span></h3></div><div class="edge-combo-divider"></div><ul class="edge-list"><li>2 Live Mock Interviews with MAANG+ Engineers</li><li>Resume Building &amp; Review</li><li>LinkedIn &amp; GitHub Optimization</li><li>AIQ Analyzer &amp; Personalized Roadmap</li><li>Unlimited AI Mock Interviews &amp; Recorded Mock Library</li></ul><div class="edge-combo-divider"></div><div class="edge-opp"><span class="edge-opp-num">5</span><span class="edge-opp-stack"><b>Application</b><b>Opportunities*</b></span></div><p class="edge-opp-sub"><em>*When you meet the criteria, our Careers Team puts your profile forward for relevant openings.</em></p></div>
           <!-- Card 3 · Your Learning Roadmap -->
           <div class="edge-card card-3d edge-roadmap-card edge-combo-card">
             <div class="edge-combo-rmhead"><div class="edge-icon"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 17V9a4 4 0 0 1 4-4h3M18 7v8a4 4 0 0 1-4 4h-3"/></svg></div><h4>Your Learning Roadmap <span class="rm-journey">→ 14 Weeks Journey</span></h4></div>
@@ -2588,11 +2621,33 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
         </div>
         <div class="broch-ok" id="brochOk">
           <div class="bo-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
-          <h4>Brochure on its way!</h4>
-          <p>Check your inbox for the curriculum PDF.</p>
+          <h4>DOWNLOADING YOUR BROCHURE</h4>
+          <p>You'll find your brochure in your downloads folder shortly.</p>
+          <hr>
+          <p class="bo-webinar-nudge">While you wait...</p>
+          <p class="bo-webinar-title">Get the full picture. Live.</p>
+          <p class="bo-webinar-sub">Don't just read the syllabus - hear from our experts as they break down what's happening in AI hiring right now, the career paths emerging fastest, and what top companies are actually looking for in 2026.</p>
+          <button class="btn btn-primary wp-resume" id="brochWebinarBtn"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</button>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Webinar Registration Success Popup -->
+<div class="webinar-popup" id="webinarPopup" role="dialog" aria-modal="true" aria-labelledby="wpTitle" aria-hidden="true">
+  <div class="webinar-popup-backdrop" id="wpBackdrop"></div>
+  <div class="webinar-popup-card">
+    <button class="webinar-popup-close" id="wpClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="wp-confetti">🎉</div>
+    <p class="wp-eyebrow">Registration Complete</p>
+    <h2 id="wpTitle" class="wp-title">See you at the webinar!</h2>
+    <div class="wp-date-box">
+      <p class="wp-date">Sunday, July 19, 2026</p>
+      <p class="wp-slot">7:00 PM IST · Your Webinar slot</p>
+    </div>
+    <p class="wp-inbox">Details are in your inbox. See you soon!</p>
+    <button class="btn btn-primary wp-resume" id="wpResume">Resume Browsing</button>
   </div>
 </div>
 
@@ -2874,7 +2929,9 @@ stickyObs.observe(heroSection);
 document.getElementById('regForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var _ok=true,_bad=null; this.querySelectorAll('.cdrop input[type=hidden][data-req]').forEach(function(h){var d=h.closest('.cdrop'); if(!h.value){d.classList.add('error');_ok=false;if(!_bad)_bad=d;}else{d.classList.remove('error');}}); if(!_ok){ if(_bad){_bad.scrollIntoView({block:'center',behavior:'smooth'}); _bad.querySelector('.cdrop-trigger').focus();} return; }
-  this.innerHTML = '<div style="text-align:center;padding:1.25rem"><div style="font-size:1.75rem;margin-bottom:0.4rem;color:var(--green)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div><h4 style="color:var(--white);font-size:1rem">You\'re registered!</h4><p style="color:var(--silver);font-size:0.82rem">Check your email for the Zoom link.</p></div>';
+  // Show webinar success popup
+  var wp = document.getElementById('webinarPopup');
+  if (wp) { wp.classList.add('open'); wp.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); }
 });
 
 // Custom dropdowns (smooth, accessible)
@@ -3144,6 +3201,17 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
       var exp = document.getElementById('bf-exp').value;
       var role = document.getElementById('bf-role').value;
       if (!exp || !role) return;
+      // Trigger dummy PDF download
+      (function() {
+        try {
+          var a = document.createElement('a');
+          a.href = 'data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL1R5cGUgL1BhZ2VzCi9LaWRzIFszIDAgUl0KL0NvdW50IDEKPD4KZW5kb2JqCjMgMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVudCAyIDAgUgovTWVkaWFCb3ggWzAgMCA0MDAgMzAwXQovQ29udGVudHMgNCAwIFIKL1Jlc291cmNlcyA8PAvGb250IDw8L0YxIDUgMCBSPj4+PgoKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0xlbmd0aCA0NAo+PgpzdHJlYW0KQlQKL0YxIDE4IFRmCjEwMCAxNTAgVGQKKElLIEFJIEFjY2VsZXJhdG9yIEJyb2NodXJlKSBUagpFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwKL1R5cGUgL0ZvbnQKL1N1YnR5cGUgL1R5cGUxCi9CYXNlRm9udCAvSGVsdmV0aWNhCj4+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA2OCAwMDAwMCBuIAowMDAwMDAwMTI1IDAwMDAwIG4gCjAwMDAwMDAyODkgMDAwMDAgbiAKMDAwMDAwMDQwOCAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9TaXplIDYKL1Jvb3QgMSAwIFIKPj4Kc3RhcnR4cmVmCjQ3OAolJUVPRgo=';
+          a.download = 'IK-AI-Accelerator-Brochure.pdf';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } catch(err) {}
+      })();
       if (wrap) wrap.style.display = 'none';
       if (ok) ok.classList.add('show');
     });
@@ -3153,7 +3221,55 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
   }
 })();
 
-// Countdown
+// ═══════════════════════════════════════════
+// WEBINAR REGISTRATION POPUP
+// ═══════════════════════════════════════════
+(function() {
+  var popup = document.getElementById('webinarPopup');
+  if (!popup) return;
+  var backdrop = document.getElementById('wpBackdrop');
+  var closeBtn = document.getElementById('wpClose');
+  var resumeBtn = document.getElementById('wpResume');
+
+  function openWebinarPopup() {
+    popup.classList.add('open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+  function closeWebinarPopup() {
+    popup.classList.remove('open');
+    popup.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  // "Book FREE Webinar" CTA in brochure download screen
+  var brochWebinarBtn = document.getElementById('brochWebinarBtn');
+  if (brochWebinarBtn) {
+    brochWebinarBtn.addEventListener('click', function() {
+      // close brochure modal first
+      var bm = document.getElementById('brochModal');
+      if (bm) { bm.classList.remove('open'); bm.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); }
+      setTimeout(openWebinarPopup, 120);
+    });
+  }
+
+  // All other "Book FREE Webinar" CTAs (register section CTAs trigger webinar popup directly)
+  // CTA buttons with class btn-primary that link to #register open webinar popup
+  document.querySelectorAll('a[href="#register"].btn, a.btn[href="#register"]').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openWebinarPopup();
+    });
+  });
+
+  // Close handlers
+  if (backdrop) backdrop.addEventListener('click', closeWebinarPopup);
+  if (closeBtn) closeBtn.addEventListener('click', closeWebinarPopup);
+  if (resumeBtn) resumeBtn.addEventListener('click', closeWebinarPopup);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && popup.classList.contains('open')) closeWebinarPopup(); });
+})();
+
+
 function updateCountdown() {
   var cd = document.getElementById('countdown');
   if (!cd) return;
