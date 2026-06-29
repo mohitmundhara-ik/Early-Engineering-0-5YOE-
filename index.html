@@ -163,39 +163,10 @@ nav.scrolled {
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; color: var(--white); flex-shrink: 0; }
 .brand-img-wrap { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
-/* Nav logo hidden until user scrolls past the banner */
-.brand-logo-img { display: block; height: 50px; width: auto; object-fit: contain; max-width: 260px; opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; }
-.brand-logo-img.nav-logo-visible { opacity: 1; transform: translateX(0); pointer-events: auto; }
-@media (max-width: 480px) { .brand-logo-img { height: 36px; } }
-/* Partnership banner — enlarged centered logo, matches page bg */
-.partner-banner {
-  background: var(--black);
-  padding: 4rem 2rem 3.5rem;
-  text-align: center;
-}
-.partner-banner-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-.partner-banner-logo {
-  display: block;
-  /* Width-driven sizing so aspect ratio is preserved and no overflow occurs */
-  width: min(860px, 90vw);
-  height: auto;
-  max-width: 100%;
-  object-fit: contain;
-}
-body[data-theme="light"] .partner-banner { background: var(--white); }
-@media (max-width: 768px) {
-  .partner-banner { padding: 2.5rem 1rem 2rem; }
-  .partner-banner-logo { width: min(600px, 88vw); }
-}
-@media (max-width: 480px) {
-  .partner-banner { padding: 2rem 0.75rem 1.75rem; }
-  .partner-banner-logo { width: min(420px, 92vw); }
-}
+.brand-logo-img { display: block; height: 56px; width: auto; object-fit: contain; max-width: 320px; }
+@media (max-width: 760px) { .brand-logo-img { height: 44px; max-width: 220px; } }
+@media (max-width: 480px) { .brand-logo-img { height: 36px; max-width: 180px; } }
+/* Partnership banner CSS removed — logo is in nav only */
 .brand-mark {
   width: 34px; height: 34px;
   background: var(--ink2);
@@ -2185,13 +2156,6 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
   </div>
 </nav>
 
-<!-- Partnership Banner -->
-<section class="partner-banner" aria-label="Interview Kickstart × Talent 500 partnership">
-  <div class="wrap partner-banner-inner">
-    <img src="/logo.png" alt="Interview Kickstart × Talent 500" class="partner-banner-logo" loading="eager">
-  </div>
-</section>
-
 <!-- ═══════════════════════════════════════════
      HERO SECTION
      ═══════════════════════════════════════════ -->
@@ -3607,26 +3571,6 @@ document.getElementById('regNext') && document.getElementById('regNext').addEven
   if (resumeBtn) resumeBtn.addEventListener('click', closeWebinarPopup);
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && popup.classList.contains('open')) closeWebinarPopup(); });
 })();
-// ═══════════════════════════════════════════
-// Nav logo: slides in from left when banner scrolls out of view
-// ═══════════════════════════════════════════
-(function() {
-  var banner = document.querySelector('.partner-banner');
-  var navLogo = document.querySelector('.brand-logo-img');
-  if (!banner || !navLogo) return;
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        navLogo.classList.remove('nav-logo-visible');
-      } else {
-        navLogo.classList.add('nav-logo-visible');
-      }
-    });
-  }, { threshold: 0 });
-  obs.observe(banner);
-})();
-
-
 function updateCountdown() {
   var cd = document.getElementById('countdown');
   if (!cd) return;
