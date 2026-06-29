@@ -170,25 +170,31 @@ nav.scrolled {
 /* Partnership banner — enlarged centered logo, matches page bg */
 .partner-banner {
   background: var(--black);
-  padding: 3rem 1.5rem 2.5rem;
+  padding: 4rem 2rem 3.5rem;
   text-align: center;
 }
 .partner-banner-inner {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 .partner-banner-logo {
   display: block;
-  height: 190px;
-  width: auto;
-  max-width: 90vw;
+  /* Width-driven sizing so aspect ratio is preserved and no overflow occurs */
+  width: min(860px, 90vw);
+  height: auto;
+  max-width: 100%;
   object-fit: contain;
 }
 body[data-theme="light"] .partner-banner { background: var(--white); }
-@media (max-width: 640px) {
-  .partner-banner { padding: 2rem 1rem 1.75rem; }
-  .partner-banner-logo { height: 120px; }
+@media (max-width: 768px) {
+  .partner-banner { padding: 2.5rem 1rem 2rem; }
+  .partner-banner-logo { width: min(600px, 88vw); }
+}
+@media (max-width: 480px) {
+  .partner-banner { padding: 2rem 0.75rem 1.75rem; }
+  .partner-banner-logo { width: min(420px, 92vw); }
 }
 .brand-mark {
   width: 34px; height: 34px;
@@ -1215,7 +1221,9 @@ body[data-theme="light"] .broch-form select { background-color: #FFFFFF; color: 
 .broch-step { display: flex; flex-direction: column; gap: 0.85rem; }
 .broch-step[hidden] { display: none; }
 .reg-step[hidden] { display: none; }
-.broch-steps { display: flex; gap: 6px; margin-bottom: 0.3rem; }
+.broch-steps { display: flex; gap: 6px; margin-bottom: 0.3rem; padding-right: 2.5rem; }
+/* Clearance from close button: desktop 24px buffer, mobile 16px */
+@media (max-width: 560px) { .broch-steps { padding-right: 2rem; } }
 .bstep-dot { height: 4px; flex: 1; border-radius: 4px; background: var(--steel); transition: background .25s; }
 .bstep-dot.active { background: var(--accent); }
 .field-err { font-size: 0.68rem; color: #F87171; min-height: 0; display: none; }
