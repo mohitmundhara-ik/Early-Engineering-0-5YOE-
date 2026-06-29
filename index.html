@@ -162,6 +162,9 @@ nav.scrolled {
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; color: var(--white); flex-shrink: 0; }
+.brand-img-wrap { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+.brand-logo-img { display: block; height: 40px; width: auto; object-fit: contain; max-width: 220px; }
+@media (max-width: 480px) { .brand-logo-img { height: 30px; } }
 .brand-mark {
   width: 34px; height: 34px;
   background: var(--ink2);
@@ -453,8 +456,14 @@ body[data-theme="light"] .tmeta-chip-hl { color: #0A0B0D !important; font-weight
 @media (max-width: 480px) { .cohort-text span { font-size: 0.65rem; } }
 
 /* Item 2: Hero "who is this for" compact pills */
-.hero-who { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1.1rem; margin-bottom: 1.5rem; justify-content: center; }
+.hero-who { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1.1rem; margin-bottom: 0.5rem; justify-content: center; }
 @media (min-width: 900px) { .hero-left .hero-who { justify-content: flex-start; } }
+.hero-date-chip { display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 1.2rem; font-size: 0.78rem; color: var(--silver); justify-content: center; width: 100%; }
+@media (min-width: 900px) { .hero-left .hero-date-chip { justify-content: flex-start; } }
+.hero-date-chip svg { color: var(--accent); flex-shrink: 0; }
+.hero-date-chip strong { color: var(--accent); font-weight: 700; }
+body[data-theme="light"] .hero-date-chip { color: #555; }
+body[data-theme="light"] .hero-date-chip svg, body[data-theme="light"] .hero-date-chip strong { color: #15803D; }
 .hero-who-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-right: 0.15rem; }
 .hero-who-pill { display: inline-flex; align-items: center; background: var(--ink); border: 1px solid var(--slate); border-radius: 100px; padding: 0.34rem 0.8rem; font-size: 0.74rem; font-weight: 600; color: var(--silver); transition: border-color .25s, color .25s; }
 .hero-who-pill:hover { border-color: rgba(191,255,0,0.45); color: var(--white); }
@@ -1065,7 +1074,7 @@ body[data-theme="light"] .grid-backdrop::before {
 
 /* FAQ */
 .faq-section { background: var(--black); }
-.faq-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; }
+.faq-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.75rem; justify-content: center; }
 .faq-tab { font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: 8px; border: 1.5px solid var(--steel); background: transparent; color: var(--silver); cursor: pointer; transition: all .18s; white-space: nowrap; }
 .faq-tab:hover { border-color: var(--accent); color: var(--white); }
 .faq-tab.active { background: var(--accent); border-color: var(--accent); color: #000; }
@@ -1295,8 +1304,17 @@ body.modal-open { overflow: hidden; }
 .cta-form { max-width: 480px; margin: 0 auto; background: var(--ink); border: 1px solid var(--slate); border-radius: 14px; padding: 1.5rem; text-align: left; }
 @media (max-width: 480px) { .cta-form { padding: 1.25rem; } }
 .cta-form-header { text-align: center; margin-bottom: 0.875rem; }
-.cta-form-header h3 { font-size: 1rem; color: var(--white); margin-bottom: 0.1rem; }
-.cta-form-header p { font-size: 0.72rem; color: var(--muted); }
+.cta-form-header h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--white); margin-bottom: 0.35rem; line-height: 1.25; }
+.cta-form-header .cta-header-desc { font-size: 0.78rem; color: var(--silver); margin: 0 0 0.35rem; }
+.cta-form-header .cta-header-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); font-weight: 600; margin: 0; letter-spacing: 0.04em; text-align: left; }
+body[data-theme="light"] .cta-form-header h3 { color: #0A0B0D; }
+body[data-theme="light"] .cta-form-header .cta-header-desc { color: #555; }
+body[data-theme="light"] .cta-form-header .cta-header-date { color: #15803D; }
+/* Already booked message in register form */
+.reg-already-booked { display: none; text-align: center; padding: 1rem; background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.35); border-radius: 12px; }
+.reg-already-booked p { font-size: 0.85rem; color: var(--white); margin: 0; }
+body[data-theme="light"] .reg-already-booked { background: rgba(21,128,61,0.08); border-color: rgba(21,128,61,0.25); }
+body[data-theme="light"] .reg-already-booked p { color: #15803D; }
 .cta-fomo { display: flex; align-items: center; justify-content: center; gap: 0.45rem; text-align: center; font-size: 0.78rem; background: rgba(191,255,0,0.07); border: 1px solid rgba(191,255,0,0.3); padding: 0.55rem 0.7rem; border-radius: 9px; margin-bottom: 1rem; color: var(--silver); font-weight: 500; }
 .cta-fomo .fomo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); animation: pulse 2s infinite; flex-shrink: 0; }
 .cta-fomo b { color: var(--accent); font-weight: 700; }
@@ -2096,7 +2114,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
 <!-- Nav -->
 <nav id="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand"><span class="brand-mark">{<i>ik</i>}</span><span class="brand-name"><b>INTERVIEW</b><b>KICKSTART</b></span></a>
+    <a href="#top" class="brand brand-img-wrap"><img src="/ik-talent500-logo.png" alt="Interview Kickstart × Talent 500" class="brand-logo-img" width="200" height="44" loading="eager"></a>
     <div class="nav-links" id="navLinks">
       <a href="#benefits">Why IK</a>
       <a href="#curriculum">Curriculum</a>
@@ -2164,6 +2182,12 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
           <span class="hero-who-pill">Freshers</span>
           <span class="hero-who-pill">Early-Tech Professionals</span>
           <span class="hero-who-pill">Career Switchers</span>
+        </div>
+
+        <!-- Webinar date -->
+        <div class="hero-date-chip reveal reveal-delay-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Next session: <strong>9 July &middot; 7 PM IST</strong>
         </div>
       </div>
       
@@ -2603,8 +2627,8 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
     </div>
     <div class="faq-panel active" id="faq-panel-1" role="tabpanel">
       <div class="faq-list">
-        <div class="faq-item"><div class="faq-q"><h3>What does the 14-week program cover?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>The program covers DSA, Agentic AI engineering, System Design, and career readiness. DSA and Agentic AI are live sessions; System Design and electives are self-paced. You also get 2 live mock interviews with MAANG+ engineers and full career support.</p></div></div>
-        <div class="faq-item"><div class="faq-q"><h3>Is it live or self-paced?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>Both. DSA and Agentic AI run live. System design and electives are self-paced so you can complete them around your schedule.</p></div></div>
+        <div class="faq-item"><div class="faq-q"><h3>What does the 14-week program cover?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>The program covers DSA, Agentic AI engineering, System Design, and career readiness. DSA and Agentic AI are live sessions; System Design is self-paced and included in the curriculum. You also get 2 live mock interviews with MAANG+ engineers and full career support.</p></div></div>
+        <div class="faq-item"><div class="faq-q"><h3>Is it live or self-paced?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>Both. DSA and Agentic AI run live. System Design is self-paced so you can complete it around your schedule.</p></div></div>
         <div class="faq-item"><div class="faq-q"><h3>What does it cost?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>The program fee is ₹70,000, with 0% no-cost EMI from ₹5,834/month. Scholarships and financing options are confirmed live in the free webinar.</p></div></div>
         <div class="faq-item"><div class="faq-q"><h3>Is there a refund policy?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>Yes. 14-day refund window from your first class, same-day processing.</p></div></div>
         <div class="faq-item"><div class="faq-q"><h3>What are "application opportunities"?</h3><span class="arrow">▼</span></div><div class="faq-a"><p>Application opportunities are subject to eligibility criteria and successful completion of the program as per Interview Kickstart's terms and conditions. They are opportunities to apply for roles and do not constitute an offer or guarantee of employment, placement, or any specific outcome.</p></div></div>
@@ -2647,8 +2671,11 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
         <span>Join <b>early-career engineers</b> already in the cohort</span>
       </div>
       <div class="cta-form reveal">
-        <div class="cta-form-header"><h3><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span></h3></div>
+        <div class="cta-form-header"><h3>Become the Engineer Companies Are Hiring in 2026</h3><p class="cta-header-desc">Learn the skills, build the projects, and demonstrate the expertise that hiring managers look for.</p><p class="cta-header-date">9 July &middot; 7 PM IST</p></div>
         <div class="cta-fomo"><span class="fomo-dot"></span>Only <b class="js-seats">23</b> seats left in <b>July cohort</b></div>
+        <div class="reg-already-booked" id="regAlreadyBooked">
+            <p>You are already registered for this webinar. See you on 9 July at 7 PM IST!</p>
+          </div>
         <form id="regForm">
           <div class="broch-steps" aria-hidden="true"><span class="bstep-dot active" id="rdot1"></span><span class="bstep-dot" id="rdot2"></span></div>
           <div class="reg-step" data-step="1">
@@ -2667,7 +2694,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
             </div>
           </div>
           <div class="form-field form-mcq"><label>What best describes your goal?</label><div class="mcq-opts"><label class="mcq-opt"><input type="radio" name="ff-move" value="Break into AI Engineering"><span>Break into AI Engineering</span></label><label class="mcq-opt"><input type="radio" name="ff-move" value="Become an Agentic AI Builder"><span>Become an Agentic AI Builder</span></label><label class="mcq-opt"><input type="radio" name="ff-move" value="Land a Role at a Top Tech Company"><span>Land a Role at a Top Tech Company</span></label><label class="mcq-opt"><input type="radio" name="ff-move" value="Accelerate My Career Growth"><span>Accelerate My Career Growth</span></label></div></div>
-            <button type="submit" class="btn btn-primary"><span class="cta-label">Book <span class="cta-free">FREE</span> Webinar</span> →</button>
+            <button type="submit" class="btn btn-primary">Reserve My Seat &rarr;</button>
           </div>
           <p class="privacy">By registering you agree to our privacy policy.</p>
         </form>
@@ -2763,11 +2790,11 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
   <div class="webinar-popup-backdrop" id="wpBackdrop"></div>
   <div class="webinar-popup-card">
     <button class="webinar-popup-close" id="wpClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    <div class="wp-confetti">🎉</div>
+    
     <p class="wp-eyebrow">Registration Complete</p>
     <h2 id="wpTitle" class="wp-title">See you at the webinar!</h2>
     <div class="wp-date-box">
-      <p class="wp-date">Sunday, July 19, 2026</p>
+      <p class="wp-date">Wednesday, July 9, 2026</p>
       <p class="wp-slot">7:00 PM IST · Your Webinar slot</p>
     </div>
     <p class="wp-inbox">Details are in your inbox. See you soon!</p>
@@ -2780,7 +2807,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
   <div class="footer-top">
     <div class="wrap footer-top-inner">
       <div class="footer-brand">
-        <a href="#top" class="brand"><span class="brand-mark">{<i>ik</i>}</span><span class="brand-name"><b>INTERVIEW</b><b>KICKSTART</b></span></a>
+        <a href="#top" class="brand brand-img-wrap"><img src="/ik-talent500-logo.png" alt="Interview Kickstart × Talent 500" class="brand-logo-img" width="160" height="36" loading="lazy"></a>
         <div class="footer-address-block">
           <h4>Address</h4>
           <address>1st Floor, Hustlehub 1903, 49,<br>19th Main Rd, Agara Village, 1st<br>Sector, HSR Layout, Bengaluru,<br>Karnataka 560102</address>
@@ -3101,9 +3128,43 @@ stickyObs.observe(heroSection);
 document.getElementById('regForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var _ok=true,_bad=null; this.querySelectorAll('.cdrop input[type=hidden][data-req]').forEach(function(h){var d=h.closest('.cdrop'); if(!h.value){d.classList.add('error');_ok=false;if(!_bad)_bad=d;}else{d.classList.remove('error');}}); if(!_ok){ if(_bad){_bad.scrollIntoView({block:'center',behavior:'smooth'}); _bad.querySelector('.cdrop-trigger').focus();} return; }
+  // Capture data regardless of subsequent action
+  var captured = {
+    name: document.getElementById('ff-name').value,
+    email: document.getElementById('ff-email').value,
+    phone: (document.getElementById('ff-ext').value||'+91') + document.getElementById('ff-phone').value
+  };
+  try { window._ikLeadData = captured; } catch(e2) {}
   // Show webinar success popup
   var wp = document.getElementById('webinarPopup');
   if (wp) { wp.classList.add('open'); wp.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open'); }
+});
+
+// Show already-booked message if user already registered in this session
+(function() {
+  var alreadyDiv = document.getElementById('regAlreadyBooked');
+  var regForm = document.getElementById('regForm');
+  if (window._ikWebinarBooked && alreadyDiv && regForm) {
+    alreadyDiv.style.display = 'block';
+    regForm.style.display = 'none';
+  }
+  // Also check on popup close
+  document.addEventListener('ikWebinarBooked', function() {
+    if (alreadyDiv && regForm) {
+      alreadyDiv.style.display = 'block';
+      regForm.style.display = 'none';
+    }
+  });
+})();
+
+// Regist step 1 Proceed - capture data
+document.getElementById('regNext') && document.getElementById('regNext').addEventListener('click', function() {
+  var name = document.getElementById('ff-name').value;
+  var email = document.getElementById('ff-email').value;
+  var phone = document.getElementById('ff-phone').value;
+  if (name && email && phone) {
+    try { window._ikLeadData = { name: name, email: email, phone: (document.getElementById('ff-ext').value||'+91') + phone }; } catch(e) {}
+  }
 });
 
 // Custom dropdowns (smooth, accessible)
@@ -3363,7 +3424,19 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
       if (ph.length !== 10) { if (phoneErr) { phoneErr.textContent = 'Enter a valid 10-digit number.'; phoneErr.classList.add('show'); } phone.focus(); return false; }
       return true;
     }
-    if (nextBtn) nextBtn.addEventListener('click', function() { if (validStep1()) showStep(2); });
+    if (nextBtn) nextBtn.addEventListener('click', function() {
+      if (validStep1()) {
+        // Capture data on Proceed regardless of further action
+        try {
+          window._ikLeadData = {
+            name: document.getElementById('bf-name').value.trim(),
+            email: document.getElementById('bf-email').value.trim(),
+            phone: (document.getElementById('bf-ext') ? document.getElementById('bf-ext').value : '+91') + phone.value.trim()
+          };
+        } catch(e2) {}
+        showStep(2);
+      }
+    });
     if (backBtn) backBtn.addEventListener('click', function() { showStep(1); });
 
     form.addEventListener('submit', function(e) {
@@ -3454,6 +3527,7 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     document.body.classList.remove('modal-open');
     // Mark as booked so success screen shows "already registered" on next open
     window._ikWebinarBooked = true;
+    try { document.dispatchEvent(new CustomEvent('ikWebinarBooked')); } catch(e) {}
   }
 
   // "Book FREE Webinar" CTA in brochure download screen
@@ -3499,15 +3573,14 @@ updateCountdown();
 setInterval(updateCountdown, 60000);
 
 // ═══════════════════════════════════════════
-// Seats left - starts high, decreases on repeat visits (per person)
+// Seats left - global time-based decay: starts 37, -2 every 12h, min 7
+// Same count for all users based on epoch time
 // ═══════════════════════════════════════════
 (function(){
-  var START = 37, MIN = 11, n = START;
-  try {
-    var stored = localStorage.getItem('ikSeatsLeft');
-    if (stored !== null) { n = parseInt(stored, 10); if (isNaN(n)) n = START; if (n > MIN) n = n - 1; }
-    localStorage.setItem('ikSeatsLeft', String(n));
-  } catch (e) { n = START; }
+  var START = 37, MIN = 7, INTERVAL_MS = 12 * 60 * 60 * 1000;
+  var EPOCH = new Date('2026-06-29T00:00:00Z').getTime();
+  var steps = Math.floor((Date.now() - EPOCH) / INTERVAL_MS);
+  var n = Math.max(MIN, START - (steps * 2));
   document.querySelectorAll('.js-seats').forEach(function(el){ el.textContent = n; });
 })();
 
