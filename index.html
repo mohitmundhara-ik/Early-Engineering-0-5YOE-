@@ -152,7 +152,7 @@ nav {
   position: sticky; top: 0; z-index: 100;
   background: var(--black);
   border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding: 0.3rem 0;
+  padding: 0.25rem 0;
   transition: background 0.3s ease;
 }
 nav.scrolled {
@@ -163,8 +163,8 @@ nav.scrolled {
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; color: var(--white); flex-shrink: 0; }
 .brand-img-wrap { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
-.brand-logo-img { display: block; height: 52px; width: auto; object-fit: contain; max-width: 280px; }
-@media (max-width: 480px) { .brand-logo-img { height: 38px; } }
+.brand-logo-img { display: block; height: 70px; width: auto; object-fit: contain; max-width: 340px; }
+@media (max-width: 480px) { .brand-logo-img { height: 50px; } }
 .brand-mark {
   width: 34px; height: 34px;
   background: var(--ink2);
@@ -1305,11 +1305,17 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 480px) { .cta-form { padding: 1.25rem; } }
 .cta-form-header { text-align: center; margin-bottom: 0.875rem; }
 .cta-form-header h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--white); margin-bottom: 0.35rem; line-height: 1.25; }
-.cta-form-header .cta-header-desc { font-size: 0.78rem; color: var(--silver); margin: 0 0 0.35rem; }
-.cta-form-header .cta-header-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); font-weight: 600; margin: 0; letter-spacing: 0.04em; text-align: left; }
+.cta-form-header .cta-header-desc { font-size: 0.78rem; color: var(--silver); margin: 0 0 0.45rem; }
+.cta-header-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.3rem 0.5rem; font-size: 0.75rem; margin-bottom: 0.75rem; }
+.cta-header-date { color: var(--accent); font-family: var(--font-mono); font-weight: 600; letter-spacing: 0.04em; white-space: nowrap; }
+.cta-header-sep { color: var(--steel); }
+.cta-header-fomo { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--silver); white-space: nowrap; }
+.cta-header-fomo b { color: var(--white); }
 body[data-theme="light"] .cta-form-header h3 { color: #0A0B0D; }
 body[data-theme="light"] .cta-form-header .cta-header-desc { color: #555; }
-body[data-theme="light"] .cta-form-header .cta-header-date { color: #15803D; }
+body[data-theme="light"] .cta-header-date { color: #15803D; }
+body[data-theme="light"] .cta-header-fomo { color: #555; }
+body[data-theme="light"] .cta-header-fomo b { color: #0A0B0D; }
 /* Already booked message in register form */
 .reg-already-booked { display: none; text-align: center; padding: 1rem; background: var(--lime-soft); border: 1px solid rgba(191,255,0,0.35); border-radius: 12px; }
 .reg-already-booked p { font-size: 0.85rem; color: var(--white); margin: 0; }
@@ -2660,7 +2666,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
   <div class="wrap">
     <div class="cta-content">
       <div class="eyebrow reveal">Next step · Your move</div>
-      <h2 class="reveal">AI is reshaping every engineering role in India.</h2>
+      <h2 class="reveal">Become the Engineer <span class="gradient-text">Companies Are Hiring</span> in 2026.</h2>
       <div class="yourmove-social reveal" style="justify-content:center;margin:0 auto 1.5rem;">
         <div class="avatar-cluster">
           <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" loading="lazy">
@@ -2671,8 +2677,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
         <span>Join <b>early-career engineers</b> already in the cohort</span>
       </div>
       <div class="cta-form reveal">
-        <div class="cta-form-header"><h3>Become the Engineer Companies Are Hiring in 2026</h3><p class="cta-header-desc">Learn the skills, build the projects, and demonstrate the expertise that hiring managers look for.</p><p class="cta-header-date">9 July &middot; 7 PM IST</p></div>
-        <div class="cta-fomo"><span class="fomo-dot"></span>Only <b class="js-seats">23</b> seats left in <b>July cohort</b></div>
+        <div class="cta-form-header"><h3><span class="gradient-text">Become the Engineer Companies Are Hiring in 2026</span></h3><p class="cta-header-desc">Learn the skills, build the projects, and demonstrate the expertise that hiring managers look for.</p><div class="cta-header-row"><span class="cta-header-date">9 July &middot; 7 PM IST</span><span class="cta-header-sep">·</span><span class="cta-header-fomo"><span class="fomo-dot"></span>Only <b class="js-seats">23</b> seats left in <b>July cohort</b></span></div></div>
         <div class="reg-already-booked" id="regAlreadyBooked">
             <p>You are already registered for this webinar. See you on 9 July at 7 PM IST!</p>
           </div>
@@ -2696,7 +2701,7 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
           <div class="form-field form-mcq"><label>What best describes your goal?</label><div class="mcq-opts"><label class="mcq-opt"><input type="radio" name="ff-move" value="Break into AI Engineering"><span>Break into AI Engineering</span></label><label class="mcq-opt"><input type="radio" name="ff-move" value="Become an Agentic AI Builder"><span>Become an Agentic AI Builder</span></label><label class="mcq-opt"><input type="radio" name="ff-move" value="Land a Role at a Top Tech Company"><span>Land a Role at a Top Tech Company</span></label><label class="mcq-opt"><input type="radio" name="ff-move" value="Accelerate My Career Growth"><span>Accelerate My Career Growth</span></label></div></div>
             <button type="submit" class="btn btn-primary">Reserve My Seat &rarr;</button>
           </div>
-          <p class="privacy">By registering you agree to our privacy policy.</p>
+          <p class="privacy">By registering you agree to our <a href="https://interviewkickstart.com/in/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>
         </form>
       </div>
     </div>
