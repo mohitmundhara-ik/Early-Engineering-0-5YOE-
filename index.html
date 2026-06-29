@@ -165,6 +165,30 @@ nav.scrolled {
 .brand-img-wrap { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
 .brand-logo-img { display: block; height: 70px; width: auto; object-fit: contain; max-width: 340px; }
 @media (max-width: 480px) { .brand-logo-img { height: 50px; } }
+/* Partnership banner — enlarged centered logo */
+.partner-banner {
+  background: #000;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+.partner-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.partner-banner-logo {
+  display: block;
+  height: 190px;
+  width: auto;
+  max-width: 90vw;
+  object-fit: contain;
+}
+body[data-theme="light"] .partner-banner { background: #fff; border-bottom-color: rgba(0,0,0,0.08); }
+@media (max-width: 640px) {
+  .partner-banner { padding: 1.75rem 1rem; }
+  .partner-banner-logo { height: 130px; }
+}
 .brand-mark {
   width: 34px; height: 34px;
   background: var(--ink2);
@@ -2148,6 +2172,13 @@ body[data-theme="light"] .crisis-arrow:hover { border-color: #15803D; }
     </div>
   </div>
 </nav>
+
+<!-- Partnership Banner -->
+<section class="partner-banner" aria-label="Interview Kickstart × Talent 500 partnership">
+  <div class="wrap partner-banner-inner">
+    <img src="/logo.png" alt="Interview Kickstart × Talent 500" class="partner-banner-logo" loading="eager">
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════
      HERO SECTION
