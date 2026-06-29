@@ -163,13 +163,14 @@ nav.scrolled {
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; color: var(--white); flex-shrink: 0; }
 .brand-img-wrap { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
-.brand-logo-img { display: block; height: 70px; width: auto; object-fit: contain; max-width: 340px; }
-@media (max-width: 480px) { .brand-logo-img { height: 50px; } }
-/* Partnership banner — enlarged centered logo */
+/* Nav logo hidden until user scrolls past the banner */
+.brand-logo-img { display: block; height: 50px; width: auto; object-fit: contain; max-width: 260px; opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; }
+.brand-logo-img.nav-logo-visible { opacity: 1; transform: translateX(0); pointer-events: auto; }
+@media (max-width: 480px) { .brand-logo-img { height: 36px; } }
+/* Partnership banner — enlarged centered logo, matches page bg */
 .partner-banner {
-  background: #000;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  padding: 2.5rem 1.5rem;
+  background: var(--black);
+  padding: 3rem 1.5rem 2.5rem;
   text-align: center;
 }
 .partner-banner-inner {
@@ -184,10 +185,10 @@ nav.scrolled {
   max-width: 90vw;
   object-fit: contain;
 }
-body[data-theme="light"] .partner-banner { background: #fff; border-bottom-color: rgba(0,0,0,0.08); }
+body[data-theme="light"] .partner-banner { background: var(--white); }
 @media (max-width: 640px) {
-  .partner-banner { padding: 1.75rem 1rem; }
-  .partner-banner-logo { height: 130px; }
+  .partner-banner { padding: 2rem 1rem 1.75rem; }
+  .partner-banner-logo { height: 120px; }
 }
 .brand-mark {
   width: 34px; height: 34px;
@@ -3597,6 +3598,24 @@ document.getElementById('regNext') && document.getElementById('regNext').addEven
   if (closeBtn) closeBtn.addEventListener('click', closeWebinarPopup);
   if (resumeBtn) resumeBtn.addEventListener('click', closeWebinarPopup);
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && popup.classList.contains('open')) closeWebinarPopup(); });
+})();
+// ═══════════════════════════════════════════
+// Nav logo: slides in from left when banner scrolls out of view
+// ═══════════════════════════════════════════
+(function() {
+  var banner = document.querySelector('.partner-banner');
+  var navLogo = document.querySelector('.brand-logo-img');
+  if (!banner || !navLogo) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        navLogo.classList.remove('nav-logo-visible');
+      } else {
+        navLogo.classList.add('nav-logo-visible');
+      }
+    });
+  }, { threshold: 0 });
+  obs.observe(banner);
 })();
 
 
