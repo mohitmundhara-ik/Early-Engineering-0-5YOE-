@@ -3654,11 +3654,6 @@ document.getElementById('regNext') && document.getElementById('regNext').addEven
   var closeBtn = document.getElementById('wpClose');
   var resumeBtn = document.getElementById('wpResume');
 
-  function openWebinarPopup() {
-    popup.classList.add('open');
-    popup.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-  }
   function closeWebinarPopup() {
     popup.classList.remove('open');
     popup.setAttribute('aria-hidden', 'true');
@@ -3668,25 +3663,23 @@ document.getElementById('regNext') && document.getElementById('regNext').addEven
     try { document.dispatchEvent(new CustomEvent('ikWebinarBooked')); } catch(e) {}
   }
 
-  // "Book FREE Webinar" CTA in brochure download screen
+  // "Book FREE Webinar" CTA in brochure download screen - close the brochure
+  // modal and scroll to the registration form. The success popup only opens
+  // once the form is actually submitted (see the regForm submit handler).
   var brochWebinarBtn = document.getElementById('brochWebinarBtn');
   if (brochWebinarBtn) {
     brochWebinarBtn.addEventListener('click', function() {
       // close brochure modal first
       var bm = document.getElementById('brochModal');
       if (bm) { bm.classList.remove('open'); bm.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); }
-      setTimeout(openWebinarPopup, 120);
+      var reg = document.getElementById('register');
+      if (reg) setTimeout(function(){ reg.scrollIntoView({ behavior: 'smooth' }); }, 120);
     });
   }
 
-  // All other "Book FREE Webinar" CTAs (register section CTAs trigger webinar popup directly)
-  // CTA buttons with class btn-primary that link to #register open webinar popup
-  document.querySelectorAll('a[href="#register"].btn, a.btn[href="#register"]').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      openWebinarPopup();
-    });
-  });
+  // All other "Book FREE Webinar" CTAs (nav, hero, sticky bar, etc.) keep their
+  // native href="#register" anchor behavior and simply scroll to the form -
+  // they no longer jump straight to the success popup.
 
   // Close handlers
   if (backdrop) backdrop.addEventListener('click', closeWebinarPopup);
