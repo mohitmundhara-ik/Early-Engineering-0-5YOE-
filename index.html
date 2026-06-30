@@ -739,7 +739,7 @@ body[data-theme="light"] .hl-tool { color: #15803D; }
    READINESS (merged practice + career)
    ═══════════════════════════════════════════ */
 .readiness-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-@media (min-width: 880px) { .readiness-grid { grid-template-columns: 1.05fr 0.95fr; align-items: start; } }
+@media (min-width: 880px) { .readiness-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
 .readiness-col { background: var(--ink); border: 1px solid var(--slate); border-radius: 16px; padding: 1.5rem; }
 .readiness-col-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 1.1rem; }
 .readiness-items { display: flex; flex-direction: column; gap: 0.85rem; }
@@ -1041,7 +1041,7 @@ body[data-theme="light"] .grid-backdrop::before {
 .career-section { background: var(--ink); }
 .career-grid { display: grid; grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 1.5rem; }
 @media (min-width: 640px) { .career-grid { grid-template-columns: repeat(2, 1fr); } }
-.career-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: var(--black); border: 1px solid var(--slate); border-radius: 10px; font-size: 0.85rem; }
+.career-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: var(--black); border: 1px solid var(--slate); border-radius: 10px; font-size: 0.85rem; min-height: 73px; }
 .career-item .check { color: var(--accent); font-weight: 700; }
 .career-recruiter { display: flex; align-items: center; gap: 1.1rem; padding: 0.9rem 1.1rem; background: var(--black); border: 1px solid var(--slate); border-radius: 10px; margin-bottom: 1.5rem; }
 .career-recruiter .check { color: var(--accent); font-weight: 700; flex-shrink: 0; align-self: center; }
@@ -3281,6 +3281,15 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     }
   });
 })();
+
+// The "booked" state lives only in memory (window._ikWebinarBooked), so a real
+// page reload already clears it. Some mobile browsers (notably iOS Safari)
+// restore the page from the back/forward cache on refresh instead of re-running
+// scripts, which is what makes the "already registered" state appear to stick.
+// Force a true reload in that case so the form resets and asks for info again.
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) { location.reload(); }
+});
 
 // Regist step 1 Proceed - capture data
 document.getElementById('regNext') && document.getElementById('regNext').addEventListener('click', function() {
